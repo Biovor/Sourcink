@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modifier un partenaire</h1>
+
+    {#{{ form_start(edit_form) }}#}
+        {#{{ form_widget(edit_form) }}#}
+        {#<input type="submit" value="Edit" />#}
+    {#{{ form_end(edit_form) }}#}
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('partner_index') }}">Back to the list</a>#}
+        {#</li>#}
+        {#<li>#}
+            {#{{ form_start(delete_form) }}#}
+                {#<input type="submit" value="Delete">#}
+            {#{{ form_end(delete_form) }}#}
+        {#</li>#}
+    {#</ul>#}
+
+    {{ form_start(form) }}
+    {{ form_label(form.partnerName) }}
+    {{ form_widget(form.partnerName) }}
+    {{ form_errors(form.partnerName) }}
+
+    {{ form_label(form.path) }}
+    {{ form_widget(form.path) }}
+    {{ form_errors(form.path) }}
+
+    <div class="file-field input-field">
+
+        <div class="btn orange">
+            <span>Choisissez une image</span>
+            {{ form_widget(form.picture.pictureFile) }}
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+        {{ form_errors(form.picture.pictureFile) }}
+    </div>
+    {{ form_label(form.picture.alt) }}
+    {{ form_widget(form.picture.alt) }}
+    {{ form_errors(form.picture.alt) }}
+
+    {{ form_widget(form.submit) }}
+    {{ form_end(form) }}
+
+    {{ form_start(delete_form) }}
+    <button class="btn red right" name="action" type="submit">Supprimer</button>
+    {{ form_end(delete_form) }}
+
+{% endblock %}

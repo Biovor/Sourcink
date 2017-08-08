@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Partenaires</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Lien</th>
+                <th>Nom du partenaire</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for partner in partners %}
+            <tr>
+                <td> {% if partner.picture is not null %}
+                        <img src="{{ asset('img/' ~ partner.picture.pictureName) }}" class="admimage"/>
+                    {% endif %}
+                </td>
+                <td>{{ partner.path }}</td>
+                <td>{{ partner.partnerName }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('partner_edit', { 'id': partner.id }) }}" class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons">mode_edit</i></a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('partner_new') }}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+        </li>
+    </ul>
+
+{% endblock %}
