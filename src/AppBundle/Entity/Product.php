@@ -212,7 +212,7 @@ class Product
     /**
      * Set picture
      *
-     * @param AppBundle\Entity\Picture $picture
+     * @param Picture $picture
      *
      * @return Product
      */
@@ -226,7 +226,7 @@ class Product
     /**
      * Get picture
      *
-     * @return AppBundle\Entity\Picture
+     * @return Picture
      */
     public function getPicture()
     {

@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations\AnnotationException;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Partner
@@ -21,23 +23,6 @@ class Partner
      */
     private $id;
 
-    /**
-     * @return mixed
-     */
-    public function getPicture()
-    {
-        return $this->picture;
-    }
-
-    /**
-     * @param mixed $picture
-     * @return Partner
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-        return $this;
-    }
 
     /**
      * @var string
@@ -48,7 +33,9 @@ class Partner
 
     /**
      * @var
+     *
      * @ORM\OneToOne(targetEntity="Picture", cascade={"persist"})
+     *
      */
     private $picture;
 
@@ -117,4 +104,31 @@ class Partner
     {
         return $this->partnerName;
     }
+
+    /**
+     * Set picture
+     *
+     * @param Picture $picture
+     *
+     * @return Partner
+     */
+    public function setPicture(Picture $picture = null)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return Picture
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
 }
+
+

@@ -49,7 +49,7 @@ class PartnerController extends Controller
             $em->persist($partner);
             $em->flush();
 
-            return $this->redirectToRoute('partner_show', array('id' => $partner->getId()));
+            return $this->redirectToRoute('partner_index', array('id' => $partner->getId()));
         }
 
         return $this->render('Admin/partner/new.html.twig', array(
@@ -74,12 +74,12 @@ class PartnerController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('partner_edit', array('id' => $partner->getId()));
+            return $this->redirectToRoute('partner_index');
         }
 
         return $this->render('Admin/partner/edit.html.twig', array(
             'partner' => $partner,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

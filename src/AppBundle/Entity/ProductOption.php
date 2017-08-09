@@ -60,7 +60,7 @@ class ProductOption
     /**
      * Get product
      *
-     * @return AppBundle\Entity\Product
+     * @return Product
      */
     public function getProduct()
     {

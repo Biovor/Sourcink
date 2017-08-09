@@ -1,22 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {#<h1>Partner creation</h1>#}
-
-    {#{{ form_start(form) }}#}
-        {#{{ form_widget(form) }}#}
-        {#<input type="submit" value="Create" />#}
-    {#{{ form_end(form) }}#}
-
-    {#<ul>#}
-        {#<li>#}
-            {#<a href="{{ path('partner_index') }}">Back to the list</a>#}
-        {#</li>#}
-    {#</ul>#}
-
     <h1>
         Ajouter un partenaire
-        <a href="{{ path('team_index') }}" class="btn btn-flat orange-text right">Revenir à la liste</a>
+        <a href="{{ path('partner_index') }}" class="btn btn-flat orange-text right">Revenir à la liste</a>
     </h1>
 
     {{ form_start(form) }}

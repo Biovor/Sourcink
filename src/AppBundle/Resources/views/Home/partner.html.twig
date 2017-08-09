@@ -2,37 +2,13 @@
     <h2 class="center" id="job">Nos Partenaires</h2>
     <div class="row">
         <div class="center center-block partner-row">
+        {% for part in partner %}
             <div class="col s4 m3 l2">
-                <a href="https://itwapp.io/fr" target='_blank'>
-                    <img src="{{ asset('media/partner/iwapp.png') }}" class="responsive-img" >
+                <a href="https://{{ part.path }}" target='_blank'>
+                    <img src="{{ asset('img/'~part.picture.pictureName) }}" class="responsive-img" >
                 </a>
             </div>
-            <div class="col s4 m3 l2">
-                <a href="https://www.linkedin.com/company-beta/5059711/" target='_blank'>
-                    <img src="{{ asset('media/partner/linkedin.png') }}" class="responsive-img" >
-                </a>
-            </div>
-            <div class="col s4 m3 l2">
-                <a href="https://www.carrieres-juridiques.com/metiers-du-droit-jobfair-virtuelle/sourcink/18244"
-                   target='_blank'>
-                    <img src="{{ asset('media/partner/carrieres_juri.png') }}" class="responsive-img" >
-                </a>
-            </div>
-            <div class="col s4 m3 l2 ">
-                <a href="http://www.village-justice.com/annonces/?show_emp=21706" target='_blank'>
-                    <img src="{{ asset('media/partner/village_justice.png') }}" class="responsive-img" >
-                </a>
-            </div>
-            <div class="col s4 m3 l2">
-                <a href="https://www.monster.fr/" target='_blank'>
-                    <img src="{{ asset('media/partner/monster.png') }}" class="responsive-img" >
-                </a>
-            </div>
-            <div class="col s4 m3 l2">
-                <a href="https://www.apec.fr/" target='_blank'>
-                    <img src="{{ asset('media/partner/Apec.png') }}" class="responsive-img" >
-                </a>
-            </div>
+        {% endfor %}
         </div>
     </div>
 </div>

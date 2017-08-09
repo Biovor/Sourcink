@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PartnerType extends AbstractType
@@ -30,7 +31,16 @@ class PartnerType extends AbstractType
                     'label' => 'Nom',
                     'attr' =>
                         array(
-                            'placeholder' => 'Entrez le nom de la personne',
+                            'placeholder' => 'Entrez le nom du partenaire',
+                        )
+                )
+            )
+            ->add('submit', SubmitType::class,
+                array(
+                    'label' => 'Enregistrer',
+                    'attr' =>
+                        array(
+                            'class' => 'btn blue'
                         )
                 )
             );

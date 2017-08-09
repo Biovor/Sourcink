@@ -161,7 +161,7 @@ class Category
     /**
      * Get picture
      *
-     * @return AppBundle\Entity\Picture
+     * @return Picture
      */
     public function getPicture()
     {
@@ -205,7 +205,7 @@ class Category
     /**
      * Remove work
      *
-     * @param \AppBundle\Entity\Work $work
+     * @param Work $work
      */
     public function removeWork(\AppBundle\Entity\Work $work)
     {
