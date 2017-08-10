@@ -1,8 +1,8 @@
 
-{% if browser == 'Edge' or browser =='MSIE' %}
+{% if browser == 'Edge' or browser =='IE' %}
 
-    <div class="slider">
-        <ul class="slides slideHome">
+    <div class="slider slideHomeDiv">
+        <ul class="slides slideHomeImg">
             {% for photo in photos %}
                 <li>
                     <img src="{{ asset('img/'~photo.picture.pictureName) }}">

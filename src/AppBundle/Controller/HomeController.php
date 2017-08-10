@@ -46,8 +46,12 @@ class HomeController extends Controller
 //        }
 
         $browser = $request->server->get('HTTP_USER_AGENT');
+
         if (preg_match('/Edge/', $browser)) {
             $browser = 'Edge';
+        }
+        if (preg_match('/MSIE/i',$browser)) {
+            $browser = 'IE';
         }
 
         return $this->render(
