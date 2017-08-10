@@ -1,34 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Sliders list</h1>
 
-    <table>
+    <h1>Photos</h1>
+    <table class="highlight">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Text</th>
-                <th>Title</th>
-                <th>Url</th>
-                <th>Nameurl</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Images</th>
+            <th>Titre</th>
+            <th>Sous-Titre</th>
+            <th>Lien</th>
+            <th>Nom du Lien</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
-        {% for slider in sliders %}
+        {% for slide in sliders %}
             <tr>
-                <td><a href="{{ path('slider_show', { 'id': slider.id }) }}">{{ slider.id }}</a></td>
-                <td>{{ slider.text }}</td>
-                <td>{{ slider.title }}</td>
-                <td>{{ slider.url }}</td>
-                <td>{{ slider.nameUrl }}</td>
+                <td> {% if slide.picture is not null %}
+                        <img src="{{ asset('img/' ~ slide.picture.pictureName) }}" class="admimage"/>
+                    {% endif %}
+                </td>
+                <td>{{ slide.title |striptags }}</td>
+                <td>{{ slide.text | striptags }}</td>
+                <td>{{ slide.url }}</td>
+                <td>{{ slide.nameUrl }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('slider_show', { 'id': slider.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('slider_edit', { 'id': slider.id }) }}">edit</a>
+                            <a href="{{ path('slider_edit', { 'id': slide.id }) }}"
+                               class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons">mode_edit</i></a>
                         </li>
                     </ul>
                 </td>
@@ -39,7 +40,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('slider_new') }}">Create a new slider</a>
+            <a href="{{ path('slider_new') }}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
         </li>
     </ul>
 {% endblock %}

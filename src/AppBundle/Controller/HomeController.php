@@ -20,6 +20,7 @@ class HomeController extends Controller
         $categories = $em->getRepository('AppBundle:Category')->findAll();
         $team = $em->getRepository('AppBundle:Team')->findAll();
         $partner = $em->getRepository('AppBundle:Partner')->findAll();
+        $photos = $em->getRepository('AppBundle:Slider')->findAll();
 
         $data = $api->get('jobs');
 //
@@ -54,6 +55,7 @@ class HomeController extends Controller
             [
 //                'offers' => $offers,
                 'videos' => $videos,
+                'photos' => $photos,
                 'categories' => $categories,
                 'team' => $team,
                 'browser'=>$browser,

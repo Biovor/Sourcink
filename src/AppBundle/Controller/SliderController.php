@@ -3,14 +3,16 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Slider;
+use AppBundle\Form\HeaderType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Slider controller.
  *
- * @Route("slider")
+ * @Route("admin/slider")
  */
 class SliderController extends Controller
 {
@@ -40,7 +42,7 @@ class SliderController extends Controller
     public function newAction(Request $request)
     {
         $slider = new Slider();
-        $form = $this->createForm('AppBundle\Form\SliderType', $slider);
+        $form = $this->createForm(HeaderType::class, $slider);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -66,7 +68,7 @@ class SliderController extends Controller
     public function editAction(Request $request, Slider $slider)
     {
         $deleteForm = $this->createDeleteForm($slider);
-        $editForm = $this->createForm('AppBundle\Form\SliderType', $slider);
+        $editForm = $this->createForm(HeaderType::class, $slider);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
