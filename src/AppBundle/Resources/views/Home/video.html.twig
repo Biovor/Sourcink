@@ -1,45 +1,24 @@
 
-<!--[ifIE]>
+{% if browser == 'Edge' or browser =='Internet Explorer' %}
 
-<div class="slider">
-    <ul class="slides">
-        {% for photo in photos %}
-        <li>
-            <img src="{{ asset('img/'~photo.picture.pictureName) }}">
-            <div class="caption center-align">
+    <div class="slider atr">
+        <ul class="slides">
+            {% for photo in photos %}
+                <li>
+                    <img src="{{ asset('img/'~photo.picture.pictureName) }}">
+                    <div class="caption center-align">
 
-                <h2><a href="{{ photo.url }}">{{ photo.title |raw }}</a></h2>
-                <h4>{{ photo.text | raw }}</h4>
+                        <h2><a href="{{ photo.url }}">{{ photo.title |raw }}</a></h2>
+                        <h4>{{ photo.text | raw }}</h4>
 
-                <a href="{{ photo.url }}" class="btn blue">{{ photo.nameUrl }}</a>
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
+                        <a href="{{ photo.url }}" class="btn blue">{{ photo.nameUrl }}</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 
-<![endif]-->
-
-{#{% if browser == 'Edge' %}#}
-
-    {#<div class="slider">#}
-        {#<ul class="slides">#}
-            {#{% for photo in photos %}#}
-                {#<li>#}
-                    {#<img src="{{ asset('img/'~photo.picture.pictureName) }}">#}
-                    {#<div class="caption center-align">#}
-
-                        {#<h2><a href="{{ photo.url }}">{{ photo.title |raw }}</a></h2>#}
-                        {#<h4>{{ photo.text | raw }}</h4>#}
-
-                        {#<a href="{{ photo.url }}" class="btn blue">{{ photo.nameUrl }}</a>#}
-                    {#</div>#}
-                {#</li>#}
-            {#{% endfor %}#}
-        {#</ul>#}
-    {#</div>#}
-
-{#{% else %}#}
+{% else %}
     <div class="video-container video-responsive hide-on-small-only hide-on-med-only">
         <div class="slider fullscreen video-responsive">
             <ul class="slides">
@@ -60,7 +39,7 @@
             </ul>
         </div>
     </div>
-{#{% endif %}#}
+{% endif %}
 
 
 
