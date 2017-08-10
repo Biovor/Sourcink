@@ -19,14 +19,16 @@
             <p class="lighten-1 {% if loop.index == 1 %} product-small red  {% elseif loop.index == 2 %} product-medium deep-purple {% elseif loop.index == 3 %} product-large blue {% endif %}">{{ product.text }}</p>
         </div>
     {% elseif category.isPremium == true %}
-        <div class="center">
-            <img class="circle responsive-img img" id="{{ product.id }}"
-                 src="{{ asset('img/'~product.picture.pictureName) }}">
+        <div class="center row">
+            <div class="col offset-m3 m8">
             <a class="btn-floating btn show-premium black lighten-1"><i class="material-icons">add</i></a>
 
-            <p class="product-premium black lighten-1"><a href="mailto:{{ email }}">Contactez-nous</a> pour plus
-                d'informations.</p>
-
+            <p class="product-premium black lighten-1"><a href="mailto:{{ email }}">{{ product.text }}</a></p>
+            </div>
+        </div>
+            <div class="center row">
+            <img class="circle responsive-img img logoPrem" id="{{ product.id }}"
+                 src="{{ asset('img/'~product.picture.pictureName) }}">
         </div>
     {% endif %}
 {% endfor %}

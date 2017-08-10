@@ -45,6 +45,7 @@ class ProductType extends AbstractType
                 'price', IntegerType::class,
                 array(
                     'label' => 'Prix',
+                    'required' => false,
                     'attr' =>
                         array(
                             'placeholder' => 'Entrez le prix du produit',
