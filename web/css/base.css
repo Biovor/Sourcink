@@ -599,11 +599,11 @@ footer {
     }
 }
 .slideHomeDiv{
-    height: 900px;
+    height: 900px!important;
 }
 
 .slideHomeImg{
-    height: 800px;
+    height: 800px!important;
 }
 
 
