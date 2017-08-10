@@ -3,7 +3,7 @@
 
 
 <![endif]-->
-{% if browser == 'Edge' %}
+{% if browser == 'Edge' || == 'IE' %}
 
     <div class="slider">
         <ul class="slides">
@@ -30,7 +30,7 @@
                     <li>
                         <video autoplay muted loop>
                             <source src="{{ asset('img/'~video.picture.pictureName) }}" type="video/mp4">
-                        </video> <!-- random image -->
+                        </video>
                         <div class="caption center-align">
 
                             <h2><a href="{{ video.url }}">{{ video.title |raw }}</a></h2>
