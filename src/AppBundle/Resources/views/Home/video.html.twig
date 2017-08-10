@@ -1,28 +1,45 @@
 
 <!--[ifIE]>
 
+<div class="slider">
+    <ul class="slides">
+        {% for photo in photos %}
+        <li>
+            <img src="{{ asset('img/'~photo.picture.pictureName) }}">
+            <div class="caption center-align">
+
+                <h2><a href="{{ photo.url }}">{{ photo.title |raw }}</a></h2>
+                <h4>{{ photo.text | raw }}</h4>
+
+                <a href="{{ photo.url }}" class="btn blue">{{ photo.nameUrl }}</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 
 <![endif]-->
-{% if browser == 'Edge' or browser == 'IE' %}
 
-    <div class="slider">
-        <ul class="slides">
-            {% for photo in photos %}
-                <li>
-                    <img src="{{ asset('img/'~photo.picture.pictureName) }}">
-                    <div class="caption center-align">
+{#{% if browser == 'Edge' %}#}
 
-                        <h2><a href="{{ photo.url }}">{{ photo.title |raw }}</a></h2>
-                        <h4>{{ photo.text | raw }}</h4>
+    {#<div class="slider">#}
+        {#<ul class="slides">#}
+            {#{% for photo in photos %}#}
+                {#<li>#}
+                    {#<img src="{{ asset('img/'~photo.picture.pictureName) }}">#}
+                    {#<div class="caption center-align">#}
 
-                        <a href="{{ photo.url }}" class="btn blue">{{ photo.nameUrl }}</a>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+                        {#<h2><a href="{{ photo.url }}">{{ photo.title |raw }}</a></h2>#}
+                        {#<h4>{{ photo.text | raw }}</h4>#}
 
-{% else %}
+                        {#<a href="{{ photo.url }}" class="btn blue">{{ photo.nameUrl }}</a>#}
+                    {#</div>#}
+                {#</li>#}
+            {#{% endfor %}#}
+        {#</ul>#}
+    {#</div>#}
+
+{#{% else %}#}
     <div class="video-container video-responsive hide-on-small-only hide-on-med-only">
         <div class="slider fullscreen video-responsive">
             <ul class="slides">
@@ -43,9 +60,7 @@
             </ul>
         </div>
     </div>
-{% endif %}
-
-
+{#{% endif %}#}
 
 
 
