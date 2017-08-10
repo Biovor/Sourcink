@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="hide-on-med-and-down">
+
+        {% for sourcink in sourcinks %}
+
+            <h2 class="center" id="expertise">{{ sourcink.title | raw  }}</h2>
+            <div class="row center">
+                <div class="col s12">
+                    <p class="expertise-texte center">
+                        {{ sourcink.text1 | raw  }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="row center">
+                <p class="work-name-title">{{ sourcink.text2 | raw  }}</p>
+            </div>
+
+            <div class="right">
+                <a href="{{ path('sourcink_edit', { 'id': sourcink.id }) }}" class="btn-floating btn-small waves-effect
+                waves-light green"><i class="material-icons">mode_edit</i></a>
+            </div>
+
+        {% endfor %}
+    </div>
+{% endblock %}

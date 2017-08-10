@@ -21,6 +21,7 @@ class HomeController extends Controller
         $team = $em->getRepository('AppBundle:Team')->findAll();
         $partner = $em->getRepository('AppBundle:Partner')->findAll();
         $photos = $em->getRepository('AppBundle:Slider')->findAll();
+        $sourcinks = $em->getRepository('AppBundle:Sourcink')->findAll();
 
         $data = $api->get('jobs');
 //
@@ -64,6 +65,7 @@ class HomeController extends Controller
                 'team' => $team,
                 'browser'=>$browser,
                 'partner'=>$partner,
+                'sourcinks' =>$sourcinks,
             ]
         );
 

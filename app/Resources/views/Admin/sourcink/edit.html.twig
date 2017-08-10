@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>
+        Sourcink edition
+        <a href="{{ path('work_index') }}" class="btn btn-flat orange-text right">Retour</a>
+    </h1>
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+    {{ form_end(edit_form) }}
+
+{% endblock %}
