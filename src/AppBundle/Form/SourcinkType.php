@@ -31,6 +31,7 @@ class SourcinkType extends AbstractType
                 'text1', TextareaType::class,
                 array(
                     'label' => '1er paragraphe',
+                    'required' => false,
                     'attr' =>
                         array(
                             'class' => 'materialize ckeditor'
@@ -41,6 +42,7 @@ class SourcinkType extends AbstractType
                 'text2', TextareaType::class,
                 array(
                     'label' => '2éme paragraphe',
+                    'required' => false,
                     'attr' =>
                         array(
                             'class' => 'materialize ckeditor'

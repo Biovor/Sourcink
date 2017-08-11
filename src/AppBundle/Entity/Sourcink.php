@@ -85,14 +85,14 @@ class Sourcink
     /**
      * @var string
      *
-     * @ORM\Column(name="text1", type="text")
+     * @ORM\Column(name="text1", type="text", nullable=true)
      */
     private $text1;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="text2", type="text")
+     * @ORM\Column(name="text2", type="text", nullable=true)
      */
     private $text2;
 
