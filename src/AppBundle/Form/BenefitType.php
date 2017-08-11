@@ -32,7 +32,8 @@ class BenefitType extends AbstractType
             )
             ->add(
                 'productOptions', CollectionType::class, [
-                'entry_type'=> ProductOptionType::class,
+                    'entry_type'=> ProductOptionType::class,
+                    'required' => false
                 ]
             )
             ->add(

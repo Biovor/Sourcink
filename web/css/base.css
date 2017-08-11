@@ -570,7 +570,7 @@ footer {
 
 /*Premium Page*/
 .bg {
-    background-image: url('/img/alice-donovan-rouse-171566.jpg');
+    background-image: url('/media/alice-donovan-rouse-171566.jpg');
     background-size: cover;
 }
 
@@ -640,6 +640,10 @@ footer {
 
 .padMin{
     margin-top: -100px;
+}
+
+.btnOffres{
+    margin-top: -150px;
 }
 
 

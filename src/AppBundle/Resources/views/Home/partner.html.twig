@@ -4,7 +4,7 @@
         <div class="center center-block partner-row">
         {% for part in partner %}
             <div class="col s4 m3 l2">
-                <a href="https://{{ part.path }}" target='_blank'>
+                <a href="{{ part.path }}" target='_blank'>
                     <img src="{{ asset('img/'~part.picture.pictureName) }}" class="responsive-img" >
                 </a>
             </div>
