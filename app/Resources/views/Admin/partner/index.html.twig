@@ -16,7 +16,7 @@
         {% for partner in partners %}
             <tr>
                 <td> {% if partner.picture is not null %}
-                        <img src="{{ asset('img/' ~ partner.picture.pictureName) }}" class="admimage"/>
+                        <img src="{{ asset('img/' ~ partner.picture.pictureName) }}" class="admimageParte"/>
                     {% endif %}
                 </td>
                 <td>{{ partner.path }}</td>

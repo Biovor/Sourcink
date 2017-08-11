@@ -18,7 +18,7 @@
         {% for slide in sliders %}
             <tr>
                 <td> {% if slide.picture is not null %}
-                        <img src="{{ asset('img/' ~ slide.picture.pictureName) }}" class="admimage"/>
+                        <img src="{{ asset('img/' ~ slide.picture.pictureName) }}" class="admimageSlide"/>
                     {% endif %}
                 </td>
                 <td>{{ slide.title |striptags }}</td>

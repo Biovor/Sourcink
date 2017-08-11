@@ -26,6 +26,7 @@
         </div>
         {{ form_errors(form.picture.pictureFile) }}
     </div>
+    <div><img src="{{ vich_uploader_asset(category.picture, 'pictureFile') }}" class="admimage" /></div>
     {{ form_label(form.picture.alt) }}
     {{ form_widget(form.picture.alt) }}
     {{ form_errors(form.picture.alt) }}

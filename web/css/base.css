@@ -473,6 +473,22 @@ span {
 
 }
 
+.admimageParte {
+    width: 130px;
+    height: 65px;
+}
+
+.admimageTeam {
+    width: 100px;
+    height: 118px;
+}
+
+
+.admimageSlide {
+    width: 160px;
+    height: 90px;
+}
+
 .divider {
     margin: 5%;
 }

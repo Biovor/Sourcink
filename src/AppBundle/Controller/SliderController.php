@@ -79,7 +79,7 @@ class SliderController extends Controller
 
         return $this->render('Admin/slider/edit.html.twig', array(
             'slider' => $slider,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

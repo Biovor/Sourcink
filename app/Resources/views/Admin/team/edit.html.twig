@@ -31,6 +31,7 @@
         </div>
         {{ form_errors(form.picture.pictureFile) }}
     </div>
+    <div><img src="{{ vich_uploader_asset(team.picture, 'pictureFile') }}" class="admimageTeam circle"  /></div>
     {{ form_label(form.picture.alt) }}
     {{ form_widget(form.picture.alt) }}
     {{ form_errors(form.picture.alt) }}
