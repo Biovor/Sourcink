@@ -1,28 +1,44 @@
-<nav>
-    <div class="nav-wrapper">
-        <a href="{{ path('app_homepage') }}" class="brand-logo">
-            <img src="{{ asset('media/logoSourcInk.svg') }}">
-        </a>
-        <p class="slogan center hide-on-med-and-down">
-            L'agence de sourcing spécialisée en recrutement juridique, fiscal et RH
-        </p>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="{{ path('app_homepage') }}" class="brand-logo">
+                <img src="{{ asset('media/logoSourcInk.svg') }}">
+            </a>
+            <p class="slogan center hide-on-med-and-down">
+                L'agence de sourcing spécialisée en recrutement juridique, fiscal et RH
+            </p>
+            <a href="#" data-activates="side-nav-admin" class="button-collapse red-text"><i
+                        class="material-icons">menu</i></a>
+            <ul id="side-nav-admin" class="side-nav">
+                <div class="center">
+                    <li><a href="{{ path("header_index") }}">Slider vidéos</a></li>
+                    <li><a href="{{ path("slider_index") }}">Slider photos</a></li>
+                    <li><a href="{{ path("sourcink_index") }}">Sourcink</a></li>
+                    <li><a href="{{ path("work_index") }}">Métiers</a></li>
+                    <li><a href="{{ path("category_index") }}">Catégories</a></li>
+                    <li><a href="{{ path("product_index") }}">Solutions</a></li>
+                    <li><a href="{{ path("benefit_index") }}">Options</a></li>
+                    <li><a href="{{ path("partner_index") }}">Partenaires</a></li>
+                    <li><a href="{{ path("team_index") }}">Collaborateurs</a></li>
+                </div>
+            </ul>
 
-            <!-- Dropdown Trigger -->
-            <li><a class='dropdown-button' href='#' data-activates='dropdown1'>Slider</a></li>
-            <li><a href="{{ path("sourcink_index") }}">Sourcink</a></li>
-            <li><a href="{{ path("work_index") }}">Métiers</a></li>
-            <li><a href="{{ path("category_index") }}">Catégories</a></li>
-            <li><a href="{{ path("product_index") }}">Solutions</a></li>
-            <li><a href="{{ path("benefit_index") }}">Options</a></li>
-            <li><a href="{{ path("partner_index") }}">Partenaires</a></li>
-            <li><a href="{{ path("team_index") }}">Collaborateurs</a></li>
-        </ul>
+            <!-- Dropdown Structure -->
+            <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="{{ path("header_index") }}">Vidéos</a></li>
+                <li><a href="{{ path("slider_index") }}">Photos</a></li>
+            </ul>
 
-        <!-- Dropdown Structure -->
-        <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="{{ path("header_index") }}">Vidéos</a></li>
-            <li><a href="{{ path("slider_index") }}">Photos</a></li>
-        </ul>
-    </div>
-</nav>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a class='dropdown-button' href='#' data-activates='dropdown1'>Slider</a></li>
+                <li><a href="{{ path("sourcink_index") }}">Sourcink</a></li>
+                <li><a href="{{ path("work_index") }}">Métiers</a></li>
+                <li><a href="{{ path("category_index") }}">Catégories</a></li>
+                <li><a href="{{ path("product_index") }}">Solutions</a></li>
+                <li><a href="{{ path("benefit_index") }}">Options</a></li>
+                <li><a href="{{ path("partner_index") }}">Partenaires</a></li>
+                <li><a href="{{ path("team_index") }}">Collaborateurs</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>

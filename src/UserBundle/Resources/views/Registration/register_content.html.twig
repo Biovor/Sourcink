@@ -1,6 +1,9 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register', 'id': 'registration_form'}}) }}
 <h1 class="form-title center">Inscription</h1>
+<div class="center">
+    <a href="connect/linkedin" class="btn btn-large blue">M'inscrire via Linkedin</a>
+</div>
 <div class="form-group" id="fos_user_registration_form">
     <div class="row">
         {% if form.firstname is defined %}

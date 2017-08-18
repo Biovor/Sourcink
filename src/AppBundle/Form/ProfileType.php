@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -51,15 +52,17 @@ class ProfileType extends AbstractType
                 )
             )
             ->add(
-                'experience', TextType::class,
+                'experience', IntegerType::class,
                 array(
+                    'label' => "Nombre d'années d'expérience",
                     'attr' => array(
-                        'placeholder' => 'Entrez votre expérience en années'
+                        'placeholder' => "Entrez votre nombre d'années d'expérience"
                     )
                 )
             )
             ->add(
                 'mobility', ChoiceType::class, array(
+                    'required' => false,
                     'label' => 'Mobilité',
                     'choices' => $options['regions'],
                     'multiple' => true

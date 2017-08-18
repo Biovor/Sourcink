@@ -50,9 +50,9 @@ class User extends BaseUser
     private $wantedJob;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="experience", type="string", nullable=true)
+     * @ORM\Column(name="experience", type="integer", nullable=true)
      */
     private $experience;
 

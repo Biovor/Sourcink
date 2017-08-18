@@ -15,12 +15,11 @@
             {% endif %}
             <div class="card">
                 <div class="card-content">
-                    <h1>
-                        {{ app.user.firstname }} {{ app.user.lastname }}
-                        {% if hasResume == true %}
-                            <a class="btn blue right" href="{{ path('job_list') }}">Voir nos offres d'emplois</a>
-                        {% endif %}
-                    </h1>
+                    <h1> {{ app.user.firstname }} {{ app.user.lastname }} </h1>
+                    {% if hasResume == true %}
+                        <a class="btn blue right" href="{{ path('job_list') }}">Voir nos offres
+                            d'emplois</a><br/><br/>
+                    {% endif %}
                     <p><i class="fa fa-inbox fa-2x"></i> Adresse e-mail : {{ app.user.email }}</p><br/>
                     <p><i class="fa fa-user fa-2x"></i> Poste Actuel : {{ app.user.title }}</p><br/>
                     <p><i class="fa fa-search fa-2x"></i> Poste recherché : {{ app.user.wantedJob }}</p><br/>
@@ -39,11 +38,20 @@
                     <p><i class="fa fa-search fa-2x"></i> Salaire Souhaité : {{ app.user.wantedSalary }}€</p><br/>
                 </div>
                 <div class="card-action">
-                    {% if status == true %}
-                        <a class="blue-text" href="#modalcv">Envoyer mon CV</a>
-                        <a href="{{ path('applicant_update') }}" class="orange-text">Mise à jour de mon profil</a>
-                    {% endif %}
-                    <a href="{{ path('fos_user_security_logout') }}" class="right red-text">Déconnexion</a>
+                    <div class="row">
+                        {% if status == true %}
+                            <div class="col s10 m3 l3">
+                                <a class="blue-text" href="#modalcv">Envoyer mon CV</a>
+                            </div>
+                            <div class="col s10 m6 l4">
+                                <a href="{{ path('applicant_update') }}" class="orange-text">Mise à jour de mon profil</a>
+                            </div>
+                        {% endif %}
+                        <div class="col s10 m5 l2 offset-l3">
+                            <a href="{{ path('fos_user_security_logout') }}" class="red-text">Déconnexion</a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         {% else %}

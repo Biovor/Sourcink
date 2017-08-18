@@ -33,8 +33,9 @@
             </div>
         {% else %}
             <div class="center no-job">
-                <p>Afin de postuler, vous devez vous inscrire</p>
-                <a href="{{ path('fos_user_security_login') }}" class="btn btn-large blue">M'inscrire</a>
+                <p>Afin de postuler, vous devez vous connecter</p>
+                <a href="{{ path('fos_user_registration_register') }}" class="btn btn-large blue">M'inscrire</a>
+                <a href="{{ path('fos_user_security_login') }}" class="btn btn-large blue">Me connecter</a>
             </div>
         {% endif %}
     </div>
