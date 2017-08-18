@@ -51,7 +51,7 @@ class HomeController extends Controller
         if (preg_match('/Edge/', $browser)) {
             $browser = 'Edge';
         }
-        if (preg_match('/MSIE/i',$browser)) {
+        if (preg_match('/MSIE/',$browser)) {
             $browser = 'IE';
         }
 
@@ -66,6 +66,7 @@ class HomeController extends Controller
                 'browser'=>$browser,
                 'partner'=>$partner,
                 'sourcinks' =>$sourcinks,
+                'brows' => $browser,
             ]
         );
 
