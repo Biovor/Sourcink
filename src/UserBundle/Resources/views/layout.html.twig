@@ -3,13 +3,18 @@
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper">
+                <a href="{{ path('app_homepage') }}" class="hide-on-large-only" >
+                    <img src="{{ asset('media/logo-home-70.png') }}" class="logoHome">
+                </a>
                 <a href="{{ path('app_homepage') }}" class="brand-logo">
                     <img src="{{ asset('media/logoSourcInk.svg') }}">
                 </a>
                 <p class="slogan center hide-on-med-and-down">
                     L'agence de sourcing spécialisée en recrutement juridique, fiscal et RH
                 </p>
-                <a href="{{ path('app_homepage') }}" class="right red white-text applicant-button waves-effect z-depth-1">Retour à l'accueil</a>
+                <a href="{{ path('app_homepage') }}" class="right hide-on-med-and-down red white-text applicant-button waves-effect
+                z-depth-1">Retour à l'accueil</a>
+
             </div>
         </nav>
     </div>

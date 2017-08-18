@@ -69,7 +69,6 @@ class HomeController extends Controller
                 'browser'=>$browser,
                 'partner'=>$partner,
                 'sourcinks' =>$sourcinks,
-                'brows' => $browser,
             ]
         );
 
