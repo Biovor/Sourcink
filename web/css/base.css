@@ -640,6 +640,7 @@ footer {
 
 .padMin{
     margin-top: -100px;
+    z-index: 1;
 }
 
 .btnOffres{
