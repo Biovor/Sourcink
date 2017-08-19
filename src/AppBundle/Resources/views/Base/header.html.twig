@@ -17,9 +17,9 @@
                         <br/>
                         <li><a href="{{ path('job_list') }}">Nos Offres</a></li>
                         <br/>
-                        <li><a href="/#equipe">Notre Equipe</a></li>
-                        <br/>
                         <li><a href="/#partenaires">Nos Partenaires</a></li>
+                        <br/>
+                        <li><a href="/#equipe">Notre Equipe</a></li>
                         <br/>
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                             <li>
@@ -40,8 +40,8 @@
                     <li><a href="/#expertise">Notre Expertise</a></li>
                     <li><a href="/#solutions">Nos Solutions</a></li>
                     <li><a href="{{ path('job_list') }}">Nos Offres</a></li>
-                    <li><a href="/#equipe">Notre Equipe</a></li>
                     <li><a href="/#partenaires">Nos Partenaires</a></li>
+                    <li><a href="/#equipe">Notre Equipe</a></li>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li>
                             <a href="{{ path('app_applicant') }}"
