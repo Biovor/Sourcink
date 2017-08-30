@@ -12,11 +12,12 @@
     {% for benefit in benefits %}
     <tr>
         <td><p>{{ benefit.description|raw }}</p></td>
-
         {% for productOption in benefit.productOptions %}
+            {% if productOption.status.label is defined %}
             <td> <p>{% if productOption.status.label == 'Oui' %} <i class="fa fa-check blue-text" aria-hidden="true"></i>{% endif %}
                 {% if productOption.status.label == 'Non' %}<i class="fa fa-times red-text" aria-hidden="true"></i> {% endif %}
                 {% if productOption.status.label == 'En Option' %}{{ productOption.status }} {% endif %}</p></td>
+            {% endif %}
         {% endfor %}
         {% endfor %}
     </tr>
