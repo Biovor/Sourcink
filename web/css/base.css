@@ -402,6 +402,7 @@ h3 {
     color: white;
     border-radius: 5px;
     line-height: 2em;
+    padding: 20px;
 }
 
 .product-medium {
@@ -409,6 +410,7 @@ h3 {
     color: white;
     border-radius: 5px;
     line-height: 2em;
+    padding: 20px;
 
 }
 
@@ -417,6 +419,7 @@ h3 {
     color: white;
     border-radius: 5px;
     line-height: 2em;
+    padding: 20px;
 }
 
 .show-small {
@@ -430,11 +433,15 @@ span {
 }
 
 .padding-1 {
-    margin-top: 80px;
+    margin-top: 90px;
 }
 
 .padding-2 {
-    margin-top: 40px;
+    margin-top: 50px;
+}
+
+.padding-3 {
+    margin-top: 10px;
 }
 
 .table {
@@ -620,6 +627,22 @@ footer {
 
 .slideHomeImg{
     height: 800px!important;
+}
+
+.slideTablDiv{
+    height: 330px!important;
+}
+
+.slideTablImg{
+    height: 450px!important;
+}
+
+.slideTelDiv{
+    height: 100px!important;
+}
+
+.slideTelImg{
+    height: 250px!important;
 }
 
 @media screen and (max-width:610px) {

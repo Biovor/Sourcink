@@ -8,25 +8,40 @@
 </div>
 
 {% for product in category.products %}
+
     {% if category.isPremium == false %}
-        <div class="col s12 m4 center padding-{{ loop.index }}">
-            <img class="circle responsive-img img" id="{{ product.id }}"
+        <div class="col s12 m4 center responsive-img padding-{{ loop.index }}">
+            <img class=" img" id="{{ product.id }}"
                  src="{{ asset('img/'~product.picture.pictureName) }}">
-            <a class="btn-floating btn lighten-1 {% if loop.index == 1 %} show-small red  {% elseif loop.index == 2 %} show-medium deep-purple  {% elseif loop.index == 3 %} show-large blue {% endif %}"><i
-                        class="material-icons">add</i></a>
             <p class="lighten-1{% if loop.index == 1 %} red-text  price {% elseif loop.index == 2 %} deep-purple-text price {% elseif loop.index == 3 %} blue-text  price {% endif %}">{{ product.price }}
                 € HT</p>
-            <p class="lighten-1 {% if loop.index == 1 %} product-small red  {% elseif loop.index == 2 %} product-medium deep-purple {% elseif loop.index == 3 %} product-large blue {% endif %}">{{ product.text }}</p>
+            <a class="btn-floating btn lighten-1 {% if loop.index == 1 %} show-small red  {% elseif loop.index == 2 %} show-medium deep-purple  {% elseif loop.index == 3 %} show-large blue {% endif %}"><i
+                        class="material-icons">add</i></a>
+            <p class="lighten-1 center hide-on-med-only hide-on-large-only {% if loop.index == 1 %} product-small red  {%
+            elseif loop
+            .index == 2 %}
+            product-medium deep-purple {% elseif loop.index == 3 %} product-large blue {% endif %}">{{ product.text }}</p>
         </div>
+    {% endif %}
+{% endfor %}
+
+{% for product in category.products %}
+    {% if category.isPremium == false %}
+        <div class="col s12 center hide-on-small-only">
+            <p class="lighten-1 {% if loop.index == 1 %} product-small red  {% elseif loop.index == 2 %}
+            product-medium deep-purple {% elseif loop.index == 3 %} product-large blue {% endif %}">{{ product.text }}</p>
+        </div>
+
+
     {% elseif category.isPremium == true %}
         <div class="center row">
             <div class="col offset-m3 m8">
-            <a class="btn-floating btn show-premium black lighten-1"><i class="material-icons">add</i></a>
+                <a class="btn-floating btn show-premium black lighten-1"><i class="material-icons">add</i></a>
 
-            <p class="product-premium black lighten-1"><a href="mailto:{{ email }}">{{ product.text }}</a></p>
+                <p class="product-premium black lighten-1"><a href="mailto:{{ email }}">{{ product.text }}</a></p>
             </div>
         </div>
-            <div class="center row">
+        <div class="center row">
             <img class="circle responsive-img img logoPrem" id="{{ product.id }}"
                  src="{{ asset('img/'~product.picture.pictureName) }}">
         </div>

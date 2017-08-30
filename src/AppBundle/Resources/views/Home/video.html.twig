@@ -1,6 +1,6 @@
 
 {% if browser == 'Edge/IE' %}
-    <div class="slider slideHomeDiv">
+    <div class="slider slideHomeDiv hide-on-small-only hide-on-med-only">
         <ul class="slides slideHomeImg">
             {% for photo in photos %}
                 <li>
@@ -39,6 +39,34 @@
         </div>
     </div>
 {% endif %}
+
+
+<div class="slider slideTablDiv hide-on-large-only hide-on-small-only ">
+    <ul class="slides slideTablImg">
+        {% for photo in photos %}
+            <li>
+                <img src="{{ asset('img/'~photo.picture.pictureName) }}">
+                <div class="caption center-align">
+
+                    <h2><a href="{{ photo.url }}">{{ photo.title |raw }}</a></h2>
+                    <h4>{{ photo.text | raw }}</h4>
+
+                    <a href="{{ photo.url }}" class="btn blue">{{ photo.nameUrl }}</a>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="slider slideTelDiv hide-on-large-only hide-on-med-only">
+    <ul class="slides slideTelImg">
+        {% for photo in photos %}
+            <li>
+                <img src="{{ asset('img/'~photo.picture.pictureName) }}">
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 
 
 
