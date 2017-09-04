@@ -540,7 +540,6 @@ footer {
 
 .category-title {
     position: relative;
-    top: -100px;
 }
 
 .img-fleche {
@@ -661,16 +660,25 @@ footer {
 
 }
 
-.padMin{
-    margin-top: -100px;
-    z-index: 1;
-}
-
 .btnOffres{
     margin-top: -150px;
 }
 
 .logoHome{
     margin-top: 10px;
+}
+
+.mrFooterReseau {
+    margin-right: 20%;
+}
+
+.strong{
+    font-weight: bold;
+    text-decoration:underline;
+}
+
+.labelPart{
+    font: bold 18px arial;
+    color: black;
 }
 

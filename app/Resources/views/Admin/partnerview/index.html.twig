@@ -1,0 +1,38 @@
+
+{% block body %}
+
+    <h3>Gestion du nombre de partenaires par ligne.</h3>
+
+    {% if partnerViews is empty  %}
+        <ul>
+            <li>
+                <h4>Veuillez entrer vos paramètres pour l'affichage des partenaires.</h4>
+                <a href="{{ path('admin_partnerview_new') }}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+            </li>
+        </ul>
+    {% else %}
+
+        <h4>Configuration actuelle:</h4>
+
+        <p class="strong">  En taille S, Mobile Devices <= à 600px de large:</p>
+
+        <p> {{ smallDevices }} logo par ligne</p>
+
+        <p class="strong">En taille M, Tablet Devices > à 600px < à 992px de large:</p>
+
+        <p> {{ mediumDevices }} logo par ligne</p>
+
+        <p class="strong">En taille L, Desktop Devices > à 992px de large:</p>
+
+        <p> {{ largeDevices }} logo par ligne</p>
+
+
+        {% for partnerView in partnerViews %}
+            <div class="right">
+                <a href="{{ path('admin_partnerview_edit', { 'id': partnerView.id }) }}" class="btn-floating
+                            btn-small waves-effect waves-light green"><i class="material-icons">mode_edit</i>
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
