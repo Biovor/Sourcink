@@ -38,5 +38,12 @@
             <a href="{{ path('partner_new') }}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
         </li>
     </ul>
+    <br/>
 
+    {{ render (controller(
+    'AppBundle:PartnerView:index'
+    )) }}
 {% endblock %}
+
+
+

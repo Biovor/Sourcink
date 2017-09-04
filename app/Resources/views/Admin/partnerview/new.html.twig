@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Gestion du nombre de partenaires par ligne <a href="{{ path('partner_index') }}" class="btn btn-flat orange-text right">Revenir à la liste</a></h1>
+
+    {{ form_start(form) }}
+    {{ form_label(form.s, 'Choix pour la taille S, Mobile Devices <= à 600px de large :', {
+        'label_attr': {'class': 'labelPart'}}) }}
+    {{ form_widget(form.s) }}
+    {{ form_errors(form.s) }}
+    <br/>
+
+    {{ form_label(form.m, 'Choix pour la taille taille M, Tablet Devices > à 600px < à 992px de large :', {
+    'label_attr': {'class': 'labelPart'}}) }}
+    {{ form_widget(form.m) }}
+    {{ form_errors(form.m) }}
+    <br/>
+
+    {{ form_label(form.l, 'Choix pour la taille L, Desktop Devices > à 992px de large :', {
+        'label_attr': {'class': 'labelPart'}}) }}
+    {{ form_widget(form.l) }}
+    {{ form_errors(form.l) }}
+    <br/>
+
+    {{ form_widget(form.submit) }}
+    {{ form_end(form) }}
+{% endblock %}
