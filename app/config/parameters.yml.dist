@@ -4,22 +4,22 @@
 parameters:
     database_host: 127.0.0.1
     database_port: ~
-    database_name: symfony
+    database_name: sourcink
     database_user: root
     database_password: ~
     # You should uncomment this if you want to use pdo_sqlite
     #database_path: '%kernel.root_dir%/../var/data/data.sqlite'
 
-    mailer_transport: smtp
+    mailer_transport: gmail
     mailer_host: ~
-    mailer_user: ~
+    mailer_user: noreply.sourcink@gmail.com
     mailer_password: ~
-    mailer_name: ~
+    mailer_name: 'No Reply Sourcink'
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
 
-    api_key: ~
+    api_key: ici clé API catsone
     api_url: 'https://api.catsone.com/v3/'
 
     oauth.linkedin.id: ~
@@ -28,7 +28,11 @@ parameters:
     tag_candidate: WEB
     try_create_candidate: 5
 
-    email: ~
-    telephone: ~
+    email: contact@sourcink.com
+    telephone: '+33 (0)1 70 71 89 19'
 
+    api_tie_url_init:
+    api_tie_big5_key: clé API Monkey Tie 'bigfive'
+    api_tie_cultur_key: clé API Monkey Tie "culturefit"
+    callback: 'https://www.google.fr'
 
