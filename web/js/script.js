@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.slider').slider({full_width: true, transition:300, interval:9300});
+    $('.slider').slider({transition:300, interval:9300});
 });
 $(document).ready(function () {
 
