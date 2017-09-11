@@ -42,6 +42,10 @@ twig:
     globals:
         email: '%email%'
         telephone: '%telephone%'
+        monkeyTieUrl: '%api_tie_url_init%'
+        bigFiveKey: '%api_tie_big5_key%'
+        cultureFitKey: '%api_tie_culture_key%'
+        urlCallback: '%callback%'
 
 # Doctrine Configuration
 doctrine:
