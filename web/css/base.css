@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: Prater;
 }
 
-p, li {
+p, nav li {
     font-family: Caviar;
     font-size: 20px;
 
@@ -59,9 +59,7 @@ p, li {
     font-size: 24px;
 }
 
-.offers-div h2 {
-    padding-bottom: 100px;
-}
+
 .partner {
     padding-bottom: 100px;
 }
@@ -94,7 +92,7 @@ p, li {
 }
 
 .offredetail {
-    color: red;
+    color: rgb(240,41,69);
     text-align: center;
     font-size: 40px;
 }
@@ -464,10 +462,6 @@ span {
     background-size:cover;
 }
 
-.imgpagejob{
-    height: 100%;
-    margin-top: -590px;
-}
 
 /*CSS admin */
 
@@ -487,6 +481,10 @@ span {
     height: 118px;
 }
 
+.imageFirstJob {
+    width: 100%;
+    height: 300px;
+}
 
 .admimageSlide {
     width: 160px;
@@ -559,12 +557,8 @@ footer {
     margin-bottom: 20px;
 }
 
-.img-offre {
-    width: 100%;
-}
-
 .puces-site {
-    list-style-type: disc;
+    list-style-type:;
 }
 
 .no-job {
@@ -658,7 +652,7 @@ footer {
 }
 
 .btnOffres{
-    margin-top: -150px;
+    margin-top: -35px;
 }
 
 .logoHome{
@@ -678,4 +672,3 @@ footer {
     font: bold 18px arial;
     color: black;
 }
-
