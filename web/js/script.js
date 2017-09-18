@@ -55,7 +55,7 @@ $('#sendResumeButton').on('click', function (e) {
         contentType: false,
         success: function (response) {
                $('.ajaxStatus').html('<div class="center"><p>Votre CV a été envoyé avec succès !</p></div>');
-               $('#done-cv').attr("href", '/job');
+               $('#done-cv').attr("href", '/candidat');
         },
         error: function () {
             $('.ajaxStatus').html('<div class="center"><p>Une erreur s\'est produite. Veuillez réessayer.</p></div>');
