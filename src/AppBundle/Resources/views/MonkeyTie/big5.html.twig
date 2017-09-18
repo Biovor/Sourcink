@@ -3,8 +3,12 @@
     {% include('AppBundle:Applicant:header.html.twig') %}
 {% endblock %}
 {% block content %}
-    <iframe title="Big5" src="{{ monkeyTieUrl }}token={{ bigFiveKey }}&callback={{ urlCallback }}&userId={{
-    app.user.firstname }}{{ app.user.lastname }}&mail={{ app.user.email }}" width="auto" height="1425px">
+
+    <iframe title="Big5" src="{{ monkeyTieUrl }}token={{ bigFiveKey
+    }}&callback={{ urlCallback }}&userId={{ app.user.firstname }}{{ app.user.lastname }}&mail={{ app.user.email }}"
+            frameborder="0" style="height: 1000px; width: 100%">
         <p>Your browser does not support iframes.</p>
     </iframe>
+
+
 {% endblock %}

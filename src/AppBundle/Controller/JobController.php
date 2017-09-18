@@ -113,7 +113,7 @@ class JobController extends Controller
             $user = $users->_embedded->candidates[0];
             $candidat = $service->apply($user, $id);
             $email->applyJob($mailer, $this->getUser(), $data->title);
-            $this->addFlash('success', 'Nous avons reçus votre candidature. Nous allons vous contacter par e-mail.');
+            $this->addFlash('success', 'Nous avons reçu votre candidature. Nous allons vous contacter par e-mail.');
         }
 
         $offer = [
