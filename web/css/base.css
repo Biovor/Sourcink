@@ -672,3 +672,8 @@ footer {
     font: bold 18px arial;
     color: black;
 }
+
+.iframe{
+    height:500px;
+    width: 500px;
+}

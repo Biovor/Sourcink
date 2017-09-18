@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Form\ProfileType;
 use AppBundle\Services\Api;
+use AppBundle\Services\MonkeyTie;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,6 +51,7 @@ class ApplicantController extends Controller
             $em->persist($data);
             $em->flush();
             $catsUser = $api->getSearch('candidates', $this->getUser()->getEmail());
+            $this->addFlash('success', 'Vos informations ont été mises à jour.');
             if ($catsUser->count == 0) {
                 $tag = $api->getTag($this->getParameter('tag_candidate'));
                 $api->createCandidateUser($this->getUser());
@@ -71,6 +73,7 @@ class ApplicantController extends Controller
                 $api->updateCandidate($this->getUser(), $catsUser->_embedded->candidates[0]);
             }
             return $this->redirectToRoute('app_applicant');
+
         }
         return $this->render('AppBundle:Applicant:update.html.twig', ['form' => $form->createView()]);
     }
@@ -93,12 +96,40 @@ class ApplicantController extends Controller
     /**
      * @Route("/big5", name="big5")
      */
-    public function big5Action(Request $request)
+    public function big5Action()
     {
 
         return $this->render(
             'AppBundle:MonkeyTie:big5.html.twig');
 
+    }
+
+    /**
+     * @Route("/cultureFit", name="cult_F")
+     */
+    public function cultureFitAction()
+    {
+
+        return $this->render(
+            'AppBundle:MonkeyTie:cultureFit.html.twig');
+
 
     }
+
+    /**
+     * @Route("/big5/response", name="big5Rep")
+     */
+    public function big5RepAction()
+    {
+//        $json = file_get_contents('https://plugin.monkey-tie.com/big5/results');
+//        $obj = json_decode($json);
+//        dump($obj);
+
+        return $this->render(
+            'AppBundle:MonkeyTie:big5Rep.html.twig');
+
+    }
+
 }
+
+

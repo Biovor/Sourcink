@@ -54,8 +54,8 @@ $('#sendResumeButton').on('click', function (e) {
         processData: false,
         contentType: false,
         success: function (response) {
-            $('.ajaxStatus').html('<div class="center"><p>Votre CV a été envoyé avec succès ! <br /> Votre insription est maintenant terminée. Vous pouvez postuler à nos offres.</p></div>');
-            $('#done-cv').attr("href", '/job');
+               $('.ajaxStatus').html('<div class="center"><p>Votre CV a été envoyé avec succès !</p></div>');
+               $('#done-cv').attr("href", '/job');
         },
         error: function () {
             $('.ajaxStatus').html('<div class="center"><p>Une erreur s\'est produite. Veuillez réessayer.</p></div>');
@@ -83,7 +83,7 @@ $('#parseResumeButton').on('click', function (e) {
             $('#fos_user_registration_form_title').val(resume.title);
             $('#fos_user_registration_form_experience').val(resume.experience);
             $('#fos_user_registration_form_salary').val(resume.salary);
-            $('#fos_user_registration_form_salary').val(resume.current_pay);
+            $('#fos_user_registration_form_current_pay').val(resume.current_pay);
             $('#fos_user_registration_form_wantedSalary').val(resume.desired_pay);
             $('#fos_user_registration_form_phone').val(resume.phone);
             $('.ajaxStatus').html('<div class="center"><p>Votre CV a été envoyé avec succès !</p></div>');
@@ -97,6 +97,6 @@ $(document).ready(function () {
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
 });
-$('#app_bundle_profile_type_submit').on('click', function (e) {
-    $('#mobility_error').html('Ce champ doit être rempli<br />');
-});
+// $('#app_bundle_profile_type_submit').on('click', function (e) {
+//     $('#mobility_error').html('Ce champ doit être rempli<br />');
+// });
