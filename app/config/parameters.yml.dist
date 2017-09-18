@@ -35,4 +35,3 @@ parameters:
     api_tie_big5_key: clé API Monkey Tie 'bigfive'
     api_tie_culture_key: clé API Monkey Tie "culturefit"
     callback: 'https://www.google.fr'
-
