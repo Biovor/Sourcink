@@ -26,25 +26,30 @@
                 <div class="card-content">
                     <h1> {{ app.user.firstname }} {{ app.user.lastname }} </h1>
                     {% if hasResume == true %}
-                        <a class="btn blue right" href="{{ path('job_list') }}">Voir nos offres
-                            d'emplois</a><br/><br/>
+                        <div class="row">
+                            <a class="btn blue btnApp right" href="{{ path('job_list') }}">Voir nos offres d'emplois</a>
+                            <a class="btn orange btnApp right" href="{{ path('cult_F') }}">Le Culture Fit</a>
+                            <a class="btn orange btnApp right" href="{{ path('big5') }}">Le Big5</a><br/><br/>
+                        </div>
                     {% endif %}
-                    <p><i class="fa fa-inbox fa-2x"></i> Adresse e-mail : {{ app.user.email }}</p><br/>
-                    <p><i class="fa fa-user fa-2x"></i> Poste Actuel : {{ app.user.title }}</p><br/>
-                    <p><i class="fa fa-search fa-2x"></i> Poste recherché : {{ app.user.wantedJob }}</p><br/>
-                    <p><i class="fa fa-phone fa-2x"></i> Numéro de téléphone : {{ app.user.phone }}</p><br/>
-                    <p><i class="fa fa-map fa-2x"></i>
-                        Mobilité Géographique :
-                        {% for mobility in mobilities %}
-                            {% if loop.index >1 %},
-                            {% endif %}
-                            {{ mobility }}
-                        {% endfor %}
-                    </p>
-                    <br/>
-                    <p><i class="fa fa-book fa-2x"></i> Expérience : {{ app.user.experience }} année(s)</p><br/>
-                    <p><i class="fa fa-money fa-2x"></i> Salaire Actuel : {{ app.user.salary }}€</p><br/>
-                    <p><i class="fa fa-search fa-2x"></i> Salaire Souhaité : {{ app.user.wantedSalary }}€</p><br/>
+                    <div class="row">
+                        <p><i class="fa fa-inbox fa-2x"></i> Adresse e-mail : {{ app.user.email }}</p><br/>
+                        <p><i class="fa fa-user fa-2x"></i> Poste Actuel : {{ app.user.title }}</p><br/>
+                        <p><i class="fa fa-search fa-2x"></i> Poste recherché : {{ app.user.wantedJob }}</p><br/>
+                        <p><i class="fa fa-phone fa-2x"></i> Numéro de téléphone : {{ app.user.phone }}</p><br/>
+                        <p><i class="fa fa-map fa-2x"></i>
+                            Mobilité Géographique :
+                            {% for mobility in mobilities %}
+                                {% if loop.index >1 %},
+                                {% endif %}
+                                {{ mobility }}
+                            {% endfor %}
+                        </p>
+                        <br/>
+                        <p><i class="fa fa-book fa-2x"></i> Expérience : {{ app.user.experience }} année(s)</p><br/>
+                        <p><i class="fa fa-money fa-2x"></i> Salaire Actuel : {{ app.user.salary }}€</p><br/>
+                        <p><i class="fa fa-search fa-2x"></i> Salaire Souhaité : {{ app.user.wantedSalary }}€</p><br/>
+                    </div>
                 </div>
                 <div class="card-action">
                     <div class="row">
@@ -52,14 +57,6 @@
                             {% if hasResume == true %}
                                 <div class="col s10 m3 l3">
                                     <a class="blue-text" href="#modalcv">Mise à jour de mon CV</a>
-                                </div>
-                                <div class="col s10 m6 l4">
-                                    <a href="{{ path('big5') }}"
-                                       class="blue-grey-text">Le Big 5</a>
-                                </div>
-                                <div class="col s10 m6 l4">
-                                    <a href="{{ path('cult_F') }}"
-                                       class="blue-grey-text">Le culture fit</a>
                                 </div>
                             {% endif %}
                             <div class="col s10 m6 l4">
