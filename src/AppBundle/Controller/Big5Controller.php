@@ -32,7 +32,7 @@ class Big5Controller extends Controller
      */
     public function big5RepAction(Request $request)
     {
-        $request = $this->get('request');
+
         dump($request);
 
         return $this->render(
