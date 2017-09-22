@@ -16,7 +16,8 @@
         {% if status == true %}
             {% if hasResume == false %}
                 <div class="card-panel">
-                    <p>Merci d'avoir complété votre profil. Dernière étape : nous envoyer votre CV</p>
+                    <p>Merci d'avoir complété votre profil. Dernière étape : nous envoyer votre CV en format .PDF ou
+                        .DOC</p>
                     <div class="center">
                         <a class="btn blue" href="#modalcv">Envoyer mon CV</a>
                     </div>
@@ -27,7 +28,7 @@
                     <h1> {{ app.user.firstname }} {{ app.user.lastname }} </h1>
                     {% if hasResume == true %}
                         <div class="row">
-                            <a class="btn blue btnApp right" href="{{ path('job_list') }}">Voir nos offres d'emplois</a>
+                            <a class="btn blue btnApp right" href="{{ path('job_list') }}">Voir nos offres d'emploi</a>
                             <a class="btn orange btnApp right" href="{{ path('cult_F') }}">Le Culture Fit</a>
                             <a class="btn orange btnApp right" href="{{ path('big5') }}">Le Big5</a><br/><br/>
                         </div>
@@ -83,7 +84,7 @@
     </div>
     <div id="modalcv" class="modal modal-fixed-footer">
         <div class="modal-content">
-            <h4>Envoyer mon CV</h4>
+            <h4>Envoyer mon CV .PDF ou .DOC</h4>
             <div class="row">
                 <form id="sendResumeForm">
                     <div class="file-field input-field">

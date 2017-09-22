@@ -24,7 +24,9 @@
         <div class="row">
             {% if error.message is defined %}
                 {% if error.message == 'Bad credentials.' %}
-                    <p class="red-text">Id inco</p>
+                    <p class="red-text">Identifiant incorrect</p>
+                {% elseif error.message == 'User account is disabled.' %}
+                    <p class="red-text">Ce compte utilisateur est désactivé.</p>
                 {% else %}
                     <div>
                         <p class="red-text">{{ error.message }}</p>

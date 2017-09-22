@@ -54,7 +54,9 @@ $('#sendResumeButton').on('click', function (e) {
         processData: false,
         contentType: false,
         success: function (response) {
-               $('.ajaxStatus').html('<div class="center"><p>Votre CV a été envoyé avec succès !</p></div>');
+               $('.ajaxStatus').html('<div class="center"><p>Votre CV a été envoyé avec succès ! Vous' +
+                   ' pouvez désormais passer nos tests de personnalité Big5 et Culture Fit, postuler à l\'une de nos ' +
+                   'offres ou nous envoyer votre candidature spontanée. </p></div>');
                $('#done-cv').attr("href", '/candidat');
         },
         error: function () {
