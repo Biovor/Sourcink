@@ -26,6 +26,7 @@ la Banane Masquée dans le cinéma colombien des années 20 et 30." />
                 <li><a href="#">CV</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
+
         </nav>
     </header>
 
@@ -35,7 +36,9 @@ la Banane Masquée dans le cinéma colombien des années 20 et 30." />
             <a href="#" class="bouton_rouge">Voir l'article <img src="images/flecheblanchedroite.png" alt="" /></a>
         </div>
     </div>
-
+    <?php
+    var_dump($_POST);
+    ?>
 
     <footer>
         <div id="tweet">
