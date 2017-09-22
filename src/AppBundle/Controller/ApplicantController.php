@@ -94,17 +94,6 @@ class ApplicantController extends Controller
     }
 
     /**
-     * @Route("/big5", name="big5")
-     */
-    public function big5Action()
-    {
-
-        return $this->render(
-            'AppBundle:MonkeyTie:big5.html.twig');
-
-    }
-
-    /**
      * @Route("/cultureFit", name="cult_F")
      */
     public function cultureFitAction()
@@ -115,7 +104,6 @@ class ApplicantController extends Controller
 
 
     }
-
 }
 
 

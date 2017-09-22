@@ -10,12 +10,34 @@ namespace AppBundle\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 
-/*
- * @Route("/candidat")
- */
 class Big5Controller extends Controller
 {
+    /**
+     * @Route("candidat/big5", name="big5")
+     */
+    public function big5Action()
+    {
 
+        return $this->render(
+            'AppBundle:MonkeyTie:big5.html.twig');
+
+    }
+
+    /**
+     * @Route("big5/response", name="big5Rep")
+     */
+    public function big5RepAction(Request $request)
+    {
+//        $json = file_get_contents('https://plugin.monkey-tie.com/big5/results');
+//        $obj = json_decode($json);
+        dump($request);
+
+        return $this->render(
+            'AppBundle:MonkeyTie:big5Rep.html.twig');
+
+    }
 }
