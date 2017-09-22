@@ -1,0 +1,12 @@
+{% extends '@App/Base/layout.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Erreur lors de la saisie de l'adresse email</h1>
+        <p>
+            L'email saisi est déjà enregistré.
+            <br />
+            <a href="{{ path('fos_user_registration_register') }}" class="btn blue">Retour</a>
+        </p>
+    </div>
+{% endblock %}

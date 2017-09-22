@@ -37,3 +37,5 @@ security:
     confirmed:
         text: 'Vous êtes maintenant inscrit(e). Félicitations !'
         button: 'Continuer'
+security.login.error1: Identifiants incorrects
+security.login.error2: Le mot de passe est incorrect

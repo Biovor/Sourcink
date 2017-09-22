@@ -23,9 +23,13 @@
     <div class="container">
         <div class="row">
             {% if error.message is defined %}
-                <div>
-                    <p class="red-text">{{ error.message }}</p>
-                </div>
+                {% if error.message == 'Bad credentials.' %}
+                    <p class="red-text">Id inco</p>
+                {% else %}
+                    <div>
+                        <p class="red-text">{{ error.message }}</p>
+                    </div>
+                {% endif %}
             {% endif %}
             {% block fos_user_content %}
             {% endblock fos_user_content %}

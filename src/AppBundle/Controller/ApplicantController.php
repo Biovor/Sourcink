@@ -116,20 +116,6 @@ class ApplicantController extends Controller
 
     }
 
-    /**
-     * @Route("/big5/response", name="big5Rep")
-     */
-    public function big5RepAction()
-    {
-//        $json = file_get_contents('https://plugin.monkey-tie.com/big5/results');
-//        $obj = json_decode($json);
-//        dump($obj);
-
-        return $this->render(
-            'AppBundle:MonkeyTie:big5Rep.html.twig');
-
-    }
-
 }
 
 
