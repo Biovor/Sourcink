@@ -32,9 +32,8 @@ class Big5Controller extends Controller
      */
     public function big5RepAction(Request $request)
     {
-//        $json = file_get_contents('https://plugin.monkey-tie.com/big5/results');
-//        $obj = json_decode($json);
-        dump($request);
+
+        dump($_POST);
 
         return $this->render(
             'AppBundle:MonkeyTie:big5Rep.html.twig');
