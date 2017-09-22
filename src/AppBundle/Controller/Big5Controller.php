@@ -32,8 +32,8 @@ class Big5Controller extends Controller
      */
     public function big5RepAction(Request $request)
     {
-
-        dump($_POST);
+        $request = $this->get('request');
+        dump($request);
 
         return $this->render(
             'AppBundle:MonkeyTie:big5Rep.html.twig');
