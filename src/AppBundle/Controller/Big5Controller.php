@@ -11,7 +11,6 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -30,7 +29,6 @@ class Big5Controller extends Controller
 
     /**
      * @Route("big5/response", name="big5Rep")
-     * @Method("POST")
      */
     public function big5RepAction(Request $request)
     {
