@@ -34,7 +34,7 @@ class Big5Controller extends Controller
     {
 
 
-        $json=json_decode($request);
+        $json=json_decode($request->getContentType());
         var_dump($json);
         return $this->render(
             'AppBundle:MonkeyTie:big5Rep.html.twig',['request' => $request, 'req' => $_REQUEST]);
