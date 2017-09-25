@@ -319,11 +319,10 @@ class Api
     }
 
 
-    public function sendResume($nameFile, $file, $id)
+    public function sendResume($file, $id, $firstname)
     {
-
         $resume = $this->getClient()->request(
-            'POST', 'candidates/' . $id . '/resumes?filename='.$nameFile.'', [
+            'POST', 'candidates/' . $id . '/resumes?filename='.$firstname.'.doc', [
                 'headers' => [
                     'Authorization' => 'Token ' . $this->getApiKey(),
                     'content-type' => 'application/octet-stream'

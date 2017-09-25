@@ -64,12 +64,9 @@ class ApplicantController extends Controller
                 if ($newUser->count > 0) {
                     $api->tagCandidate($newUser->_embedded->candidates[0]->id, $tag);
                     if ($this->getUser()->getResumeName() != null) {
-                        $namFile=$_FILES['resume']['name'];
-                        dump($namFile);
                         $directory = $this->getParameter('kernel.project_dir') . '/web/cv/';
-                        $api->sendResume($namFile,$directory . $this->getUser()->getResumeName(),
-                            $newUser->_embedded->candidates[0]->id);
-                        dump($api);
+                        $api->sendResume($directory . $this->getUser()->getResumeName(),
+                            $newUser->_embedded->candidates[0]->id, $newUser->_embedded->candidates[0]->firstname );
                         unlink($directory . $this->getUser()->getResumeName());
                     }
                 }
