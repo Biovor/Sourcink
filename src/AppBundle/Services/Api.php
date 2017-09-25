@@ -322,7 +322,7 @@ class Api
     public function sendResume($file, $id)
     {
         dump($file);
-        die();
+
         $resume = $this->getClient()->request(
             'POST', 'candidates/' . $id . '/resumes?filename=cv.pdf', [
                 'headers' => [
