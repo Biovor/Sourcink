@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use GuzzleHttp\Client;
+use UserBundle\Entity\User;
 
 class AjaxController extends Controller
 {
@@ -46,7 +47,9 @@ class AjaxController extends Controller
         if ($request->isXmlHttpRequest()) {
             $candidat = $api->getSearch('candidates', $this->getUser()->getEmail());
             $resume = $request->files->get('resume');
-            $api->sendResume($resume, $candidat->_embedded->candidates[0]->id);
+            $newUser = $api->getSearch('candidates', $this->getUser()->getEmail());
+            $firstname = $newUser->_embedded->candidates[0]->firstname;
+            $api->sendResume($resume, $candidat->_embedded->candidates[0]->id, $firstname);
             return new Response(1);
         }
         return $this->redirectToRoute('app_homepage');
