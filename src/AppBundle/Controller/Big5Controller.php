@@ -34,6 +34,7 @@ class Big5Controller extends Controller
     {
 
         dump($request);
+        dump($_POST);
 
         return $this->render(
             'AppBundle:MonkeyTie:big5Rep.html.twig');
