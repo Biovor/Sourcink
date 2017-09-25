@@ -321,10 +321,11 @@ class Api
 
     public function sendResume($file, $id)
     {
+        $nameFile='test.doc';
         dump($file);
-
+        var_dump($file);
         $resume = $this->getClient()->request(
-            'POST', 'candidates/' . $id . '/resumes?filename=cv.pdf', [
+            'POST', 'candidates/' . $id . '/resumes?filename='.$nameFile.'', [
                 'headers' => [
                     'Authorization' => 'Token ' . $this->getApiKey(),
                     'content-type' => 'application/octet-stream'
@@ -333,6 +334,8 @@ class Api
                 'body' => fopen(realpath($file), 'r')
             ]
         );
+        dump($file);
+        var_dump($file);
         return $resume;
     }
 

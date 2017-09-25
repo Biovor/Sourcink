@@ -40,6 +40,7 @@ $(".button-collapse").sideNav();
 $(document).ready(function () {
     $('select').material_select();
 });
+
 $('#sendResumeButton').on('click', function (e) {
     e.preventDefault();
     $('.progress').removeClass('hiddendiv');
