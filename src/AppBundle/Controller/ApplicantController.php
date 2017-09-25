@@ -66,7 +66,7 @@ class ApplicantController extends Controller
                     if ($this->getUser()->getResumeName() != null) {
                         $directory = $this->getParameter('kernel.project_dir') . '/web/cv/';
                         $api->sendResume($directory . $this->getUser()->getResumeName(),
-                            $newUser->_embedded->candidates[0]->id, $newUser->_embedded->candidates[0]->firstname );
+                            $newUser->_embedded->candidates[0]->id, $newUser->_embedded->candidates[0]->first_name );
                         unlink($directory . $this->getUser()->getResumeName());
                     }
                 }
