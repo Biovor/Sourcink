@@ -319,11 +319,9 @@ class Api
     }
 
 
-    public function sendResume($file, $id)
+    public function sendResume($nameFile, $file, $id)
     {
-        $nameFile='test.doc';
-        dump($file);
-        var_dump($file);
+
         $resume = $this->getClient()->request(
             'POST', 'candidates/' . $id . '/resumes?filename='.$nameFile.'', [
                 'headers' => [
@@ -334,8 +332,6 @@ class Api
                 'body' => fopen(realpath($file), 'r')
             ]
         );
-        dump($file);
-        var_dump($file);
         return $resume;
     }
 
