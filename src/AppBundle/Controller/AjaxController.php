@@ -47,9 +47,7 @@ class AjaxController extends Controller
         if ($request->isXmlHttpRequest()) {
             $candidat = $api->getSearch('candidates', $this->getUser()->getEmail());
             $resume = $request->files->get('resume');
-            $newUser = $api->getSearch('candidates', $this->getUser()->getEmail());
-            $firstname = $newUser->_embedded->candidates[0]->firstname;
-            $api->sendResume($resume, $candidat->_embedded->candidates[0]->id, $firstname);
+            $api->sendResume($resume, $candidat->_embedded->candidates[0]->id, $candidat->_embedded->candidates[0]->firstname);
             return new Response(1);
         }
         return $this->redirectToRoute('app_homepage');
