@@ -12,7 +12,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-
+use GuzzleHttp\Client;
 
 class Big5Controller extends Controller
 {
@@ -35,7 +35,8 @@ class Big5Controller extends Controller
 
         var_dump($request);
         var_dump($_POST);
-
+        $json=json_decode($request);
+        var_dump($json);
         return $this->render(
             'AppBundle:MonkeyTie:big5Rep.html.twig',['request' => $request, 'req' => $_REQUEST]);
 
