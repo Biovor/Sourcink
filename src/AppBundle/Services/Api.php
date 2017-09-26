@@ -319,10 +319,10 @@ class Api
     }
 
 
-    public function sendResumeDOC($file, $id, $firstName, $lastName)
+    public function sendResume($format, $file, $id, $firstName, $lastName)
     {
         $resumeDOC = $this->getClient()->request(
-            'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'.doc', [
+            'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'.'.$format.'', [
                 'headers' => [
                     'Authorization' => 'Token ' . $this->getApiKey(),
                     'content-type' => 'application/octet-stream'
@@ -332,21 +332,6 @@ class Api
             ]
         );
         return $resumeDOC;
-    }
-
-    public function sendResumePDF($file, $id, $firstName, $lastName)
-    {
-        $resumePDF = $this->getClient()->request(
-            'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'.pdf', [
-                'headers' => [
-                    'Authorization' => 'Token ' . $this->getApiKey(),
-                    'content-type' => 'application/octet-stream'
-                ],
-
-                'body' => fopen(realpath($file), 'r')
-            ]
-        );
-        return $resumePDF;
     }
 
     public function updateCandidate(User $user, $catsUser)

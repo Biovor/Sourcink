@@ -41,14 +41,23 @@ $(document).ready(function () {
     $('select').material_select();
 });
 
-$('#sendResumeButtonDOC').on('click', function (e) {
+$('#sendResumeButton').on('click', function (e) {
     e.preventDefault();
     $('.progress').removeClass('hiddendiv');
-    var resume = $('#sendResumeFileDOC').val();
+    var resume = $('#sendResumeFile').val();
+    var pdf = $('#PDF').val();
+    var doc = $('#DOC').val();
+    if ( doc == true){
+        var format = 'DOC';
+    }
+    if ( pdf == true){
+        var format = 'PDF';
+    }
     var formData = new FormData();
     formData.append('resume', $('input[type=file]')[0].files[0]);
+    formData.append('format', $(format));
     $.ajax({
-        url: '/ajax/resume/sendDOC',
+        url: '/ajax/resume/send',
         type: 'POST',
         dataType: 'json',
         data: formData,
@@ -58,39 +67,13 @@ $('#sendResumeButtonDOC').on('click', function (e) {
                $('.ajaxStatus').html('<div class="center"><p>Votre CV a été envoyé avec succès ! Vous' +
                    ' pouvez désormais passer nos tests de personnalité Big5 et Culture Fit, postuler à l\'une de nos ' +
                    'offres ou nous envoyer votre candidature spontanée. </p></div>');
-               $('#done-cvDOC').attr("href", '/candidat');
+               $('#done-cv').attr("href", '/candidat');
         },
         error: function () {
             $('.ajaxStatus').html('<div class="center"><p>Une erreur s\'est produite. Veuillez réessayer.</p></div>');
         }
     });
 });
-
-$('#sendResumeButtonPDF').on('click', function (e) {
-    e.preventDefault();
-    $('.progress').removeClass('hiddendiv');
-    var resume = $('#sendResumeFilePDF').val();
-    var formData = new FormData();
-    formData.append('resume', $('input[type=file]')[0].files[0]);
-    $.ajax({
-        url: '/ajax/resume/sendPDF',
-        type: 'POST',
-        dataType: 'json',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            $('.ajaxStatus').html('<div class="center"><p>Votre CV a été envoyé avec succès ! Vous' +
-                ' pouvez désormais passer nos tests de personnalité Big5 et Culture Fit, postuler à l\'une de nos ' +
-                'offres ou nous envoyer votre candidature spontanée. </p></div>');
-            $('#done-cvPDF').attr("href", '/candidat');
-        },
-        error: function () {
-            $('.ajaxStatus').html('<div class="center"><p>Une erreur s\'est produite. Veuillez réessayer.</p></div>');
-        }
-    });
-});
-
 
 $('#parseResumeButton').on('click', function (e) {
     e.preventDefault();

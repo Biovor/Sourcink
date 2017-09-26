@@ -38,37 +38,22 @@ class AjaxController extends Controller
 
     /**
      * @Route(
-     *     "/ajax/resume/sendDOC",
-     *     name="ajax_resume_sendDOC",
+     *     "/ajax/resume/send",
+     *     name="ajax_resume_send",
      * )
      */
-    public function resumeSendDOC(Request $request, Api $api)
+    public function resumeSend(Request $request, Api $api)
     {
         if ($request->isXmlHttpRequest()) {
             $candidat = $api->getSearch('candidates', $this->getUser()->getEmail());
             $resume = $request->files->get('resume');
-            $api->sendResumeDOC($resume, $candidat->_embedded->candidates[0]->id,
+            $format = 'pdf';
+            dump($request);
+            $api->sendResume($format, $resume, $candidat->_embedded->candidates[0]->id,
                 $candidat->_embedded->candidates[0]->first_name, $candidat->_embedded->candidates[0]->last_name);
             return new Response(1);
         }
         return $this->redirectToRoute('app_homepage');
     }
 
-    /**
-     * @Route(
-     *     "/ajax/resume/sendPDF",
-     *     name="ajax_resume_sendPDF",
-     * )
-     */
-    public function resumeSendPDF(Request $request, Api $api)
-    {
-        if ($request->isXmlHttpRequest()) {
-            $candidat = $api->getSearch('candidates', $this->getUser()->getEmail());
-            $resume = $request->files->get('resume');
-            $api->sendResumePDF($resume, $candidat->_embedded->candidates[0]->id,
-                $candidat->_embedded->candidates[0]->first_name, $candidat->_embedded->candidates[0]->last_name);
-            return new Response(1);
-        }
-        return $this->redirectToRoute('app_homepage');
-    }
 }

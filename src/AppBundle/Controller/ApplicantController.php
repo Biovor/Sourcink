@@ -65,16 +65,12 @@ class ApplicantController extends Controller
                     $api->tagCandidate($newUser->_embedded->candidates[0]->id, $tag);
                     if ($this->getUser()->getResumeName() != null) {
                         $directory = $this->getParameter('kernel.project_dir') . '/web/cv/';
-                        $api->sendResumeDOC($directory . $this->getUser()->getResumeName(),
+                        $format='';
+                        $api->sendResume($format, $directory . $this->getUser()->getResumeName(),
                             $newUser->_embedded->candidates[0]->id, $newUser->_embedded->candidates[0]->first_name, $newUser->_embedded->candidates[0]->last_name);
                         unlink($directory . $this->getUser()->getResumeName());
                     }
-                    if ($this->getUser()->getResumeName() != null) {
-                        $directory = $this->getParameter('kernel.project_dir') . '/web/cv/';
-                        $api->sendResumePDF($directory . $this->getUser()->getResumeName(),
-                            $newUser->_embedded->candidates[0]->id, $newUser->_embedded->candidates[0]->first_name, $newUser->_embedded->candidates[0]->last_name);
-                        unlink($directory . $this->getUser()->getResumeName());
-                    }
+
                 }
             } else {
                 $api->updateCandidate($this->getUser(), $catsUser->_embedded->candidates[0]);
