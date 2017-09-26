@@ -57,5 +57,6 @@ class Big5Controller extends Controller
             $em->flush();
         }
 
+        return $this->redirectToRoute('app_homepage');
     }
 }
