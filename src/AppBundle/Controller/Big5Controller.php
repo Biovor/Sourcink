@@ -33,15 +33,15 @@ class Big5Controller extends Controller
      */
     public function big5RepAction(Request $request)
     {
-//        if($request->getContent() != null ){
-//        $big5 = new big5(
-//
-//        );
-//
-//        }
+        if($request->getContent() != null ){
+            var_dump($request->getContent('userId'));
+            var_dump($request->getContent('token'));
+            var_dump($request->getContent('traits.extraversion'));
+
+        }
 
         $json=json_decode($request->getContent());
-        var_dump($request->getContent());
+//        var_dump($request->getContent('userId'));
         return $this->render(
             'AppBundle:MonkeyTie:big5Rep.html.twig',['request' => $request, 'req' => $_REQUEST]);
 
