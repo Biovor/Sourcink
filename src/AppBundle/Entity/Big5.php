@@ -24,7 +24,7 @@ class Big5
     /**
      * @var int
      *
-     * @ORM\Column(name="userId", type="integer")
+     * @ORM\Column(name="userId", type="string", length=255)
      */
     private $userId;
 
