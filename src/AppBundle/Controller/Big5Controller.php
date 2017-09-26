@@ -35,8 +35,8 @@ class Big5Controller extends Controller
     {
         if($request->getContent() != null ){
             $json=json_decode($request->getContent());
-            var_dump($json[]['userId']);
-            var_dump($json[]['token']);
+            var_dump($json);
+
 
 
         }
