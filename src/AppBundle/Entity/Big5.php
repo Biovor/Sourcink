@@ -31,9 +31,59 @@ class Big5
     /**
      * @var int
      *
+     * @ORM\Column(name="token", type="string", length=255)
+     */
+    private $token;
+
+    /**
+     * @return int
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param int $token
+     * @return Big5
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="validity", type="integer")
+     */
+    private $validity;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="extraversion", type="integer")
      */
     private $extraversion;
+
+    /**
+     * @return int
+     */
+    public function getValidity()
+    {
+        return $this->validity;
+    }
+
+    /**
+     * @param int $validity
+     * @return Big5
+     */
+    public function setValidity($validity)
+    {
+        $this->validity = $validity;
+        return $this;
+    }
 
     /**
      * @var int
@@ -97,38 +147,6 @@ class Big5
      * @ORM\Column(name="pdfReport", type="string", length=255)
      */
     private $pdfReport;
-
-    /**
-     * Big5 constructor.
-     * @param int $id
-     * @param int $userId
-     * @param int $extraversion
-     * @param int $openness
-     * @param int $neuroticism
-     * @param int $conscientiouness
-     * @param int $agreeableness
-     * @param string $title
-     * @param string $displayName
-     * @param string $iconUrl
-     * @param string $description
-     * @param string $pdfReport
-     */
-    public function __construct($id, $userId, $extraversion, $openness, $neuroticism, $conscientiouness, $agreeableness, $title, $displayName, $iconUrl, $description, $pdfReport)
-    {
-        $this->id = $id;
-        $this->userId = $userId;
-        $this->extraversion = $extraversion;
-        $this->openness = $openness;
-        $this->neuroticism = $neuroticism;
-        $this->conscientiouness = $conscientiouness;
-        $this->agreeableness = $agreeableness;
-        $this->title = $title;
-        $this->displayName = $displayName;
-        $this->iconUrl = $iconUrl;
-        $this->description = $description;
-        $this->pdfReport = $pdfReport;
-    }
-
 
     /**
      * Get id

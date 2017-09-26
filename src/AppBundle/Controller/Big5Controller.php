@@ -33,18 +33,29 @@ class Big5Controller extends Controller
      */
     public function big5RepAction(Request $request)
     {
-//        if($request->getContent() != null ){
+        if($request->getContent() != null ){
             $json=json_decode($request->getContent());
-//            var_dump($json[]['userId']);
-            var_dump($json[0][0]['userId']);
+
+            $big5 = new big5();
+            $big5->setUserId($json->userId);
+            $big5->setToken($json->token);
+            $big5->setValidity($json->validity);
+            $big5->setExtraversion($json->traits->extraversion);
+            $big5->setOpenness($json->traits->openness);
+            $big5->setNeuroticism($json->traits->neuroticism);
+            $big5->setConscientiouness($json->traits->conscientiousness);
+            $big5->setAgreeableness($json->traits->agreeableness);
+            $big5->setTitle($json->archetype->title);
+            $big5->setDisplayName($json->archetype->displayName);
+            $big5->setIconUrl($json->archetype->iconUrl);
+            $big5->setDescription($json->archetype->description);
+            $big5->setPdfReport($json->pdfReport);
 
 
-//        }
-
-
-//        var_dump($request->getContent('userId'));
-        return $this->render(
-            'AppBundle:MonkeyTie:big5Rep.html.twig',['request' => $request, 'req' => $_REQUEST]);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($big5);
+            $em->flush();
+        }
 
     }
 }
