@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Big5;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,11 +31,17 @@ class Big5Controller extends Controller
     /**
      * @Route("big5/response", name="big5Rep")
      */
-    public function big5RepAction(Request $request)
+    public function big5RepAction(Request $request, Big5 $big5)
     {
+//        if($request->getContent() != null ){
+//        $big5 = new big5(
+//
+//        );
+//
+//        }
 
         $json=json_decode($request->getContent());
-        var_dump($json);
+        var_dump($request->getContent());
         return $this->render(
             'AppBundle:MonkeyTie:big5Rep.html.twig',['request' => $request, 'req' => $_REQUEST]);
 
