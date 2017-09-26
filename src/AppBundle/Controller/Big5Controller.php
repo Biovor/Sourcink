@@ -33,13 +33,13 @@ class Big5Controller extends Controller
      */
     public function big5RepAction(Request $request)
     {
-        if($request->getContent() != null ){
+//        if($request->getContent() != null ){
             $json=json_decode($request->getContent());
             var_dump($json[]['userId']);
             var_dump($json[]['token']);
 
 
-        }
+//        }
 
 
 //        var_dump($request->getContent('userId'));
