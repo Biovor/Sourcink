@@ -31,7 +31,7 @@ class Big5Controller extends Controller
     /**
      * @Route("big5/response", name="big5Rep")
      */
-    public function big5RepAction(Request $request, Big5 $big5)
+    public function big5RepAction(Request $request)
     {
 //        if($request->getContent() != null ){
 //        $big5 = new big5(
