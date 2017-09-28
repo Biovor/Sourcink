@@ -35,24 +35,46 @@ class Big5Controller extends Controller
     {
         if($request->getContent() != null ){
             $json=json_decode($request->getContent());
-var_dump($json);
             $big5 = new big5();
-            $big5->setUserId($json->userId);
-            $big5->setToken($json->token);
-            $big5->setValidity($json->validity);
-            $big5->setExtraversion($json->traits->extraversion);
-            $big5->setOpenness($json->traits->openness);
-            $big5->setNeuroticism($json->traits->neuroticism);
-            $big5->setConscientiouness($json->traits->conscientiousness);
-            $big5->setAgreeableness($json->traits->agreeableness);
-            $big5->setTitle($json->archetype->title);
-            $big5->setDisplayName($json->archetype->displayName);
-            $big5->setIconUrl($json->archetype->iconUrl);
-            $big5->setDescription($json->archetype->description);
+            if (isset($json->userId)) {
+                $big5->setUserId($json->userId);
+            }
+            if (isset($json->token)) {
+                $big5->setToken($json->token);
+            }
+            if (isset($json->validity)) {
+                $big5->setValidity($json->validity);
+            }
+            if (isset($json->traits->extraversion)) {
+                $big5->setExtraversion($json->traits->extraversion);
+            }
+            if (isset($json->traits->openness)) {
+                $big5->setOpenness($json->traits->openness);
+            }
+            if (isset($json->traits->neuroticism)) {
+                $big5->setNeuroticism($json->traits->neuroticism);
+            }
+            if (isset($json->traits->conscientiousness)) {
+                $big5->setConscientiouness($json->traits->conscientiousness);
+            }
+            if (isset($json->traits->agreeableness)) {
+                $big5->setAgreeableness($json->traits->agreeableness);
+            }
+            if (isset($json->archetype->title)) {
+                $big5->setTitle($json->archetype->title);
+            }
+            if (isset($json->archetype->displayName)) {
+                $big5->setDisplayName($json->archetype->displayName);
+            }
+            if (isset($json->archetype->iconUrl)) {
+                $big5->setIconUrl($json->archetype->iconUrl);
+            }
+            if (isset($json->archetype->description)) {
+                $big5->setDescription($json->archetype->description);
+            }
             if (isset($json->pdfReport)) {
                 $big5->setPdfReport($json->pdfReport);
             }
-
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($big5);
