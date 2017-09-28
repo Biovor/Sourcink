@@ -73,9 +73,9 @@ class Big5Controller extends Controller
             if (isset($json->archetype->description)) {
                 $big5->setDescription($json->archetype->description);
             }
-//            if (isset($json->pdfReport)) {
-//                $big5->setPdfReport($json->pdfReport);
-//            }
+            if (isset($json->pdfReport)) {
+                $big5->setPdfReport($json->pdfReport);
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($big5);
