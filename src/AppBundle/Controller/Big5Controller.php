@@ -35,7 +35,7 @@ class Big5Controller extends Controller
     {
         if($request->getContent() != null ){
             $json=json_decode($request->getContent());
-
+var_dump($json);
             $big5 = new big5();
             $big5->setUserId($json->userId);
             $big5->setToken($json->token);
@@ -49,7 +49,7 @@ class Big5Controller extends Controller
             $big5->setDisplayName($json->archetype->displayName);
             $big5->setIconUrl($json->archetype->iconUrl);
             $big5->setDescription($json->archetype->description);
-//            $big5->setPdfReport($json->pdfReport);
+            $big5->setPdfReport($json->pdfReport);
 
 
             $em = $this->getDoctrine()->getManager();
