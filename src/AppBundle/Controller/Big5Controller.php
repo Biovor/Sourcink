@@ -49,7 +49,7 @@ class Big5Controller extends Controller
             $big5->setDisplayName($json->archetype->displayName);
             $big5->setIconUrl($json->archetype->iconUrl);
             $big5->setDescription($json->archetype->description);
-            $big5->setPdfReport($json->pdfReport);
+//            $big5->setPdfReport($json->pdfReport);
 
 
             $em = $this->getDoctrine()->getManager();
