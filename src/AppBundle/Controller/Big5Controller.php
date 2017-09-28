@@ -35,6 +35,7 @@ class Big5Controller extends Controller
     {
         if($request->getContent() != null ){
             $json=json_decode($request->getContent());
+
             $big5 = new big5();
             if (isset($json->userId)) {
                 $big5->setUserId($json->userId);
