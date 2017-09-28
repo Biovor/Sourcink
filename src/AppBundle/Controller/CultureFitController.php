@@ -37,7 +37,7 @@ class CultureFitController extends Controller{
             if (isset($json->token)) {
                 $cultF->setToken($json->token);
             }
-            if (isset($json->traits->remuAvt)) {
+            if (isset($json->results->remuAvt)) {
                 $cultF->setRemuAvt($json->results->remuAvt);
             }
             if (isset($json->results->formEvo)) {
