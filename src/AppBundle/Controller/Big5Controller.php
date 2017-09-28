@@ -49,7 +49,7 @@ var_dump($json);
             $big5->setDisplayName($json->archetype->displayName);
             $big5->setIconUrl($json->archetype->iconUrl);
             $big5->setDescription($json->archetype->description);
-            if ($json->pdfReport != null) {
+            if (isset($json->pdfReport)) {
                 $big5->setPdfReport($json->pdfReport);
             }
 
