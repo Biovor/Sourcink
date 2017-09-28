@@ -24,14 +24,14 @@ class CultureFit
     /**
      * @var string
      *
-     * @ORM\Column(name="userId", type="string", length=255)
+     * @ORM\Column(name="userId", type="string")
      */
     private $userId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="token", type="string", length=255)
+     * @ORM\Column(name="token", type="string")
      */
     private $token;
 
