@@ -45,17 +45,8 @@ $('#sendResumeButton').on('click', function (e) {
     e.preventDefault();
     $('.progress').removeClass('hiddendiv');
     var resume = $('#sendResumeFile').val();
-    var pdf = $('#PDF').val();
-    var doc = $('#DOC').val();
-    if ( doc == true){
-        var format = 'DOC';
-    }
-    if ( pdf == true){
-        var format = 'PDF';
-    }
     var formData = new FormData();
     formData.append('resume', $('input[type=file]')[0].files[0]);
-    formData.append('format', $(format));
     $.ajax({
         url: '/ajax/resume/send',
         type: 'POST',

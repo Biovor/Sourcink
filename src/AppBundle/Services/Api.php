@@ -319,10 +319,20 @@ class Api
     }
 
 
-    public function sendResume($format, $file, $id, $firstName, $lastName)
+    public function sendResume($file, $id, $firstName, $lastName)
     {
+
+        $for = (array) $file;
+        $result='';
+        foreach ($for as $value ){
+            $result .= '*'.$value;
+        }
+        $resultTab=explode('*',$result);
+
+        $format = $resultTab[2];
+
         $resumeDOC = $this->getClient()->request(
-            'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'.'.$format.'', [
+            'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
                 'headers' => [
                     'Authorization' => 'Token ' . $this->getApiKey(),
                     'content-type' => 'application/octet-stream'

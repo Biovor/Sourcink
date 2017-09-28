@@ -47,9 +47,7 @@ class AjaxController extends Controller
         if ($request->isXmlHttpRequest()) {
             $candidat = $api->getSearch('candidates', $this->getUser()->getEmail());
             $resume = $request->files->get('resume');
-            $format = 'pdf';
-            dump($request);
-            $api->sendResume($format, $resume, $candidat->_embedded->candidates[0]->id,
+            $api->sendResume($resume, $candidat->_embedded->candidates[0]->id,
                 $candidat->_embedded->candidates[0]->first_name, $candidat->_embedded->candidates[0]->last_name);
             return new Response(1);
         }
