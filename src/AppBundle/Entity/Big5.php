@@ -360,7 +360,7 @@ class Big5
     /**
      * @var string
      *
-     * @ORM\Column(name="pdfReport", type="string", length=255, nullable=true)
+     * @ORM\Column(name="pdfReport", type="string", nullable=true)
      */
     private $pdfReport;
 
