@@ -57,6 +57,7 @@ class Big5Controller extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('app_homepage');
+        return $this->render(
+            'AppBundle:MonkeyTie:rep5.html.twig');
     }
 }
