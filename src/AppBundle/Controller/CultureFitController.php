@@ -11,7 +11,7 @@ use GuzzleHttp\Client;
 class CultureFitController extends Controller{
 
     /**
-     * @Route("/cultureFit", name="cult_F")
+     * @Route(" candidat/cultureFit", name="cult_F")
      */
     public function cultureFitAction()
     {
