@@ -49,7 +49,9 @@ var_dump($json);
             $big5->setDisplayName($json->archetype->displayName);
             $big5->setIconUrl($json->archetype->iconUrl);
             $big5->setDescription($json->archetype->description);
-//            $big5->setPdfReport($json->pdfReport);
+            if ($json->pdfReport != null) {
+                $big5->setPdfReport($json->pdfReport);
+            }
 
 
             $em = $this->getDoctrine()->getManager();
