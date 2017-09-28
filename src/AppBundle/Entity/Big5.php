@@ -24,14 +24,14 @@ class Big5
     /**
      * @var string
      *
-     * @ORM\Column(name="userId", type="string", length=255)
+     * @ORM\Column(name="userId", type="string")
      */
     private $userId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="token", type="string", length=255)
+     * @ORM\Column(name="token", type="string")
      */
     private $token;
 
@@ -332,21 +332,21 @@ class Big5
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     * @ORM\Column(name="title", type="string", nullable=true)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="displayName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="displayName", type="string", nullable=true)
      */
     private $displayName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="iconUrl", type="string", length=255, nullable=true)
+     * @ORM\Column(name="iconUrl", type="string", nullable=true)
      */
     private $iconUrl;
 
