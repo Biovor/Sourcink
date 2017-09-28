@@ -95,18 +95,6 @@ class ApplicantController extends Controller
         $em->flush();
         return $this->redirectToRoute('app_homepage');
     }
-
-    /**
-     * @Route("/cultureFit", name="cult_F")
-     */
-    public function cultureFitAction()
-    {
-
-        return $this->render(
-            'AppBundle:MonkeyTie:cultureFit.html.twig');
-
-
-    }
 }
 
 
