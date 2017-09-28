@@ -45,7 +45,7 @@ class Big5
     /**
      * @var int
      *
-     * @ORM\Column(name="extraversion", type="integer")
+     * @ORM\Column(name="extraversion", type="integer", nullable=true)
      */
     private $extraversion;
 
@@ -304,63 +304,63 @@ class Big5
     /**
      * @var int
      *
-     * @ORM\Column(name="openness", type="integer")
+     * @ORM\Column(name="openness", type="integer", nullable=true)
      */
     private $openness;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="neuroticism", type="integer")
+     * @ORM\Column(name="neuroticism", type="integer", nullable=true)
      */
     private $neuroticism;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="conscientiouness", type="integer")
+     * @ORM\Column(name="conscientiouness", type="integer", nullable=true)
      */
     private $conscientiouness;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="agreeableness", type="integer")
+     * @ORM\Column(name="agreeableness", type="integer", nullable=true)
      */
     private $agreeableness;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255)
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     private $title;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="displayName", type="string", length=255)
+     * @ORM\Column(name="displayName", type="string", length=255, nullable=true)
      */
     private $displayName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="iconUrl", type="string", length=255)
+     * @ORM\Column(name="iconUrl", type="string", length=255, nullable=true)
      */
     private $iconUrl;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pdfReport", type="string", length=255)
+     * @ORM\Column(name="pdfReport", type="string", length=255, nullable=true)
      */
     private $pdfReport;
 
