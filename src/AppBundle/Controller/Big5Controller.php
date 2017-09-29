@@ -74,12 +74,13 @@ class Big5Controller extends Controller
                 $big5->setDescription($json->archetype->description);
             }
             if (isset($json->pdfReport)) {
-                $big5->setPdfReport($json->pdfReport);
+                $big5->setPdfReport(base64_decode($json->pdfReport));
             }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($big5);
             $em->flush();
+
         }
 
         return $this->render(
