@@ -353,14 +353,14 @@ class Big5
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pdfReport", type="string", nullable=true)
+     * @ORM\Column(name="pdfReport", type="text", nullable=true)
      */
     private $pdfReport;
 
