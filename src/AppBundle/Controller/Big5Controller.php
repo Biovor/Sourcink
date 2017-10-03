@@ -98,6 +98,7 @@ class Big5Controller extends Controller
 
         $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($this->getUser());
         $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
+
         header('Content-Type: application/pdf');
         print $pdf;
 //        $encoded = $big5User->getPdfReport();
@@ -133,5 +134,22 @@ class Big5Controller extends Controller
 //            'pdf' => $pdf,
 //            'header'=>$header
 //        ));
+    }
+
+    /**
+     * @Route("big5/pdf", name="big5ddlpdf")
+     */
+    public function pdfddl(){
+
+        $nom = 'big5.pdf';
+        $situation ="big5/response/pdf";
+
+        header('Content-Type: application/pdf');
+        header('Content-disposition: attachment; filename='. $nom);
+        header('Pragma: no-cache');
+        header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+        header('Expires: 0');
+        readfile($situation);
+        exit();
     }
 }
