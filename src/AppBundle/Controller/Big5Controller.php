@@ -101,26 +101,26 @@ class Big5Controller extends Controller
 
         header('Content-Type: application/pdf');
         print $pdf;
-        header('Content-disposition: attachment; filename='. 'testpdf.pdf');
+//        header('Content-disposition: attachment; filename='. 'testpdf.pdf');
 //        $encoded = $big5User->getPdfReport();
 //        $pdf = "";
 //        for ($i=0; $i < ceil(strlen($encoded)/256); $i++)
 //            $pdf = $pdf . base64_decode(substr($encoded,$i*256,256));
 //        $file = '/web/big5/big5.pdf';
 //
-////        $current = file_get_contents($file);
+//        $current = file_get_contents($file);
 //
 //        $current = $pdf;
 //
 //        file_put_contents($file, $current);
-
-//        $file = 'testpdf.odt';
-//// Ouvre un fichier pour lire un contenu existant
-//        $current = file_get_contents($file);
-//// Ajoute une personne
-//        $current .= $pdf;
-//// Écrit le résultat dans le fichier
-//        file_put_contents($file, $current);
+//
+        $file = 'bbbpdf.pdf';
+// Ouvre un fichier pour lire un contenu existant
+        $current = file_get_contents($file);
+// Ajoute une personne
+        $current .= $pdf;
+// Écrit le résultat dans le fichier
+        file_put_contents($file, $current);
 //
 //       $fp= fopen('ppddff.pdf', 'w+');
 //        fwrite($fp, $pdf);
