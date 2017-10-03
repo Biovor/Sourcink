@@ -100,7 +100,7 @@ class Big5Controller extends Controller
         $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
 
         header('Content-Type: application/pdf');
-        print $pdf;
+//        print $pdf;
 //        $encoded = $big5User->getPdfReport();
 //        $pdf = "";
 //        for ($i=0; $i < ceil(strlen($encoded)/256); $i++)
