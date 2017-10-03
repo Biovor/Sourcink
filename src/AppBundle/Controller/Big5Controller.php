@@ -126,9 +126,9 @@ class Big5Controller extends Controller
 //        fclose($fp);
 
 //
-//        $html2pdf = new Html2Pdf();
-//        $html2pdf->writeHTML($pdf);
-//        $html2pdf->output('big5.pdf');
+        $html2pdf = new Html2Pdf();
+        $html2pdf->writeHTML($pdf);
+        $html2pdf->output('big555.pdf');
 
 //        return $this->render('AppBundle:MonkeyTie:rep5pdf.html.twig', array(
 //            'pdf' => $pdf,
