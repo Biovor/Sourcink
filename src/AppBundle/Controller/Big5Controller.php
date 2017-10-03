@@ -15,7 +15,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\File\Stream;
 use Symfony\Component\HttpFoundation\Request;
 use GuzzleHttp\Client;
-use Spipu\Html2Pdf\Html2Pdf;
+use AppBundle\Services\Api;
+
+
 
 class Big5Controller extends Controller
 {
@@ -92,63 +94,28 @@ class Big5Controller extends Controller
     /**
      * @Route("big5/response/pdf", name="big5Reppdf")
      */
-    public function big5ReppdfAction(){
+    public function big5ReppdfAction(Api $api){
 
         $em = $this->getDoctrine()->getManager();
-
+        $user = $em->getRepository('UserBundle:User')->findOneById($this->getUser());
         $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($this->getUser());
         $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
 
         header('Content-Type: application/pdf');
-        print $pdf;
-//        header('Content-disposition: attachment; filename='. 'testpdf.pdf');
-//        $encoded = $big5User->getPdfReport();
-//        $pdf = "";
-//        for ($i=0; $i < ceil(strlen($encoded)/256); $i++)
-//            $pdf = $pdf . base64_decode(substr($encoded,$i*256,256));
-//        $file = '/web/big5/big5.pdf';
-//
-//        $current = file_get_contents($file);
-//
-//        $current = $pdf;
-//
-//        file_put_contents($file, $current);
-//
-        $file = 'bbbpdf.pdf';
-// Ouvre un fichier pour lire un contenu existant
-        $current = file_get_contents($file);
-// Ajoute une personne
-        $current .= $pdf;
-// Écrit le résultat dans le fichier
-        file_put_contents($file, $current);
-//
-//       $fp= fopen('ppddff.pdf', 'w+');
-//        fwrite($fp, $pdf);
-//        fclose($fp);
+        $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
+        fwrite($fp, $pdf);
+        fclose($fp);
 
-//
-//        $html2pdf = new Html2Pdf();
-//        $html2pdf->writeHTML($pdf);
-//        $html2pdf->output('big555.pdf');
+        $user = $api->getSearch('candidates', $this->getUser()->getEmail());
+        $directory = $this->getParameter('kernel.project_dir') . '/web/big5/big5-'.$big5User->getId().'.pdf';
+        $api->sendResume2($directory . $this->getUser()->getResumeName(),
+            $user->_embedded->candidates[0]->id, $user->_embedded->candidates[0]->first_name,
+            $user->_embedded->candidates[0]->last_name);
+        unlink($directory . $this->getUser()->getResumeName());
 
-//        return $this->render('AppBundle:MonkeyTie:rep5pdf.html.twig', array(
-//            'pdf' => $pdf,
-//            'header'=>$header
-//        ));
-    }
 
-    /**
-     * @Route("big5/pdf", name="big5ddlpdf")
-     */
-    public function pdfddl(){
-
-        $nom = 'big5.pdf';
-        $situation ="big5/response/pdf";
-
-        header('Content-Type: application/pdf');
-
-        readfile($situation);
-
+        return $this->redirectToRoute('app_homepage');
 
     }
+
 }

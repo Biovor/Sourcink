@@ -331,7 +331,7 @@ class Api
 
         $format = $resultTab[2];
 
-        $resumeDOC = $this->getClient()->request(
+        $resume = $this->getClient()->request(
             'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
                 'headers' => [
                     'Authorization' => 'Token ' . $this->getApiKey(),
@@ -341,8 +341,37 @@ class Api
                 'body' => fopen(realpath($file), 'r')
             ]
         );
-        return $resumeDOC;
+        return $resume;
     }
+
+    public function sendResume2($file, $id, $firstName, $lastName)
+    {
+
+        $for = (array) $file;
+        $result='';
+        foreach ($for as $value ){
+            $result .= '*'.$value;
+        }
+        $resultTab=explode('/',$result);
+
+        var_dump($resultTab);
+        $format = $resultTab[sizeof($resultTab)-1];
+
+
+        $resume = $this->getClient()->request(
+            'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
+                'headers' => [
+                    'Authorization' => 'Token ' . $this->getApiKey(),
+                    'content-type' => 'application/octet-stream'
+                ],
+
+                'body' => fopen(realpath($file), 'r')
+            ]
+        );
+        return $resume;
+
+    }
+
 
     public function updateCandidate(User $user, $catsUser)
     {
