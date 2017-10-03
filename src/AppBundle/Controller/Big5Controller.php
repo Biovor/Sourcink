@@ -97,11 +97,11 @@ class Big5Controller extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($this->getUser());
-//        $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
-        $encoded = $big5User->getPdfReport();
-        $pdf = "";
-        for ($i=0; $i < ceil(strlen($encoded)/256); $i++)
-            $pdf = $pdf . base64_decode(substr($encoded,$i*256,256));
+        $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
+//        $encoded = $big5User->getPdfReport();
+//        $pdf = "";
+//        for ($i=0; $i < ceil(strlen($encoded)/256); $i++)
+//            $pdf = $pdf . base64_decode(substr($encoded,$i*256,256));
 //        $file = '/web/big5/big5.pdf';
 //
 ////        $current = file_get_contents($file);
@@ -123,11 +123,11 @@ class Big5Controller extends Controller
 //        fclose($fp);
 
 
-        $html2pdf = new Html2Pdf();
-        $html2pdf->writeHTML($pdf);
-        $html2pdf->output('big5.pdf');
+//        $html2pdf = new Html2Pdf();
+//        $html2pdf->writeHTML($pdf);
+//        $html2pdf->output('big5.pdf');
 
-        return $this->render('AppBundle:MonkeyTie:rep5pdf.html.twig', array(
+        return $this->render('AppBundle:MonkeyTie:rep5pdf.php', array(
             'pdf' => $pdf,
         ));
     }
