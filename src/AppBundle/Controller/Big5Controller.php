@@ -85,16 +85,16 @@ class Big5Controller extends Controller
             $em->persist($big5);
             $em->flush();
 
-            return $this->redirectToRoute('big5PDF');
+            return $this->redirect( $this->generateUrl('big5/response/pdf/'.$json->userId.''));
         }
 
         return $this->redirectToRoute('app_homepage');
     }
 
     /**
-     * @Route("big5/response/pdf/{id}", name="big5PDF")
+     * @Route("big5/response/pdf/{id}", name="big5PDF", requirements={"id": "\d+"})
      */
-    public function big5ReppdfAction(Api $api, User $user){
+    public function big5ReppdfAction(Api $api, User $user, $id){
 
         $em = $this->getDoctrine()->getManager();
 //        $user = $em->getRepository('UserBundle:User')->findOneById($this->getUser());
