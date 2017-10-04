@@ -38,66 +38,66 @@ class Big5Controller extends Controller
     public function big5RepAction(Request $request)
     {
         if($request->getContent() != null ) {
+            $token = $this->container->getParameter('api_tie_big5_key');
             $json = json_decode($request->getContent());
-            $idUser = $json->userId;
-            $big5 = new big5();
-            if (isset($json->userId)) {
-                $big5->setUserId($json->userId);
-            }
-            if (isset($json->token)) {
+            if (isset($json->token) AND $json->token === $token ) {
+                $idUser = $json->userId;
+                $big5 = new big5();
+
                 $big5->setToken($json->token);
-            }
-            if (isset($json->validity)) {
-                $big5->setValidity($json->validity);
-            }
-            if (isset($json->traits->extraversion)) {
-                $big5->setExtraversion($json->traits->extraversion);
-            }
-            if (isset($json->traits->openness)) {
-                $big5->setOpenness($json->traits->openness);
-            }
-            if (isset($json->traits->neuroticism)) {
-                $big5->setNeuroticism($json->traits->neuroticism);
-            }
-            if (isset($json->traits->conscientiousness)) {
-                $big5->setConscientiouness($json->traits->conscientiousness);
-            }
-            if (isset($json->traits->agreeableness)) {
-                $big5->setAgreeableness($json->traits->agreeableness);
-            }
-            if (isset($json->archetype->title)) {
-                $big5->setTitle($json->archetype->title);
-            }
-            if (isset($json->archetype->displayName)) {
-                $big5->setDisplayName($json->archetype->displayName);
-            }
-            if (isset($json->archetype->iconUrl)) {
-                $big5->setIconUrl($json->archetype->iconUrl);
-            }
-            if (isset($json->archetype->description)) {
-                $big5->setDescription($json->archetype->description);
-            }
-            if (isset($json->pdfReport)) {
-                $big5->setPdfReport($json->pdfReport);
-            }
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($big5);
-            $em->flush();
+                if (isset($json->userId)) {
+                    $big5->setUserId($json->userId);
+                }
+                if (isset($json->validity)) {
+                    $big5->setValidity($json->validity);
+                }
+                if (isset($json->traits->extraversion)) {
+                    $big5->setExtraversion($json->traits->extraversion);
+                }
+                if (isset($json->traits->openness)) {
+                    $big5->setOpenness($json->traits->openness);
+                }
+                if (isset($json->traits->neuroticism)) {
+                    $big5->setNeuroticism($json->traits->neuroticism);
+                }
+                if (isset($json->traits->conscientiousness)) {
+                    $big5->setConscientiouness($json->traits->conscientiousness);
+                }
+                if (isset($json->traits->agreeableness)) {
+                    $big5->setAgreeableness($json->traits->agreeableness);
+                }
+                if (isset($json->archetype->title)) {
+                    $big5->setTitle($json->archetype->title);
+                }
+                if (isset($json->archetype->displayName)) {
+                    $big5->setDisplayName($json->archetype->displayName);
+                }
+                if (isset($json->archetype->iconUrl)) {
+                    $big5->setIconUrl($json->archetype->iconUrl);
+                }
+                if (isset($json->archetype->description)) {
+                    $big5->setDescription($json->archetype->description);
+                }
+                if (isset($json->pdfReport)) {
+                    $big5->setPdfReport($json->pdfReport);
+                }
 
-            $cats =$this->forward('AppBundle:Big5:big5PDF', array(
-                'idUser'=>$idUser
-            ));
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($big5);
+                $em->flush();
 
-            return $cats;
+                $cats =$this->forward('AppBundle:Big5:big5PDF', array(
+                    'idUser'=>$idUser
+                ));
+
+                return $cats;
+            }
         }
 
         return $this->redirectToRoute('app_homepage');
     }
 
-    /**
-     * @Route("big5/pdf", name="big5R")
-     */
     public function big5PDFAction(Api $api, $idUser){
 
         $em = $this->getDoctrine()->getManager();
@@ -117,28 +117,7 @@ class Big5Controller extends Controller
             $userCats->_embedded->candidates[0]->last_name);
         unlink($directory . $user->getResumeName());
 
-
-
-//        $em = $this->getDoctrine()->getManager();
-//        $user = $em->getRepository('UserBundle:User')->findOneById($this->getUser());
-//        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($this->getUser());
-//        $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
-//
-//        header('Content-Type: application/pdf');
-//        $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
-//        fwrite($fp, $pdf);
-//        fclose($fp);
-//
-//        $user = $api->getSearch('candidates', $this->getUser()->getEmail());
-//        $directory = $this->getParameter('kernel.project_dir') . '/web/big5/big5-'.$big5User->getId().'.pdf';
-//        $api->sendResume2($directory . $this->getUser()->getResumeName(),
-//            $user->_embedded->candidates[0]->id, $user->_embedded->candidates[0]->first_name,
-//            $user->_embedded->candidates[0]->last_name);
-//        unlink($directory . $this->getUser()->getResumeName());
-
-        return $this->render(
-            'AppBundle:MonkeyTie:rep5pdf.html.twig');
-
+        return $this->redirectToRoute('app_homepage');
     }
 
 }

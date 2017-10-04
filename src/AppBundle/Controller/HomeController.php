@@ -14,7 +14,6 @@ class HomeController extends Controller
      */
     public function homeAction(Api $api, Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         $videos = $em->getRepository('AppBundle:Header')->findAll();
         $categories = $em->getRepository('AppBundle:Category')->findAll();
