@@ -100,6 +100,9 @@ class Big5Controller extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($big5);
             $em->flush();
+
+            return $this->render(
+                'AppBundle:MonkeyTie:rep5pdf.html.twig');
         }
 
         return $this->redirectToRoute('app_homepage');
