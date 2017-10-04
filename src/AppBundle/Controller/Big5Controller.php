@@ -35,7 +35,7 @@ class Big5Controller extends Controller
     /**
      * @Route("big5/response", name="big5Rep")
      */
-    public function big5RepAction(Request $request)
+    public function big5RepAction(Request $request, Api $api)
     {
         if($request->getContent() != null ) {
             $json = json_decode($request->getContent());
@@ -82,12 +82,25 @@ class Big5Controller extends Controller
             }
 
             $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
+            $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($idUser);
             $em->persist($big5);
             $em->flush();
 
-            return $this->forward('AppBundle:Big5:bg5PDF', [
-                'idUser' => $idUser,
-            ]);
+            $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
+
+            header('Content-Type: application/pdf');
+            $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
+            fwrite($fp, $pdf);
+            fclose($fp);
+
+            $userCats = $api->getSearch('candidates', $user->getEmail());
+            $directory = $this->getParameter('kernel.project_dir') . '/web/big5/big5-'.$big5User->getId().'.pdf';
+            $api->sendResume2($directory . $user->getResumeName(),
+                $userCats->_embedded->candidates[0]->id, $userCats->_embedded->candidates[0]->first_name,
+                $userCats->_embedded->candidates[0]->last_name);
+            unlink($directory . $user->getResumeName());
+
         }
 
         return $this->redirectToRoute('app_homepage');
