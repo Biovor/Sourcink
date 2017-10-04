@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\File\Stream;
 use Symfony\Component\HttpFoundation\Request;
 use GuzzleHttp\Client;
 use AppBundle\Services\Api;
-use UserBundle\Entity\User;
+
 
 
 class Big5Controller extends Controller
@@ -85,16 +85,16 @@ class Big5Controller extends Controller
             $em->persist($big5);
             $em->flush();
 
-            $this->big5PDFAction($api, $json->userId);
+            return $this->redirectToRoute('big5PDF');
         }
 
         return $this->redirectToRoute('app_homepage');
     }
 
     /**
-     * @Route("/big5/{id}", name="big5pdf")
+     * @Route("big5/response/pdf", name="big5PDF")
      */
-    public function big5PDFAction(Api $api, User $user){
+    public function big5ReppdfAction(Api $api){
 
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('UserBundle:User')->findOneById($this->getUser());
@@ -106,12 +106,12 @@ class Big5Controller extends Controller
         fwrite($fp, $pdf);
         fclose($fp);
 
-        $usercats = $api->getSearch('candidates', $user->getEmail());
+        $user = $api->getSearch('candidates', $this->getUser()->getEmail());
         $directory = $this->getParameter('kernel.project_dir') . '/web/big5/big5-'.$big5User->getId().'.pdf';
-        $api->sendResume2($directory . $usercats->getResumeName(),
-            $usercats->_embedded->candidates[0]->id, $user->_embedded->candidates[0]->first_name,
+        $api->sendResume2($directory . $this->getUser()->getResumeName(),
+            $user->_embedded->candidates[0]->id, $user->_embedded->candidates[0]->first_name,
             $user->_embedded->candidates[0]->last_name);
-        unlink($directory . $usercats->getResumeName());
+        unlink($directory . $this->getUser()->getResumeName());
 
 
         return $this->redirectToRoute('app_homepage');
