@@ -96,7 +96,7 @@ class Big5Controller extends Controller
     }
 
     /**
-     * @Route("big5/pdf", name="big5Rep")
+     * @Route("big5/pdf", name="big5R")
      */
     public function big5PDFAction(Api $api, $idUser){
 
