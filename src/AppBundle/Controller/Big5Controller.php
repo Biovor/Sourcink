@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\File\Stream;
 use Symfony\Component\HttpFoundation\Request;
 use GuzzleHttp\Client;
 use AppBundle\Services\Api;
-
+use UserBundle\Entity\User;
 
 
 class Big5Controller extends Controller
@@ -92,12 +92,12 @@ class Big5Controller extends Controller
     }
 
     /**
-     * @Route("big5/response/pdf", name="big5PDF")
+     * @Route("big5/response/pdf/{id}", name="big5PDF")
      */
-    public function big5ReppdfAction(Api $api){
+    public function big5ReppdfAction(Api $api, User $user){
 
         $em = $this->getDoctrine()->getManager();
-        $user = $em->getRepository('UserBundle:User')->findOneById($this->getUser());
+//        $user = $em->getRepository('UserBundle:User')->findOneById($this->getUser());
         $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($this->getUser());
         $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
 
