@@ -35,7 +35,7 @@ class Big5Controller extends Controller
     /**
      * @Route("big5/response", name="big5Rep")
      */
-    public function big5RepAction(Request $request, Api $api)
+    public function big5RepAction(Request $request)
     {
         if($request->getContent() != null ) {
             $json = json_decode($request->getContent());
