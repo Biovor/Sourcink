@@ -35,7 +35,7 @@ class Big5Controller extends Controller
     /**
      * @Route("big5/response", name="big5Rep")
      */
-    public function big5RepAction(Request $request)
+    public function big5RepAction(Request $request, Api $api)
     {
         if($request->getContent() != null ) {
             $json = json_decode($request->getContent());
@@ -103,7 +103,7 @@ class Big5Controller extends Controller
         fwrite($fp, $pdf);
         fclose($fp);
 
-        $user = $api->getSearch('candidates', $this->getUser()->getEmail());
+        $user = $api->getSearch('candidates', $user->getEmail());
         $directory = $this->getParameter('kernel.project_dir') . '/web/big5/big5-'.$big5User->getId().'.pdf';
         $api->sendResume2($directory . $this->getUser()->getResumeName(),
             $user->_embedded->candidates[0]->id, $user->_embedded->candidates[0]->first_name,
