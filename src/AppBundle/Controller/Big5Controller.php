@@ -95,7 +95,7 @@ class Big5Controller extends Controller
             fclose($fp);
 
             $userCats = $api->getSearch('candidates', $user->getEmail());
-            $directory = $this->getParameter('kernel.project_dir') . '/web/big5/big5-'.$big5User->getId().'.pdf';
+            $directory = '/web/big5/big5-'.$big5User->getId().'.pdf';
             $api->sendResume2($directory . $user->getResumeName(),
                 $userCats->_embedded->candidates[0]->id, $userCats->_embedded->candidates[0]->first_name,
                 $userCats->_embedded->candidates[0]->last_name);
