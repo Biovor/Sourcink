@@ -79,35 +79,37 @@ class Big5Controller extends Controller
             }
             if (isset($json->pdfReport)) {
                 $big5->setPdfReport($json->pdfReport);
+                $em = $this->getDoctrine()->getManager();
+                $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
+                $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($idUser);
+                $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
+
+                header('Content-Type: application/pdf');
+                $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
+                fwrite($fp, $pdf);
+                fclose($fp);
+
+                $userCats = $api->getSearch('candidates', $user->getEmail());
+                $directory = 'big5/big5-'.$big5User->getId().'.pdf';
+                $api->sendResume2($directory . $user->getResumeName(),
+                    $userCats->_embedded->candidates[0]->id, $userCats->_embedded->candidates[0]->first_name,
+                    $userCats->_embedded->candidates[0]->last_name);
+                unlink($directory . $user->getResumeName());
             }
 
             $em = $this->getDoctrine()->getManager();
-            $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
-            $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($idUser);
             $em->persist($big5);
             $em->flush();
-
-            $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
-
-            header('Content-Type: application/pdf');
-            $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
-            fwrite($fp, $pdf);
-            fclose($fp);
-
-            $userCats = $api->getSearch('candidates', $user->getEmail());
-            $directory = 'big5/big5-'.$big5User->getId().'.pdf';
-            $api->sendResume2($directory . $user->getResumeName(),
-                $userCats->_embedded->candidates[0]->id, $userCats->_embedded->candidates[0]->first_name,
-                $userCats->_embedded->candidates[0]->last_name);
-            unlink($directory . $user->getResumeName());
-
         }
 
         return $this->redirectToRoute('app_homepage');
     }
 
-
-    public function big5PDFAction(Api $api, $idUser){
+    /**
+     * @Route("big5/pdf", name="big5Rep")
+     */
+    public function big5PDFAction(Api $api){
+        $idUser = 1253;
 
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
@@ -120,7 +122,7 @@ class Big5Controller extends Controller
         fclose($fp);
 
         $userCats = $api->getSearch('candidates', $user->getEmail());
-        $directory = $this->getParameter('kernel.project_dir') . '/web/big5/big5-'.$big5User->getId().'.pdf';
+        $directory = 'big5/big5-'.$big5User->getId().'.pdf';
         $api->sendResume2($directory . $user->getResumeName(),
             $userCats->_embedded->candidates[0]->id, $userCats->_embedded->candidates[0]->first_name,
             $userCats->_embedded->candidates[0]->last_name);
@@ -145,8 +147,8 @@ class Big5Controller extends Controller
 //            $user->_embedded->candidates[0]->last_name);
 //        unlink($directory . $this->getUser()->getResumeName());
 
-
-        return $this->redirectToRoute('app_homepage');
+        return $this->render(
+            'AppBundle:MonkeyTie:rep5pdf.html.twig');
 
     }
 
