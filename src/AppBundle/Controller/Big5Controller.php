@@ -39,7 +39,7 @@ class Big5Controller extends Controller
     {
         if($request->getContent() != null ) {
             $json = json_decode($request->getContent());
-
+            $idUser = $json->userId;
             $big5 = new big5();
             if (isset($json->userId)) {
                 $big5->setUserId($json->userId);
@@ -85,20 +85,20 @@ class Big5Controller extends Controller
             $em->persist($big5);
             $em->flush();
 
-            return $this->redirect( $this->generateUrl('big5/response/pdf/'.$json->userId.''));
+            return $this->forward('AppBundle:Big5:bg5PDF', [
+                'idUser' => $idUser,
+            ]);
         }
 
         return $this->redirectToRoute('app_homepage');
     }
 
-    /**
-     * @Route("big5/response/pdf/{id}", name="big5PDF", requirements={"id": "\d+"})
-     */
-    public function big5ReppdfAction(Api $api, User $user, $id){
+
+    public function big5PDFAction(Api $api, $idUser){
 
         $em = $this->getDoctrine()->getManager();
-//        $user = $em->getRepository('UserBundle:User')->findOneById($this->getUser());
-        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($this->getUser());
+        $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
+        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($idUser);
         $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
 
         header('Content-Type: application/pdf');
@@ -106,11 +106,11 @@ class Big5Controller extends Controller
         fwrite($fp, $pdf);
         fclose($fp);
 
-        $user = $api->getSearch('candidates', $this->getUser()->getEmail());
+        $usercats = $api->getSearch('candidates', $user->getEmail());
         $directory = $this->getParameter('kernel.project_dir') . '/web/big5/big5-'.$big5User->getId().'.pdf';
-        $api->sendResume2($directory . $this->getUser()->getResumeName(),
-            $user->_embedded->candidates[0]->id, $user->_embedded->candidates[0]->first_name,
-            $user->_embedded->candidates[0]->last_name);
+        $api->sendResume2($directory . $user->getResumeName(),
+            $usercats->_embedded->candidates[0]->id, $usercats->_embedded->candidates[0]->first_name,
+            $usercats->_embedded->candidates[0]->last_name);
         unlink($directory . $this->getUser()->getResumeName());
 
 
