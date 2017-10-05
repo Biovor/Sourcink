@@ -4,7 +4,8 @@
 {% endblock %}
 {% block content %}
 
-    <iframe title="Big5" src="{{ monkeyTieUrl }}token={{ bigFiveKey }}&callback={{ urlCallback }}&userId={{ app.user.id }}&mail={{ app.user.email }}"
+    <iframe title="Big5" src="{{ monkeyTieUrl }}token={{ bigFiveKey }}&callback={{ urlCallback }}&userId={{ app.user
+    .id }}&mail=candidat-{{ app.user.id }}@sourcink.com"
             frameborder="0" style="height: 1000px; width: 100%">
         <p>Your browser does not support iframes.</p>
     </iframe>

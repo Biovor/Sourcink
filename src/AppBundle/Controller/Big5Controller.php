@@ -103,7 +103,7 @@ class Big5Controller extends Controller
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
         $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($idUser);
-        $pdf = base64_decode(utf8_encode($big5User->getPdfReport()));
+        $pdf = base64_decode($big5User->getPdfReport());
 
         header('Content-Type: application/pdf');
         $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
