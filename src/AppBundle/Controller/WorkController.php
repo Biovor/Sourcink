@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Work controller.
  *
- * @Route("admin/work")
+ * @Route("admin007UvTx037/work")
  */
 class WorkController extends Controller
 {

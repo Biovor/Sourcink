@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Header controller.
  *
- * @Route("admin/header")
+ * @Route("admin007UvTx037/header")
  */
 class HeaderController extends Controller
 {

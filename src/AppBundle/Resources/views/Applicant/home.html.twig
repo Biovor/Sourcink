@@ -29,8 +29,8 @@
                     {% if hasResume == true %}
                         <div class="row">
                             <a class="btn blue btnApp right" href="{{ path('job_list') }}">Voir nos offres d'emploi</a>
-                            <a class="btn orange btnApp right" href="{{ path('cult_F') }}">Le Culture Fit</a>
-                            <a class="btn orange btnApp right" href="{{ path('big5') }}">Le Big5</a><br/><br/>
+                            <a class="btn orange btnApp right" href="{{ path('cult_F') }}">Le Culture Fit *</a>
+                            <a class="btn orange btnApp right" href="{{ path('big5') }}">Le Big5 *</a><br/><br/>
                         </div>
                     {% endif %}
                     <div class="row">
@@ -67,11 +67,19 @@
                         <div class="col s10 m5 l2 offset-l3">
                             <a href="{{ path('fos_user_security_logout') }}" class="red-text">Déconnexion</a>
                         </div>
-
                     </div>
-
                 </div>
             </div>
+
+        {% if status == true %}
+        {% if hasResume == true %}
+            <p class="mlMonkeyTie">* Les données personnelles résultant de ces tests seront utilisées dans un cadre
+                strictement
+                privé par
+                Sourcink. Monkey tie conservera les données de façon anonyme.</p>
+        {% endif %}
+        {% endif %}
+
         {% else %}
             <div class="card-panel">
                 <p>Merci de votre inscription. Prochaine étape : Complétez votre profil</p>

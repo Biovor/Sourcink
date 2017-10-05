@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Sourcink controller.
  *
- * @Route("admin/sourcink")
+ * @Route("admin007UvTx037/sourcink")
  */
 class SourcinkController extends Controller
 {

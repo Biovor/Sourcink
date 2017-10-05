@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Lists all
  *
- * @Route("/admin", name="admin")
+ * @Route("/admin007UvTx037", name="admin")
  * @Method("GET")
  */
 

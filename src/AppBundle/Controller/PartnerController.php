@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Partner controller.
  *
- * @Route("admin/partner")
+ * @Route("admin007UvTx037/partner")
  */
 class PartnerController extends Controller
 {

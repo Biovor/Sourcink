@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Partnerview controller.
  *
- * @Route("admin/partnerview")
+ * @Route("admin007UvTx037/partnerview")
  */
 class PartnerViewController extends Controller
 {

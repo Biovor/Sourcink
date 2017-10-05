@@ -525,12 +525,10 @@ footer {
     font-size: 24px;
     padding-left: 5%;
     padding-right: 5%;
-    margin: 0px;
 }
 
 .work-name {
     font-size: 24px;
-    margin: 0px;
 }
 
 .category-title {
@@ -557,17 +555,13 @@ footer {
     margin-bottom: 20px;
 }
 
-.puces-site {
-    list-style-type:;
-}
-
 .no-job {
     margin-bottom: 20px;
 }
 
 /*Premium Page*/
 .bg {
-    background-image: url('/media/alice-donovan-rouse-171566.jpg');
+    background-image: url('../media/alice-donovan-rouse-171566.jpg');
     background-size: cover;
 }
 
@@ -679,4 +673,9 @@ footer {
 
 .imgSolutionHomme{
     margin-right: -50px;
+}
+
+.mlMonkeyTie{
+    font-size: 0.9em;
+    color: #ff9800;
 }

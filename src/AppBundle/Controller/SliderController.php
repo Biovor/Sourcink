@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Slider controller.
  *
- * @Route("admin/slider")
+ * @Route("admin007UvTx037/slider")
  */
 class SliderController extends Controller
 {

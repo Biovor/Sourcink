@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Benefit controller.
  *
- * @Route("admin/benefit")
+ * @Route("admin007UvTx037/benefit")
  */
 class BenefitController extends Controller
 {
