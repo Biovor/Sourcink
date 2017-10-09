@@ -77,7 +77,7 @@ class CultureFitController extends Controller{
             'AppBundle:MonkeyTie:repCF.html.twig');
     }
 
-    public function cultureFitCats(Api $api, $idUser){
+    public function cultureFitCatsAction(Api $api, $idUser){
 
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
