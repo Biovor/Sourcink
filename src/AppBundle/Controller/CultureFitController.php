@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use GuzzleHttp\Client;
+use AppBundle\Services\Api;
 
 class CultureFitController extends Controller{
 
@@ -29,7 +30,7 @@ class CultureFitController extends Controller{
     {
         if($request->getContent() != null ){
             $json=json_decode($request->getContent());
-
+            $idUser = $json->userId;
             $cultF = new cultureFit();
             if (isset($json->userId)) {
                 $cultF->setUserId($json->userId);
@@ -65,9 +66,28 @@ class CultureFitController extends Controller{
             $em = $this->getDoctrine()->getManager();
             $em->persist($cultF);
             $em->flush();
+
+            $cats =$this->forward('AppBundle:CultureFit:cultureFitCats', array(
+                'idUser'=>$idUser
+            ));
+
+            return $cats;
         }
         return $this->render(
             'AppBundle:MonkeyTie:repCF.html.twig');
+    }
+
+    public function cultureFitCats(Api $api, $idUser){
+
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
+        $CFUser = $em->getRepository('AppBundle:CultureFit')->findOneByuserId($idUser);
+
+        $userCats = $api->getSearch('candidates', $user->getEmail());
+        $api->updateCandiCultureFit($CFUser,$userCats->_embedded->candidates[0]->id);
+
+
+        return $this->redirectToRoute('app_homepage');
     }
 
     }

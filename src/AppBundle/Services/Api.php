@@ -8,6 +8,7 @@
 
 namespace AppBundle\Services;
 
+use AppBundle\Entity\CultureFit;
 use Doctrine\ORM\EntityManager;
 use GuzzleHttp\Client;
 use UserBundle\Entity\User;
@@ -24,6 +25,7 @@ class Api
     const mobility = 'Mobilité Géographique';
     const wanted_job = 'Poste voulu';
     const experience = 'Expérience';
+    const exp = 'Exp';
     private $apiUrl;
     private $apiKey;
     private $client;
@@ -409,6 +411,35 @@ class Api
                     "phones" => [
                         "cell" => $user->getPhone()
                     ],
+                    "custom_fields" => $customFields
+                ]
+            ]
+        );
+        return $update;
+    }
+
+    public function updateCandiCultureFit(CultureFit $cultureFit, $idUser)
+    {
+        $fields = $this->candidateCustomFields();
+        $customFields = [];
+        $value = '';
+        foreach ($fields as $field) {
+            if ($field->name == self::exp) {
+                $value = $cultureFit->getExp();}
+//            } else if ($field->name == self::wanted_job) {
+//                $value = $user->getWantedJob();
+//            } else if ($field->name == self::experience) {
+//                $value = $user->getExperience();
+//            }
+            $customFields[] = ['id' => $field->id, 'value' => $value];
+        }
+        $update = $this->getClient()->request(
+            'PUT', 'candidates/' . $idUser, [
+                'headers' => [
+                    'Authorization' => 'Token ' . $this->getApiKey(),
+                    'content-type' => 'application/octet-stream'
+                ],
+                'json' => [
                     "custom_fields" => $customFields
                 ]
             ]
