@@ -81,7 +81,8 @@ class CultureFitController extends Controller{
 
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
-        $CFUser = $em->getRepository('AppBundle:CultureFit')->findOneByuserId($idUser);
+        $CFUsers = $em->getRepository('AppBundle:CultureFit')->findByuserId($idUser);
+        $CFUser = end($CFUsers);
 
         $userCats = $api->getSearch('candidates', $user->getEmail());
         $api->updateCandiCultureFit($CFUser,$user,$userCats->_embedded->candidates[0]->id);
