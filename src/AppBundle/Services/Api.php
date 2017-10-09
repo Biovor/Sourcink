@@ -25,7 +25,14 @@ class Api
     const mobility = 'Mobilité Géographique';
     const wanted_job = 'Poste voulu';
     const experience = 'Expérience';
-    const exp = 'Exp';
+    const remuAvt = "Rémunération & Avantages";
+    const formEvo = "Evolution professionnelle";
+    const recoMgt = "Reconnaissance & Management";
+    const exp = "Savoir-faire & Expertise";
+    const respCha = "Responsabilité & Challenge";
+    const devEga = "Impact sociétal de l'entreprise";
+    const creaInno = "Créativité & Innovation";
+    const teamAmb = "Travail en équipe & Ambiance";
     private $apiUrl;
     private $apiKey;
     private $client;
@@ -433,8 +440,23 @@ class Api
                 $value = $user->getWantedJob();
             } else if ($field->name == self::experience) {
                 $value = $user->getExperience();
+            } else if ($field->name == self::remuAvt) {
+            $value = $cultureFit->getRemuAvt();
+            } else if ($field->name == self::formEvo) {
+                $value = $cultureFit->getFormEvo();
+            } else if ($field->name == self::recoMgt) {
+                $value = $cultureFit->getRecoMgt();
             } else if ($field->name == self::exp) {
-            $value = $cultureFit->getExp();}
+                $value = $cultureFit->getExp();
+            } else if ($field->name == self::respCha) {
+                $value = $cultureFit->getRespCha();
+            } else if ($field->name == self::devEga) {
+                $value = $cultureFit->getDevEga();
+            } else if ($field->name == self::creaInno) {
+                $value = $cultureFit->getCreaInno();
+            } else if ($field->name == self::teamAmb) {
+                $value = $cultureFit->getTeamAmb();
+            }
             $customFields[] = ['id' => $field->id, 'value' => $value];
         }
 
