@@ -84,7 +84,7 @@ class CultureFitController extends Controller{
         $CFUser = $em->getRepository('AppBundle:CultureFit')->findOneByuserId($idUser);
 
         $userCats = $api->getSearch('candidates', $user->getEmail());
-        $api->updateCandiCultureFit($CFUser,$userCats->_embedded->candidates[0]->id);
+        $api->updateCandiCultureFit($CFUser,$user,$userCats->_embedded->candidates[0]->id);
 
 
         return $this->redirectToRoute('app_homepage');

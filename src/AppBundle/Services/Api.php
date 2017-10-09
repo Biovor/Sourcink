@@ -418,21 +418,26 @@ class Api
         return $update;
     }
 
-    public function updateCandiCultureFit(CultureFit $cultureFit, $idUser)
+    public function updateCandiCultureFit(CultureFit $cultureFit, User $user, $idUser)
     {
         $fields = $this->candidateCustomFields();
         $customFields = [];
         $value = '';
         foreach ($fields as $field) {
-            if ($field->name == self::exp) {
-                $value = $cultureFit->getExp();}
-//            } else if ($field->name == self::wanted_job) {
-//                $value = $user->getWantedJob();
-//            } else if ($field->name == self::experience) {
-//                $value = $user->getExperience();
-//            }
+            if ($field->name == self::mobility) {
+                $value = array();
+                foreach ($user->getMobility() as $mobility){
+                    $value[] = $mobility;
+                }
+            } else if ($field->name == self::wanted_job) {
+                $value = $user->getWantedJob();
+            } else if ($field->name == self::experience) {
+                $value = $user->getExperience();
+            } else if ($field->name == self::exp) {
+            $value = $cultureFit->getExp();}
             $customFields[] = ['id' => $field->id, 'value' => $value];
         }
+
         $update = $this->getClient()->request(
             'PUT', 'candidates/' . $idUser, [
                 'headers' => [
