@@ -457,7 +457,7 @@ class Api
             } else if ($field->name == self::teamAmb) {
                 $value = $cultureFit->getTeamAmb();
             }
-            $customFields[] = ['id' => $field->id, 'value' => $value];
+            $customFields[] = ['id' => $field->id, 'value' => round($value)];
         }
 
         $update = $this->getClient()->request(
