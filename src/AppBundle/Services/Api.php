@@ -382,11 +382,8 @@ class Api
     }
 
 
-    public function updateCandidate(User $user, $catsUser)
+    public function updateCandidate(User $user, $catsUser, $cultureFit = null)
     {
-        $em = $this->getDoctrine()->getManager();
-        $CFUsers = $em->getRepository('AppBundle:CultureFit')->findByuserId($user);
-        $cultureFit = end($CFUsers);
         $fields = $this->candidateCustomFields();
         $customFields = [];
         $value = '';
@@ -400,22 +397,25 @@ class Api
                 $value = $user->getWantedJob();
             } else if ($field->name == self::experience) {
                 $value = $user->getExperience();
-            } else if ($field->name == self::remuAvt) {
-                $value = $cultureFit->getRemuAvt();
-            } else if ($field->name == self::formEvo) {
-                $value = $cultureFit->getFormEvo();
-            } else if ($field->name == self::recoMgt) {
-                $value = $cultureFit->getRecoMgt();
-            } else if ($field->name == self::exp) {
-                $value = $cultureFit->getExp();
-            } else if ($field->name == self::respCha) {
-                $value = $cultureFit->getRespCha();
-            } else if ($field->name == self::devEga) {
-                $value = $cultureFit->getDevEga();
-            } else if ($field->name == self::creaInno) {
-                $value = $cultureFit->getCreaInno();
-            } else if ($field->name == self::teamAmb) {
-                $value = $cultureFit->getTeamAmb();
+            }
+            if ($cultureFit != null) {
+                if ($field->name == self::remuAvt) {
+                    $value = $cultureFit->getRemuAvt();
+                } else if ($field->name == self::formEvo) {
+                    $value = $cultureFit->getFormEvo();
+                } else if ($field->name == self::recoMgt) {
+                    $value = $cultureFit->getRecoMgt();
+                } else if ($field->name == self::exp) {
+                    $value = $cultureFit->getExp();
+                } else if ($field->name == self::respCha) {
+                    $value = $cultureFit->getRespCha();
+                } else if ($field->name == self::devEga) {
+                    $value = $cultureFit->getDevEga();
+                } else if ($field->name == self::creaInno) {
+                    $value = $cultureFit->getCreaInno();
+                } else if ($field->name == self::teamAmb) {
+                    $value = $cultureFit->getTeamAmb();
+                }
             }
             $customFields[] = ['id' => $field->id, 'value' => $value];
         }

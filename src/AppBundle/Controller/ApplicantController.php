@@ -72,7 +72,9 @@ class ApplicantController extends Controller
 
                 }
             } else {
-                $api->updateCandidate($this->getUser(), $catsUser->_embedded->candidates[0]);
+                $CFUsers = $em->getRepository('AppBundle:CultureFit')->findByuserId($this->getUser());
+                $cultureFit = end($CFUsers);
+                $api->updateCandidate($this->getUser(), $catsUser->_embedded->candidates[0], $cultureFit);
             }
             return $this->redirectToRoute('app_applicant');
 
