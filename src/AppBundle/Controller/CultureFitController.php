@@ -41,28 +41,28 @@ class CultureFitController extends Controller{
                     $cultF->setUserId($idUser);
                 }
                 if (isset($json->results->remuAvt)) {
-                    $cultF->setRemuAvt($json->results->remuAvt);
+                    $cultF->setRemuAvt(round($json->results->remuAvt));
                 }
                 if (isset($json->results->formEvo)) {
-                    $cultF->setFormEvo($json->results->formEvo);
+                    $cultF->setFormEvo(round($json->results->formEvo));
                 }
                 if (isset($json->results->recoMgt)) {
-                    $cultF->setRecoMgt($json->results->recoMgt);
+                    $cultF->setRecoMgt(round($json->results->recoMgt));
                 }
                 if (isset($json->results->exp)) {
-                    $cultF->setExp($json->results->exp);
+                    $cultF->setExp(round($json->results->exp));
                 }
                 if (isset($json->results->respCha)) {
-                    $cultF->setRespCha($json->results->respCha);
+                    $cultF->setRespCha(round($json->results->respCha));
                 }
                 if (isset($json->results->devEga)) {
-                    $cultF->setDevEga($json->results->devEga);
+                    $cultF->setDevEga(round($json->results->devEga));
                 }
                 if (isset($json->results->creaInno)) {
-                    $cultF->setCreaInno($json->results->creaInno);
+                    $cultF->setCreaInno(round($json->results->creaInno));
                 }
                 if (isset($json->results->teamAmb)) {
-                    $cultF->setTeamAmb($json->results->teamAmb);
+                    $cultF->setTeamAmb(round($json->results->teamAmb));
                 }
 
                 $em = $this->getDoctrine()->getManager();
