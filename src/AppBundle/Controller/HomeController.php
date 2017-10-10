@@ -72,10 +72,7 @@ class HomeController extends Controller
                 'partnerViews' =>$partnerViews,
             ]
         );
-
-
     }
-
 }
 
 

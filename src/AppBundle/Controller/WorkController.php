@@ -28,7 +28,7 @@ class WorkController extends Controller
 
         return $this->render(
             'Admin/work/index.html.twig', array(
-            'works' => $works,
+                'works' => $works,
             )
         );
     }
@@ -81,9 +81,9 @@ class WorkController extends Controller
 
         return $this->render(
             'Admin/work/edit.html.twig', array(
-            'work' => $work,
-            'form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                'work' => $work,
+                'form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
             )
         );
     }

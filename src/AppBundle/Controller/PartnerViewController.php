@@ -91,7 +91,7 @@ class PartnerViewController extends Controller
                     $largeDevices=12;
                     break;
             }
-    }
+        }
         return $this->render('Admin/partnerview/index.html.twig', array(
             'partnerViews' => $partnerViews,
             'smallDevices'=>$smallDevices,
@@ -150,5 +150,4 @@ class PartnerViewController extends Controller
             'form' => $editForm->createView(),
         ));
     }
-
 }

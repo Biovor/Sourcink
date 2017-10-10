@@ -117,6 +117,6 @@ class SliderController extends Controller
             ->setAction($this->generateUrl('slider_delete', array('id' => $slider->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 }

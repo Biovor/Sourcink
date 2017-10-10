@@ -29,7 +29,7 @@ class TeamController extends Controller
 
         return $this->render(
             'Admin/team/index.html.twig', array(
-            'teams' => $teams,
+                'teams' => $teams,
             )
         );
     }
@@ -56,8 +56,8 @@ class TeamController extends Controller
 
         return $this->render(
             'Admin/team/new.html.twig', array(
-            'team' => $team,
-            'form' => $form->createView(),
+                'team' => $team,
+                'form' => $form->createView(),
             )
         );
     }
@@ -82,9 +82,9 @@ class TeamController extends Controller
 
         return $this->render(
             'Admin/team/edit.html.twig', array(
-            'team' => $team,
-            'form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                'team' => $team,
+                'form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
             )
         );
     }

@@ -28,7 +28,7 @@ class ProductOptionController extends Controller
 
         return $this->render(
             'Admin/productoption/index.html.twig', array(
-            'productOptions' => $productOptions,
+                'productOptions' => $productOptions,
             )
         );
     }
@@ -55,8 +55,8 @@ class ProductOptionController extends Controller
 
         return $this->render(
             'Admin/productoption/new.html.twig', array(
-            'productOption' => $productOption,
-            'form' => $form->createView(),
+                'productOption' => $productOption,
+                'form' => $form->createView(),
             )
         );
     }
@@ -73,8 +73,8 @@ class ProductOptionController extends Controller
 
         return $this->render(
             'Admin/productoption/show.html.twig', array(
-            'productOption' => $productOption,
-            'delete_form' => $deleteForm->createView(),
+                'productOption' => $productOption,
+                'delete_form' => $deleteForm->createView(),
             )
         );
     }
@@ -99,9 +99,9 @@ class ProductOptionController extends Controller
 
         return $this->render(
             'Admin/productoption/edit.html.twig', array(
-            'productOption' => $productOption,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                'productOption' => $productOption,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
             )
         );
     }

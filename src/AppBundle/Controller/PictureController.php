@@ -28,7 +28,7 @@ class PictureController extends Controller
 
         return $this->render(
             'Admin/picture/index.html.twig', array(
-            'pictures' => $pictures,
+                'pictures' => $pictures,
             )
         );
     }
@@ -55,8 +55,8 @@ class PictureController extends Controller
 
         return $this->render(
             'Admin/picture/new.html.twig', array(
-            'picture' => $picture,
-            'form' => $form->createView(),
+                'picture' => $picture,
+                'form' => $form->createView(),
             )
         );
     }
@@ -73,8 +73,8 @@ class PictureController extends Controller
 
         return $this->render(
             'Admin/picture/show.html.twig', array(
-            'picture' => $picture,
-            'delete_form' => $deleteForm->createView(),
+                'picture' => $picture,
+                'delete_form' => $deleteForm->createView(),
             )
         );
     }
@@ -99,9 +99,9 @@ class PictureController extends Controller
 
         return $this->render(
             'Admin/picture/edit.html.twig', array(
-            'picture' => $picture,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                'picture' => $picture,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
             )
         );
     }

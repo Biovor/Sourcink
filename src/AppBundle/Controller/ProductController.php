@@ -29,7 +29,7 @@ class ProductController extends Controller
 
         return $this->render(
             'Admin/product/index.html.twig', array(
-            'products' => $products,
+                'products' => $products,
             )
         );
     }
@@ -56,8 +56,8 @@ class ProductController extends Controller
 
         return $this->render(
             'Admin/product/new.html.twig', array(
-            'product' => $product,
-            'form' => $form->createView(),
+                'product' => $product,
+                'form' => $form->createView(),
             )
         );
     }
@@ -83,9 +83,9 @@ class ProductController extends Controller
 
         return $this->render(
             'Admin/product/edit.html.twig', array(
-            'product' => $product,
-            'form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                'product' => $product,
+                'form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
             )
         );
     }

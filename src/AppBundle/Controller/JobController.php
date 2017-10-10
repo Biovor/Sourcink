@@ -100,8 +100,8 @@ class JobController extends Controller
             ->setMethod('POST')
             ->add(
                 'Postuler', SubmitType::class, array(
-                'label'=> "Postuler",
-                'attr'=>array ('class'=> 'waves-effect waves-light btn red'))
+                    'label'=> "Postuler",
+                    'attr'=>array ('class'=> 'waves-effect waves-light btn red'))
             )
 
             ->getForm();

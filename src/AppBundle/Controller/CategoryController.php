@@ -27,7 +27,7 @@ class CategoryController extends Controller
         $categories = $em->getRepository('AppBundle:Category')->findAll();
         return $this->render(
             'Admin/category/index.html.twig', array(
-            'categories' => $categories,
+                'categories' => $categories,
             )
         );
     }
@@ -53,8 +53,8 @@ class CategoryController extends Controller
 
         return $this->render(
             'Admin/category/new.html.twig', array(
-            'category' => $category,
-            'form' => $form->createView(),
+                'category' => $category,
+                'form' => $form->createView(),
             )
         );
     }
@@ -79,9 +79,9 @@ class CategoryController extends Controller
 
         return $this->render(
             'Admin/category/edit.html.twig', array(
-            'category' => $category,
-            'form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                'category' => $category,
+                'form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
             )
         );
     }

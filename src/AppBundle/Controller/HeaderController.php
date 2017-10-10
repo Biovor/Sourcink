@@ -29,7 +29,7 @@ class HeaderController extends Controller
 
         return $this->render(
             'Admin/header/index.html.twig', array(
-            'headers' => $headers,
+                'headers' => $headers,
             )
         );
     }
@@ -56,8 +56,8 @@ class HeaderController extends Controller
 
         return $this->render(
             'Admin/header/new.html.twig', array(
-            'header' => $header,
-            'form' => $form->createView(),
+                'header' => $header,
+                'form' => $form->createView(),
             )
         );
     }
@@ -82,9 +82,9 @@ class HeaderController extends Controller
 
         return $this->render(
             'Admin/header/edit.html.twig', array(
-            'header' => $header,
-            'form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                'header' => $header,
+                'form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
             )
         );
     }

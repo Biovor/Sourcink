@@ -31,7 +31,7 @@ class BenefitController extends Controller
         $products = $em->getRepository('AppBundle:Product')->findAll();
         return $this->render(
             'Admin/benefit/index.html.twig', array(
-            'benefits' => $benefits, 'products' => $products,
+                'benefits' => $benefits, 'products' => $products,
             )
         );
     }
@@ -62,8 +62,8 @@ class BenefitController extends Controller
         }
         return $this->render(
             'Admin/benefit/new.html.twig', array(
-            'benefit' => $benefit,
-            'form' => $form->createView(),
+                'benefit' => $benefit,
+                'form' => $form->createView(),
             )
         );
     }
@@ -100,9 +100,9 @@ class BenefitController extends Controller
         }
         return $this->render(
             'Admin/benefit/edit.html.twig', array(
-            'benefit' => $benefit,
-            'form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                'benefit' => $benefit,
+                'form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
             )
         );
     }

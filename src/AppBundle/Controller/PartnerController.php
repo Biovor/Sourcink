@@ -117,6 +117,6 @@ class PartnerController extends Controller
             ->setAction($this->generateUrl('partner_delete', array('id' => $partner->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 }

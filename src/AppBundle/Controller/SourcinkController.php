@@ -53,6 +53,4 @@ class SourcinkController extends Controller
             'edit_form' => $editForm->createView(),
         ));
     }
-
-
 }

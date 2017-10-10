@@ -19,8 +19,6 @@ class CultureFitController extends Controller{
 
         return $this->render(
             'AppBundle:MonkeyTie:cultureFit.html.twig');
-
-
     }
 
     /**
@@ -28,53 +26,57 @@ class CultureFitController extends Controller{
      */
     public function cultFRepAction(Request $request)
     {
-        if($request->getContent() != null ){
-            $json=json_decode($request->getContent());
-            $idUser = $json->userId;
-            $cultF = new cultureFit();
-            if (isset($json->userId)) {
-                $cultF->setUserId($json->userId);
-            }
-            if (isset($json->token)) {
+        if($request->getContent() != null ) {
+            $token = $this->container->getParameter('api_tie_culture_key');
+            $json = json_decode($request->getContent());
+
+
+            if (isset($json->token) AND $json->token === $token) {
+                $idUser = $json->userId;
+                $cultF = new cultureFit();
+
                 $cultF->setToken($json->token);
-            }
-            if (isset($json->results->remuAvt)) {
-                $cultF->setRemuAvt($json->results->remuAvt);
-            }
-            if (isset($json->results->formEvo)) {
-                $cultF->setFormEvo($json->results->formEvo);
-            }
-            if (isset($json->results->recoMgt)) {
-                $cultF->setRecoMgt($json->results->recoMgt);
-            }
-            if (isset($json->results->exp)) {
-                $cultF->setExp($json->results->exp);
-            }
-            if (isset($json->results->respCha)) {
-                $cultF->setRespCha($json->results->respCha);
-            }
-            if (isset($json->results->devEga)) {
-                $cultF->setDevEga($json->results->devEga);
-            }
-            if (isset($json->results->creaInno)) {
-                $cultF->setCreaInno($json->results->creaInno);
-            }
-            if (isset($json->results->teamAmb)) {
-                $cultF->setTeamAmb($json->results->teamAmb);
-            }
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($cultF);
-            $em->flush();
+                if (isset($json->userId)) {
+                    $cultF->setUserId($idUser);
+                }
+                if (isset($json->results->remuAvt)) {
+                    $cultF->setRemuAvt($json->results->remuAvt);
+                }
+                if (isset($json->results->formEvo)) {
+                    $cultF->setFormEvo($json->results->formEvo);
+                }
+                if (isset($json->results->recoMgt)) {
+                    $cultF->setRecoMgt($json->results->recoMgt);
+                }
+                if (isset($json->results->exp)) {
+                    $cultF->setExp($json->results->exp);
+                }
+                if (isset($json->results->respCha)) {
+                    $cultF->setRespCha($json->results->respCha);
+                }
+                if (isset($json->results->devEga)) {
+                    $cultF->setDevEga($json->results->devEga);
+                }
+                if (isset($json->results->creaInno)) {
+                    $cultF->setCreaInno($json->results->creaInno);
+                }
+                if (isset($json->results->teamAmb)) {
+                    $cultF->setTeamAmb($json->results->teamAmb);
+                }
 
-            $cats =$this->forward('AppBundle:CultureFit:cultureFitCats', array(
-                'idUser'=>$idUser
-            ));
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($cultF);
+                $em->flush();
 
-            return $cats;
+                $cats = $this->forward('AppBundle:CultureFit:cultureFitCats', array(
+                    'idUser' => $idUser
+                ));
+
+                return $cats;
+            }
         }
-        return $this->render(
-            'AppBundle:MonkeyTie:repCF.html.twig');
+        return $this->redirectToRoute('app_homepage');
     }
 
     public function cultureFitCatsAction(Api $api, $idUser){
@@ -91,4 +93,4 @@ class CultureFitController extends Controller{
         return $this->redirectToRoute('app_homepage');
     }
 
-    }
+}

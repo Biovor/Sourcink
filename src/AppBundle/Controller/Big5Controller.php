@@ -29,7 +29,6 @@ class Big5Controller extends Controller
 
         return $this->render(
             'AppBundle:MonkeyTie:big5.html.twig');
-
     }
 
     /**
