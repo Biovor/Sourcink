@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html class="Iframe">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Sourcink{% endblock %}</title>
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/base.css') }}"  media="screen,projection"/>
+    <link rel="icon" type="image/x-icon" href="{{ asset('media/favicon.ico') }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    {% block meta %}
+    {% endblock %}
+</head>
+<body class="Iframe">
+{% block header %}
+{% endblock %}
+{% block content %}
+{% endblock %}
+{% block javascripts %}
+    <script type="text/javascript" id="cookiebanner"
+            src="{{ asset('js/cookiebanner.min.js') }}" data-message=" Nous utilisons des cookies pour vous garantir
+            la meilleure expérience sur notre site. Si vous continuez à utiliser ce dernier, nous considérerons que
+            vous acceptez l'utilisation des cookies." data-linkmsg="En savoir plus"></script>
+{% endblock %}
+</body>
+</html>

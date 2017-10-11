@@ -1,3 +1,8 @@
+.Iframe{
+    height: 100%;
+    width: 100%;
+}
+
 .red {
     background-color: #EF2844!important;
 }
