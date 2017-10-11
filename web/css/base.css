@@ -534,7 +534,8 @@ footer {
 }
 
 .work-name {
-    font-size: 24px;
+    font-size: 20px;
+    margin-bottom: -15px;
 }
 
 .category-title {
@@ -684,4 +685,12 @@ footer {
 .mlMonkeyTie{
     font-size: 0.9em;
     color: #ff9800;
+}
+
+.expertise-title-pc {
+    margin-top: -130px;
+}
+
+.compare-title {
+    margin: 70px;
 }

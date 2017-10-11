@@ -1,5 +1,5 @@
 <div class="hide-on-med-and-down">
-    <div class="container">
+    <div class="container expertise-title-pc">
         <h2 class="center" id="expertise">{{ sourcink.title | raw  }}</h2>
         <div class="row center">
             <div class="col s12">
@@ -24,7 +24,6 @@
             </div>
             <div class="col s6 center">
                 {% if category.isPremium == true %}
-
                     {% for work in category.works %}
                         <p class="center work-name">{{ work.name }}</p>
                     {% endfor %}
