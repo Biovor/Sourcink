@@ -16,8 +16,8 @@
         {% if status == true %}
             {% if hasResume == false %}
                 <div class="card-panel">
-                    <p>Merci d'avoir complété votre profil. Dernière étape : nous envoyer votre CV en format .PDF ou
-                        .DOC</p>
+                    <p>Merci d'avoir complété votre profil. Dernière étape pour accéder aux tests de personnalité et à
+                        nos offres d'emploi : nous envoyer votre CV en format .PDF ou .DOC </p>
                     <div class="center">
                         <a class="btn blue btnApp" href="#modalcv">Envoyer mon CV</a>
                     </div>
@@ -28,9 +28,10 @@
                     <h1> {{ app.user.firstname }} {{ app.user.lastname }} </h1>
                     {% if hasResume == true %}
                         <div class="row">
+                            <p> Les tests de personnalité et nos offres d'emploi :</p>
                             <a class="btn blue btnApp right" href="{{ path('job_list') }}">Voir nos offres d'emploi</a>
-                            <a class="btn orange btnApp right" href="{{ path('cult_F') }}">Le Culture Fit *</a>
-                            <a class="btn orange btnApp right" href="{{ path('big5') }}">Le Big5 *</a><br/><br/>
+                            <a class="btn orange btnApp left" href="{{ path('cult_F') }}">Le Culture Fit *</a>
+                            <a class="btn orange btnApp left" href="{{ path('big5') }}">Le Big5 *</a><br/><br/>
                         </div>
                     {% endif %}
                     <div class="row">
@@ -50,6 +51,10 @@
                         <p><i class="fa fa-book fa-2x"></i> Expérience : {{ app.user.experience }} année(s)</p><br/>
                         <p><i class="fa fa-money fa-2x"></i> Salaire Actuel : {{ app.user.salary }}€</p><br/>
                         <p><i class="fa fa-search fa-2x"></i> Salaire Souhaité : {{ app.user.wantedSalary }}€</p><br/>
+                        {% if pdf == 1 %}
+                        <p><i class="fa fa-file-pdf-o fa-2x"></i><a class="text-color-orange" target="_blank" href=
+                            "{{ path ('big5pdf') }}"> Voir ou télécharger mon Big 5 personnels</a></p><br/>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="card-action">
@@ -74,9 +79,7 @@
         {% if status == true %}
         {% if hasResume == true %}
             <p class="mlMonkeyTie">* Les données personnelles résultant de ces tests seront utilisées dans un cadre
-                strictement
-                privé par
-                Sourcink. Monkey tie conservera les données de façon anonyme.</p>
+                strictement privé par Sourcink. Monkey tie conservera les données de façon anonyme.</p>
         {% endif %}
         {% endif %}
 

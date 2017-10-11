@@ -20,8 +20,15 @@ class ApplicantController extends Controller
      */
     public function homeAction(Api $api)
     {
+        $em = $this->getDoctrine()->getManager();
         $catsUser = $api->getSearch('candidates', $this->getUser()->getEmail());
         $hasResume = false;
+        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($this->getUser());
+        $pdf = 0;
+
+        if ($big5User != null){
+            $pdf = 1;
+        }
         if ($catsUser->count > 0) {
             $api->updateCandidateFromCats($this->getUser(), $catsUser->_embedded->candidates[0]);
             $hasResume = $api->hasResume($catsUser->_embedded->candidates[0]->id);
@@ -35,7 +42,12 @@ class ApplicantController extends Controller
             }
         }
 
-        return $this->render('AppBundle:Applicant:home.html.twig', ['status' => $catsUser->count, 'hasResume' => $hasResume, 'mobilities' => $mobilities]);
+        return $this->render('AppBundle:Applicant:home.html.twig', [
+            'status' => $catsUser->count,
+            'hasResume' => $hasResume,
+            'mobilities' => $mobilities,
+            'pdf' => $pdf
+        ]);
     }
 
     /**
@@ -46,6 +58,7 @@ class ApplicantController extends Controller
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(ProfileType::class, $this->getUser(), array('regions' => $api->getRegions()));
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $em->persist($data);

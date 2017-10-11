@@ -97,8 +97,8 @@ class Big5Controller extends Controller
         return $this->redirectToRoute('app_homepage');
     }
 
-    public function big5PDFAction(Api $api, $idUser){
-
+    public function big5PDFAction(Api $api, $idUser)
+    {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
         $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($idUser);
@@ -117,6 +117,18 @@ class Big5Controller extends Controller
         unlink($directory . $user->getResumeName());
 
         return $this->redirectToRoute('app_homepage');
+    }
+
+    /**
+     * @Route("candidat/big5/pdf", name="big5pdf")
+     */
+    public function pdfReadAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($this->getUser());
+        $pdf = base64_decode($big5User->getPdfReport());
+        header('Content-Type: application/pdf');
+        print_r($pdf);
     }
 
 }

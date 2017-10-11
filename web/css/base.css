@@ -678,13 +678,17 @@ footer {
     margin: 7px;
 }
 
-.imgSolutionHomme{
+.imgSolutionHomme {
     margin-right: -50px;
 }
 
-.mlMonkeyTie{
+.mlMonkeyTie {
     font-size: 0.9em;
     color: #ff9800;
+}
+
+.card .card-content .text-color-orange {
+   color: #ff9800;
 }
 
 .expertise-title-pc {
