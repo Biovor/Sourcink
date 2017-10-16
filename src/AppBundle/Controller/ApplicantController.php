@@ -109,6 +109,8 @@ class ApplicantController extends Controller
         $em->flush();
         return $this->redirectToRoute('app_homepage');
     }
+
+
 }
 
 

@@ -73,6 +73,18 @@ class HomeController extends Controller
             ]
         );
     }
+
+    /**
+     * @Route("/lesTests", name="les_tests")
+     */
+    public function testAction()
+    {
+        if($this->isGranted('ROLE_USER')){
+            return $this->redirectToRoute('app_applicant');
+        } else {
+            return $this->render('AppBundle:Home:home-tests.html.twig');
+        }
+    }
 }
 
 

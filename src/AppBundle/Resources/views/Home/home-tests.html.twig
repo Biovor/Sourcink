@@ -1,0 +1,52 @@
+{% extends "::layout.html.twig" %}
+{% block header %}
+    {% include('AppBundle:Base:header.html.twig') %}
+{% endblock %}
+{% block content %}
+    <h2>Votre test de personalité personalisé </h2>
+    <p>Il faut être inscrit et connecter pour accéder aux tests de personnalité:</p>
+
+    <div id="contFlex">
+        <div class="ecran hide-on-med-and-down">
+            <div class="contentEcran">
+                <iframe title="login" src="http://37.187.181.30/login" frameborder="0" height="100%" width="100%"
+                        scrolling="auto">
+                    <p>Votre navigateur ne supporte pas les iframes. Les tests de personnalité sont donc inaccessibles, veuillez
+                        mètre à jour votre navigateur ou utilisé un autre navigateur Merci de votre compréhension.</p>
+                </iframe>
+            </div>
+        </div>
+        <div class="ecran hide-on-med-and-down">
+            <div class="contentEcran">
+                <iframe title="register" src="http://37.187.181.30/register" frameborder="0" height="100%" width="100%"
+                        scrolling="auto">
+                    <p>Votre navigateur ne supporte pas les iframes. Les tests de personnalité sont donc inaccessibles, veuillez
+                        mètre à jour votre navigateur ou utilisé un autre navigateur Merci de votre compréhension.</p>
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <div id="contFlex">
+        <div class="telephone hide-on-large-only">
+            <div class="contentTel">
+                <iframe title="login" src="http://37.187.181.30/login" frameborder="0" height="100%" width="100%"
+                        scrolling="auto">
+                    <p>Votre navigateur ne supporte pas les iframes. Les tests de personnalité sont donc inaccessibles, veuillez
+                        mètre à jour votre navigateur ou utilisé un autre navigateur Merci de votre compréhension.</p>
+                </iframe>
+            </div>
+        </div>
+        <div class="telephone hide-on-large-only">
+            <div class="contentTel">
+                <iframe title="register" src="http://37.187.181.30/register" frameborder="0" height="100%" width="100%"
+                        scrolling="auto">
+                    <p>Votre navigateur ne supporte pas les iframes. Les tests de personnalité sont donc inaccessibles, veuillez
+                        mètre à jour votre navigateur ou utilisé un autre navigateur Merci de votre compréhension.</p>
+                </iframe>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include('AppBundle:Base:footer.html.twig') %}
+{% endblock %}

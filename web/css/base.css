@@ -698,3 +698,41 @@ footer {
 .compare-title {
     margin: 70px;
 }
+
+#contFlex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.contentEcran {
+    height:398px;
+    width: 715px;
+    overflow: hidden;
+    margin-left: 48px;
+    margin-top: 40px;
+}
+
+.ecran {
+    height:650px;
+    width: 808px;
+    background-image: url('../media/OS971A0.jpg');
+    background-size: cover;
+    margin-bottom: 50px;
+}
+
+.telephone{
+    height:550px;
+    width: 280px;
+    background-image: url('../media/00569FMJK4.jpg');
+    background-size: cover;
+    margin-bottom: 50px;
+}
+
+.contentTel {
+    height:330px;
+    width: 215px;
+    overflow: hidden;
+    margin-left: 44px;
+    margin-top: 120px;
+}
