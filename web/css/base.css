@@ -706,16 +706,16 @@ footer {
 }
 
 .contentEcran {
-    height:398px;
-    width: 715px;
+    height:280px;
+    width: 535px;
     overflow: hidden;
-    margin-left: 48px;
-    margin-top: 40px;
+    margin-left: 38px;
+    margin-top: 30px;
 }
 
 .ecran {
-    height:650px;
-    width: 808px;
+    height:500px;
+    width: 608px;
     background-image: url('../media/OS971A0.jpg');
     background-size: cover;
     margin-bottom: 50px;
@@ -736,3 +736,17 @@ footer {
     margin-left: 26px;
     margin-top: 88px;
 }
+
+.input-field label {
+    color: black;
+
+}
+
+.input-field label.active:not(.label-icon){
+    font-size: 15px;
+}
+
+:-moz-placeholder { color: rgb(112,128,144);} /* Firefox <= 18 */
+::-moz-placeholder { color: rgb(112,128,144); } /* Firefox >= 19 */
+::-webkit-input-placeholder { color: rgb(112,128,144); }
+:-ms-input-placeholder{ color: rgb(112,128,144); } /* IE */
