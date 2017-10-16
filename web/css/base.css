@@ -722,17 +722,17 @@ footer {
 }
 
 .telephone{
-    height:550px;
-    width: 280px;
+    height:610px;
+    width: 290px;
     background-image: url('../media/00569FMJK4.jpg');
     background-size: cover;
     margin-bottom: 50px;
 }
 
 .contentTel {
-    height:330px;
-    width: 215px;
+    height:435px;
+    width: 242px;
     overflow: hidden;
-    margin-left: 44px;
-    margin-top: 120px;
+    margin-left: 26px;
+    margin-top: 88px;
 }
