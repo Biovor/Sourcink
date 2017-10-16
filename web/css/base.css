@@ -737,12 +737,12 @@ footer {
     margin-top: 88px;
 }
 
-.input-field label {
+.input-field label, label {
     color: black;
 
 }
 
-.input-field label.active:not(.label-icon){
+.input-field label.active:not(.label-icon), label {
     font-size: 15px;
 }
 
