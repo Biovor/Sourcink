@@ -400,21 +400,21 @@ class Api
             }
             if ($cultureFit != null) {
                 if ($field->name == self::remuAvt) {
-                    $value = $cultureFit->getRemuAvt();
+                    $value = $cultureFit->getRemuAvt().'/10';
                 } else if ($field->name == self::formEvo) {
-                    $value = $cultureFit->getFormEvo();
+                    $value = $cultureFit->getFormEvo().'/10';
                 } else if ($field->name == self::recoMgt) {
-                    $value = $cultureFit->getRecoMgt();
+                    $value = $cultureFit->getRecoMgt().'/10';
                 } else if ($field->name == self::exp) {
-                    $value = $cultureFit->getExp();
+                    $value = $cultureFit->getExp().'/10';
                 } else if ($field->name == self::respCha) {
-                    $value = $cultureFit->getRespCha();
+                    $value = $cultureFit->getRespCha().'/10';
                 } else if ($field->name == self::devEga) {
-                    $value = $cultureFit->getDevEga();
+                    $value = $cultureFit->getDevEga().'/10';
                 } else if ($field->name == self::creaInno) {
-                    $value = $cultureFit->getCreaInno();
+                    $value = $cultureFit->getCreaInno().'/10';
                 } else if ($field->name == self::teamAmb) {
-                    $value = $cultureFit->getTeamAmb();
+                    $value = $cultureFit->getTeamAmb().'/10';
                 }
             }
             $customFields[] = ['id' => $field->id, 'value' => $value];
@@ -460,21 +460,21 @@ class Api
             } else if ($field->name == self::experience) {
                 $value = $user->getExperience();
             } else if ($field->name == self::remuAvt) {
-            $value = $cultureFit->getRemuAvt();
+            $value = $cultureFit->getRemuAvt().'/10';
             } else if ($field->name == self::formEvo) {
-                $value = $cultureFit->getFormEvo();
+                $value = $cultureFit->getFormEvo().'/10';
             } else if ($field->name == self::recoMgt) {
-                $value = $cultureFit->getRecoMgt();
+                $value = $cultureFit->getRecoMgt().'/10';
             } else if ($field->name == self::exp) {
-                $value = $cultureFit->getExp();
+                $value = $cultureFit->getExp().'/10';
             } else if ($field->name == self::respCha) {
-                $value = $cultureFit->getRespCha();
+                $value = $cultureFit->getRespCha().'/10';
             } else if ($field->name == self::devEga) {
-                $value = $cultureFit->getDevEga();
+                $value = $cultureFit->getDevEga().'/10';
             } else if ($field->name == self::creaInno) {
-                $value = $cultureFit->getCreaInno();
+                $value = $cultureFit->getCreaInno().'/10';
             } else if ($field->name == self::teamAmb) {
-                $value = $cultureFit->getTeamAmb();
+                $value = $cultureFit->getTeamAmb().'/10';
             }
             $customFields[] = ['id' => $field->id, 'value' => $value];
         }
