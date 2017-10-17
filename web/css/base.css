@@ -504,7 +504,7 @@ span {
 .form-title {
     font-size: 42px;
     color: slategrey;
-    margin: 0px -20px 0px -20px;
+    margin: 0px -20px 0px -10px;
 }
 
 .navbar-fixed {
@@ -707,7 +707,7 @@ footer {
 }
 
 .contentEcran {
-    height:280px;
+    height:305px;
     width: 535px;
     overflow: hidden;
     margin-left: 38px;
