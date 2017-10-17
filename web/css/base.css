@@ -504,7 +504,7 @@ span {
 .form-title {
     font-size: 42px;
     color: slategrey;
-    margin: 0px -20px 0px -10px;
+    margin: 0px 0px 15px 0px;
 }
 
 .navbar-fixed {
