@@ -707,7 +707,7 @@ footer {
 }
 
 .contentEcran {
-    height:305px;
+    height:302px;
     width: 535px;
     overflow: hidden;
     margin-left: 38px;
@@ -723,7 +723,7 @@ footer {
 }
 
 .telephone{
-    height:610px;
+    height:609px;
     width: 290px;
     background-image: url('../media/00569FMJK4.jpg');
     background-size: cover;
