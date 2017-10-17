@@ -5,7 +5,7 @@
 </div>
 <div class="divider"></div>
 <h1 class="form-title center">Inscription classique</h1>
-<div class="form-group" id="fos_user_registration_form">
+<div class="col s12" id="fos_user_registration_form">
     <div class="row">
         {% if form.firstname is defined %}
             <label for="firstname" class="active">{{ 'security.register.firstname'|trans }}</label>
@@ -35,7 +35,7 @@
         {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control input-group', 'placeholder': 'security.register.passwordConfirmPlaceholder'|trans } }) }}
         {{ form_errors(form.plainPassword.second) }}
     </div>
-    </div>
+
     <div class="center">
         <input type="submit" value="{{ 'security.register.submit'|trans }}" class="btn blue">
     </div>
