@@ -707,8 +707,8 @@ footer {
 }
 
 .contentEcran {
-    height:302px;
-    width: 535px;
+    height:303px;
+    width: 537px;
     overflow: hidden;
     margin-left: 38px;
     margin-top: 30px;
@@ -717,10 +717,11 @@ footer {
 .ecran {
     height:500px;
     width: 608px;
-    background-image: url('../media/OS971A0.jpg');
+    background-image: url('../media/OS971A0-Rouge.jpg');
     background-size: cover;
     margin-bottom: 50px;
 }
+
 
 .telephone{
     height:610px;
