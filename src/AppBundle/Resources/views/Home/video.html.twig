@@ -26,6 +26,7 @@
                         <video autoplay muted loop>
                             <source src="{{ asset('img/'~video.picture.pictureName) }}" type="video/mp4">
                         </video>
+
                         <div class="caption center-align">
 
                             <h2><a href="{{ video.url }}">{{ video.title |raw }}</a></h2>
@@ -33,6 +34,7 @@
 
                             <a href="{{ video.url }}" class="btn blue">{{ video.nameUrl }}</a>
                         </div>
+
                     </li>
                 {% endfor %}
             </ul>

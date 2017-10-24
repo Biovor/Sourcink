@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    $('.slider').slider({transition:300, interval:9300});
+    $('.slider').slider({indicators:false, transition:650, interval:9300});
+    $('.slider').slider('next');
 });
 $(document).ready(function () {
 
