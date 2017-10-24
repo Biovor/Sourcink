@@ -732,11 +732,11 @@ footer {
 }
 
 .contentTel {
-    height:430px;
-    width: 245px;
+    height:420px;
+    width: 236px;
     overflow: hidden;
-    margin-left: 25px;
-    margin-top: 88px;
+    margin-left: 34px;
+    margin-top: 92.5px;
 }
 
 .input-field label, label {
