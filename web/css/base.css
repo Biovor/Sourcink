@@ -707,9 +707,9 @@ footer {
 }
 
 .contentEcran {
-    height:303px;
+    height:305px;
     width: 539px;
-    overflow: hidden;
+    overflow: scroll;
     margin-left: 35px;
     margin-top: 30px;
 }
@@ -717,7 +717,7 @@ footer {
 .ecran {
     height:500px;
     width: 608px;
-    background-image: url('../media/OS971A0-Rouge.jpg');
+    background-image: url('../media/OS971A0-Gris.jpg');
     background-size: cover;
     margin-bottom: 50px;
 }
@@ -726,7 +726,7 @@ footer {
 .telephone{
     height:610px;
     width: 290px;
-    background-image: url('../media/00569FMJK4-Rouge.jpg');
+    background-image: url('../media/00569FMJK4-Gris.jpg');
     background-size: cover;
     margin-bottom: 50px;
 }
@@ -734,7 +734,7 @@ footer {
 .contentTel {
     height:420px;
     width: 236px;
-    overflow: hidden;
+    overflow: scroll;
     margin-left: 34px;
     margin-top: 92.5px;
 }

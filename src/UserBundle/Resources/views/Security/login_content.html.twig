@@ -1,9 +1,9 @@
 {% trans_default_domain 'FOSUserBundle' %}
 <div class="center">
-    <a href="connect/linkedin" target="_blank" class="btn btn-large blue">Me connecter via Linkedin</a>
+    <a href="connect/linkedin" target="_blank" class="btn btn-large blue">Connexion via Linkedin</a>
 </div>
 <div class="divider"></div>
-<h1 class="form-title center">Connexion classique</h1>
+<h1 class="form-title center">Connexion</h1>
 <form action="{{ path('fos_user_security_check') }}" method="post" class="col s12">
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -21,7 +21,8 @@
         </div>
     </div>
     <div class="center">
-        <input type="submit" value="{{ 'security.login.submit'|trans }}" class="btn blue">
+        <input type="submit" value="{{ 'security.login.submit'|trans }}" id="btnconnex"
+               class="btn blue">
     </div>
     <p class="center">
         <a href="{{ path('fos_user_registration_register') }}" class="btn btn-flat orange-text">{{ 'security.login.register'|trans }}</a>

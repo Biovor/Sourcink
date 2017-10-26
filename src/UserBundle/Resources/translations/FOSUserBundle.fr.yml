@@ -7,7 +7,7 @@ security:
         emailPlaceholder: 'Entrez votre adresse e-mail'
         remember_me: 'Se souvenir de moi'
         submit: 'Connexion'
-        register: 'Pas encore inscrit ? Inscrivez-vous'
+        register: 'Pas encore inscrit ?'
     register:
         username: "Nom d'utilisateur"
         password: 'Mot de passe'

@@ -3,46 +3,51 @@
     {% include('AppBundle:Base:header.html.twig') %}
 {% endblock %}
 {% block content %}
-    <h2>Votre test de personnalité personnalisé </h2>
-    <p>Il faut être inscrit et connecter pour accéder aux tests de personnalité:</p>
+    <div class="container">
+    <h2 class="center">Vos tests de personnalité :</h2>
+        <div class="row center">
+            <div class="col s12">
+                <p>Connectez-vous ou inscrivez-vous à votre espace candidat pour passer le test Big5 et le test
+                    Culture Fit de Monkey Tie !</p>
 
+                <p>Avec le Big5, découvrez vos 5 traits de personnalité qui sont les plus développées parmi
+                    l’extraversion, l’ouverture d’esprit, la stabilité émotionnelle, la conscience professionnelle et
+                    la convivialité.</p>
+
+                <p>Grâce au Culture Fit, faites le point en quelques instants sur vos 8 moteurs de motivation et vos
+                    3 valeurs pour mieux cibler les entreprises qui vous correspondent.</p>
+            </div>
+        </div>
+    </div>
     <div id="contFlex">
         <div class="ecran hide-on-med-and-down">
             <div class="contentEcran">
-                <iframe title="login" src="http://37.187.181.30/login" frameborder="0" height="100%" width="100%"
-                        scrolling="auto">
-                    <p>Votre navigateur ne supporte pas les iframes. Les tests de personnalité sont donc inaccessibles, veuillez
-                        mètre à jour votre navigateur ou utilisé un autre navigateur Merci de votre compréhension.</p>
-                </iframe>
+                    {{ render (controller(
+                    'FOSUserBundle:Security:login'
+                    )) }}
             </div>
         </div>
         <div class="ecran hide-on-med-and-down">
             <div class="contentEcran">
-                <iframe title="register" src="http://37.187.181.30/register" frameborder="0" height="100%" width="100%"
-                        scrolling="auto">
-                    <p>Votre navigateur ne supporte pas les iframes. Les tests de personnalité sont donc inaccessibles, veuillez
-                        mètre à jour votre navigateur ou utilisé un autre navigateur Merci de votre compréhension.</p>
-                </iframe>
+                    {{ render (controller(
+                    'FOSUserBundle:Registration:register'
+                    )) }}
             </div>
         </div>
     </div>
     <div id="contFlex">
         <div class="telephone hide-on-large-only">
             <div class="contentTel">
-                <iframe title="login" src="http://37.187.181.30/login" frameborder="0" height="100%" width="100%"
-                        scrolling="auto">
-                    <p>Votre navigateur ne supporte pas les iframes. Les tests de personnalité sont donc inaccessibles, veuillez
-                        mètre à jour votre navigateur ou utilisé un autre navigateur Merci de votre compréhension.</p>
-                </iframe>
+                {{ render (controller(
+                'FOSUserBundle:Security:login'
+                )) }}
             </div>
         </div>
         <div class="telephone hide-on-large-only">
             <div class="contentTel">
-                <iframe title="register" src="http://37.187.181.30/register" frameborder="0" height="100%" width="100%"
-                        scrolling="auto">
-                    <p>Votre navigateur ne supporte pas les iframes. Les tests de personnalité sont donc inaccessibles, veuillez
-                        mètre à jour votre navigateur ou utilisé un autre navigateur Merci de votre compréhension.</p>
-                </iframe>
+                {{ render (controller(
+                'FOSUserBundle:Registration:register'
+                )) }}
             </div>
         </div>
     </div>
