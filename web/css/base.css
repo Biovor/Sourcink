@@ -613,6 +613,11 @@ footer {
         margin-top : 30px;
     }
 }
+
+#expertise {
+    margin-top : 30px;
+}
+
 .slideHomeDiv{
     height: 900px!important;
 }
@@ -752,3 +757,7 @@ footer {
 ::-moz-placeholder { color: rgb(112,128,144); } /* Firefox >= 19 */
 ::-webkit-input-placeholder { color: rgb(112,128,144); }
 :-ms-input-placeholder{ color: rgb(112,128,144); } /* IE */
+
+.margeMin {
+    margin-top: -60px;
+}
