@@ -19,13 +19,13 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="infos-offre" href="#linkded">
-                    <div class="slider">
-                        <ul class="slides">
+                    <div class="slider heightimp">
+                        <ul class="slides heightimp">
                             <li id="slideJob">
                                 {% if offer.attachment_id is not empty %}
                                     <img src="../img/jobPicture/{{ offer.image|default('default.png') }}" class="responsive-img">
                                 {% else %}
-                                    <img src="../media/Avocat2.jpg" class="responsive-img">
+                                    <img src="../media/Avocat2.jpg" class="responsive-img imageJob">
                                 {% endif %}
                             </li>
                         </ul>

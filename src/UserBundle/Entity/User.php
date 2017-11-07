@@ -381,4 +381,22 @@ class User extends BaseUser
     {
         return $this->mobility;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getBig5()
+    {
+        return $this->big5;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCultureF()
+    {
+        return $this->cultureF;
+    }
+
 }

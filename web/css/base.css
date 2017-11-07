@@ -758,6 +758,6 @@ footer {
 ::-webkit-input-placeholder { color: rgb(112,128,144); }
 :-ms-input-placeholder{ color: rgb(112,128,144); } /* IE */
 
-.margeMin {
-    margin-top: -60px;
+.heightimp {
+    height: 600px !important;
 }
