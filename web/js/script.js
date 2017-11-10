@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('.slider').slider({indicators:false, transition:250, interval:8716});
+    $('.slider').slider({transition:250, interval:8716});
     $('.slider').slider('next');
 });
 $(document).ready(function () {
