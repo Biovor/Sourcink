@@ -23,7 +23,6 @@ class JobController extends Controller
     /**
      * @Route("/", name="job_list")
      */
-
     public function jobAction(Api $api, Request $request)
     {
 
