@@ -19,8 +19,8 @@ DirectoryIndex app.php
 
 <IfModule mod_rewrite.c>
     RewriteEngine on
-    RewriteCond %{SERVER_PORT} 80
-    RewriteRule ^(.*)$ https://sourcink.com/$1 [R,L]
+    RewriteCond %{HTTPS} off
+    RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
 
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
