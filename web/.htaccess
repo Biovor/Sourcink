@@ -19,7 +19,6 @@ DirectoryIndex app.php
 
 <IfModule mod_rewrite.c>
     RewriteEngine on
-
     RewriteCond %{SERVER_PORT} 80
     RewriteRule ^(.*)$ https://www.votredomaine.com/$1 [R,L]
 
@@ -69,3 +68,7 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+RewriteEngine on
+RewriteCond %{SERVER_PORT} 80
+RewriteRule ^(.*)$ https://www.votredomaine.com/$1 [R,L]
