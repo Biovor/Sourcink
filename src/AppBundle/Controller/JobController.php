@@ -18,7 +18,7 @@ class JobController extends Controller
 {
 
     const FILTER_JOBS = 'Site Web';
-    const HOMESITE_JOBS = 'HomeSite';
+    const HOMESITE_JOBS = 'Homesite';
 
     /**
      * @Route("/", name="job_list")
