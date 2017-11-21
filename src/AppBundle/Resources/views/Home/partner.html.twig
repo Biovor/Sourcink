@@ -1,12 +1,13 @@
 <div class="partners" id="partenaires" >
-    <h2 class="center" id="job">Nos Partenaires</h2>
+    <h2 class="center">Nos Partenaires</h2>
     <div class="row">
         <div class="center center-block partner-row">
         {% for partner in partners %}
             {% for partnerView in partnerViews %}
             <div class="col s{{ partnerView.s }} m{{ partnerView.m }} l{{ partnerView.l }}">
                 <a href="{{ partner.path }}" target='_blank'>
-                    <img src="{{ asset('img/'~partner.picture.pictureName) }}" class="responsive-img" >
+                    <img src="{{ asset('img/'~partner.picture.pictureName) }}" class="responsive-img" alt="{{
+                    partner.picture.alt }}" >
                 </a>
             </div>
         {% endfor %}

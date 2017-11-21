@@ -282,9 +282,9 @@ nav p {
 }
 
 
-#expertise, #category, #team {
+#expertise, #Notre-expertise, #category, #team {
     padding-top: 100px;
-    margin-top: -90px;
+    margin-top: -80px;
 }
 
 /* slider videos */
@@ -614,7 +614,7 @@ footer {
     }
 }
 
-#expertise {
+#expertise, #Notre-expertise {
     margin-top : 30px;
 }
 

@@ -4,7 +4,8 @@
         {% for category in categories %}
             <div class="col s12 m6 center">
                 <a href="{{ path('category_page_view', {'id':category.id}) }}">
-                    <img class="circle responsive-img img imgSolutionHomme " src="{{ asset('img/'~category.picture.pictureName) }}">
+                    <img class="circle responsive-img img imgSolutionHomme " src="{{ asset('img/'~category.picture
+                    .pictureName) }}" alt="{{ category.picture.alt }}">
                 </a>
                 <a href="{{ path('category_page_view', {'id':category.id}) }}" class="btn-floating btn lighten-1 {%
                 if loop.index == 1 %} blue {%

@@ -4,7 +4,7 @@
         <ul class="slides slideHomeImg">
             {% for photo in photos %}
                 <li>
-                    <img src="{{ asset('img/'~photo.picture.pictureName) }}">
+                    <img src="{{ asset('img/'~photo.picture.pictureName) }}" alt="{{ photo.picture.alt }}">
                     <div class="caption center-align">
 
                         <h2><a href="{{ photo.url }}">{{ photo.title |raw }}</a></h2>
@@ -47,7 +47,7 @@
     <ul class="slides slideTablImg">
         {% for photo in photos %}
             <li>
-                <img src="{{ asset('img/'~photo.picture.pictureName) }}">
+                <img src="{{ asset('img/'~photo.picture.pictureName) }}" alt="{{ photo.picture.alt }}">
                 <div class="caption center-align">
 
                     <h2><a href="{{ photo.url }}">{{ photo.title |raw }}</a></h2>
@@ -64,7 +64,7 @@
     <ul class="slides slideTelImg">
         {% for photo in photos %}
             <li>
-                <img src="{{ asset('img/'~photo.picture.pictureName) }}">
+                <img src="{{ asset('img/'~photo.picture.pictureName) }}" alt="{{ photo.picture.alt }}">
             </li>
         {% endfor %}
     </ul>

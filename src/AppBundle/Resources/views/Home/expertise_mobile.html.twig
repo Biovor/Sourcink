@@ -1,6 +1,6 @@
 <div class="hide-on-large-only">
     <div class="container">
-            <h2 class="center" id="expertise">{{ sourcink.title | raw  }}</h2>
+            <h2 class="center" id="Notre-expertise">{{ sourcink.title | raw  }}</h2>
             <div class="row">
                 <p class="center">
                     {{ sourcink.text1 | raw  }}
@@ -11,7 +11,7 @@
                         <a href="{{ path('category_page_view', {'id':category.id}) }}">
                             <h3 class="black-text"><span class="black-text">{{ category.title | raw }}</span></h3>
                             <img class="circle responsive-img img imgSolutionHomme" src="{{ asset('img/'~category.picture
-                            .pictureName) }}">
+                            .pictureName) }}" alt="{{ category.picture.alt }}">
                         </a>
                         <a href="{{ path('category_page_view', {'id':category.id}) }}" class="btn-floating btn lighten-1 {%
                         if loop.index == 1 %} blue {%
