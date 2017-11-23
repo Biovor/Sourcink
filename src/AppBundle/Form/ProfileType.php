@@ -34,7 +34,7 @@ class ProfileType extends AbstractType
                 )
             )
             ->add(
-                'title', TextType::class,
+                'wantedJob', TextType::class,
                 array(
                     'label' => 'Poste actuel',
                     'attr' => array(
@@ -43,7 +43,7 @@ class ProfileType extends AbstractType
                 )
             )
             ->add(
-                'wantedJob', TextType::class,
+                'title', TextType::class,
                 array(
                     'label' => 'Poste désiré',
                     'attr' => array(
