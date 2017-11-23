@@ -73,7 +73,7 @@ class TextController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_text_index', array('id' => $text->getId()));
+            return $this->redirectToRoute('admin_text_index');
         }
 
         return $this->render('Admin/text/edit.html.twig', array(
