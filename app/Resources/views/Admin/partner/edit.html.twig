@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Modifier un partenaire</h1>
-
+    <a href="{{ path('partner_index') }}" class="btn btn-flat orange-text right">Revenir à la liste</a>
     {{ form_start(form) }}
     {{ form_label(form.partnerName) }}
     {{ form_widget(form.partnerName) }}

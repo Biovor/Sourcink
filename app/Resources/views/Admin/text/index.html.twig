@@ -8,7 +8,6 @@
             <tr>
                 <th>Location</th>
                 <th>Title</th>
-                <th>Contents</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -17,14 +16,10 @@
             <tr>
                 <td>{{ text.location }}</td>
                 <td>{{ text.title }}</td>
-                <td>{{ text.contents }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('admin_text_show', { 'id': text.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_text_edit', { 'id': text.id }) }}">edit</a>
+                            <a href="{{ path('admin_text_edit', { 'id': text.id }) }}" class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons">mode_edit</i></a>
                         </li>
                     </ul>
                 </td>
@@ -32,10 +27,9 @@
         {% endfor %}
         </tbody>
     </table>
-
     <ul>
         <li>
-            <a href="{{ path('admin_text_new') }}">Create a new text</a>
+            <a href="{{ path('admin_text_new') }}" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
         </li>
     </ul>
 {% endblock %}

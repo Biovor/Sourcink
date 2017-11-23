@@ -22,6 +22,7 @@ class HomeController extends Controller
         $photos = $em->getRepository('AppBundle:Slider')->findAll();
         $sourcink = $em->getRepository('AppBundle:Sourcink')->find(1);
         $partnerViews = $em->getRepository('AppBundle:PartnerView')->findAll();
+        $textsFooter = $em->getRepository('AppBundle:Text')->findAll();
 
 //        $data = $api->get('jobs');
 
@@ -70,6 +71,7 @@ class HomeController extends Controller
                 'partners'=>$partners,
                 'sourcink' =>$sourcink,
                 'partnerViews' =>$partnerViews,
+                'textsFooter' =>$textsFooter
             ]
         );
     }

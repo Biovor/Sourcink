@@ -24,6 +24,8 @@ class CategoryPageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $benefits = $em->getRepository('AppBundle:Benefit')->findAll();
-        return $this->render('AppBundle:CategoryPage:category.html.twig', ['category' => $category, 'benefits' => $benefits]);
+        $textsFooter = $em->getRepository('AppBundle:Text')->findAll();
+        return $this->render('AppBundle:CategoryPage:category.html.twig', ['category' => $category, 'benefits' =>
+            $benefits, 'textsFooter' =>$textsFooter]);
     }
 }

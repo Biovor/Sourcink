@@ -26,6 +26,8 @@ class JobController extends Controller
     public function jobAction(Api $api, Request $request)
     {
 
+        $em = $this->getDoctrine()->getManager();
+        $textsFooter = $em->getRepository('AppBundle:Text')->findAll();
         $data = $api->get('jobs');
 
         foreach ($data->_embedded->jobs as $job) {
@@ -84,6 +86,7 @@ class JobController extends Controller
                 'offers' => $results,
                 'status' => $countUser,
                 'hasResume' => $hasResume,
+                'textsFooter'=>$textsFooter
             ]
         );
     }
@@ -94,6 +97,8 @@ class JobController extends Controller
 
     public function jobPageAction(Api $service, $id, Request $request, \Swift_Mailer $mailer, Email $email)
     {
+        $em = $this->getDoctrine()->getManager();
+        $textsFooter = $em->getRepository('AppBundle:Text')->findAll();
         $data = $service->getId('jobs', $id);
         $form = $this->createFormBuilder()
             ->setMethod('POST')
@@ -148,7 +153,7 @@ class JobController extends Controller
             'AppBundle:Job:page.html.twig',
             [
                 'offer' => $offer,
-
+                'textsFooter'=>$textsFooter,
                 'form' => $form->createView(),
                 'status' => $countUser,
                 'hasResume' => $hasResume,

@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Text controller.
  *
- * @Route("admin/text")
+ * @Route("admin007UvTx037/text")
  */
 class TextController extends Controller
 {
@@ -48,7 +48,7 @@ class TextController extends Controller
             $em->persist($text);
             $em->flush();
 
-            return $this->redirectToRoute('admin_text_show', array('id' => $text->getId()));
+            return $this->redirectToRoute('admin_text_index', array('id' => $text->getId()));
         }
 
         return $this->render('Admin/text/new.html.twig', array(
@@ -57,21 +57,6 @@ class TextController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a text entity.
-     *
-     * @Route("/{id}", name="admin_text_show")
-     * @Method("GET")
-     */
-    public function showAction(Text $text)
-    {
-        $deleteForm = $this->createDeleteForm($text);
-
-        return $this->render('Admin/text/show.html.twig', array(
-            'text' => $text,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
 
     /**
      * Displays a form to edit an existing text entity.
