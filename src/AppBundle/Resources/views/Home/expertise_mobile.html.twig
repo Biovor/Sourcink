@@ -1,31 +1,32 @@
-<div class="hide-on-large-only">
+<div class="hide-on-large-only margin-encre">
     <div class="container">
-            <h2 class="center" id="Notre-expertise">{{ sourcink.title | raw  }}</h2>
-            <div class="row">
-                <p class="center">
-                    {{ sourcink.text1 | raw  }}
-                </p>
-                <br>
-                {% for category in categories %}
-                    <div class="col s12 m6 center">
-                        <a href="{{ path('category_page_view', {'id':category.id}) }}">
-                            <h3 class="black-text"><span class="black-text">{{ category.title | raw }}</span></h3>
-                            <img class="circle responsive-img img imgSolutionHomme" src="{{ asset('img/'~category.picture
-                            .pictureName) }}" alt="{{ category.picture.alt }}">
-                        </a>
-                        <a href="{{ path('category_page_view', {'id':category.id}) }}" class="btn-floating btn lighten-1 {%
-                        if loop.index == 1 %} blue {%
-                        elseif loop.index == 2 %} black {% endif %} "><i class="material-icons">add</i></a>
-                        <p>
-                            {{ sourcink.text2 | raw  }}
-                        </p>
-                        {% for work in category.works %}
-                            <div class="col s12 center">
-                                <p class="work-name">{{ work.name }}</p>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
+        <h2 class="center" id="Notre-expertise">{{ sourcink.title | raw  }}</h2>
+        <div class="row">
+            <div class="margin-encre">
+                <p class="center">{{ sourcink.text1 | raw  }}</p>
             </div>
+            <br>
+            <div class="encre" id="Nos-solutions"></div>
+            {% for category in categories %}
+                <div class="col s12 m6 center">
+                    <a href="{{ path('category_page_view', {'id':category.id}) }}">
+                        <h3 class="black-text"><span class="black-text">{{ category.title | raw }}</span></h3>
+                        <img class="circle responsive-img img imgSolutionHomme" src="{{ asset('img/'~category.picture
+                        .pictureName) }}" alt="{{ category.picture.alt }}">
+                    </a>
+                    <a href="{{ path('category_page_view', {'id':category.id}) }}" class="btn-floating btn lighten-1 {%
+                    if loop.index == 1 %} blue {%
+                    elseif loop.index == 2 %} black {% endif %} "><i class="material-icons">add</i></a>
+                    <p>
+                        {{ sourcink.text2 | raw  }}
+                    </p>
+                    {% for work in category.works %}
+                        <div class="col s12 center">
+                            <p class="work-name">{{ work.name }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
 </div>
