@@ -286,6 +286,22 @@ class Api
                 $value = $user->getWantedJob();
             } else if ($field->name == self::experience) {
                 $value = $user->getExperience();
+            } else if ($field->name == self::remuAvt) {
+                $value = '0/10';
+            } else if ($field->name == self::formEvo) {
+                $value =  '0/10';
+            } else if ($field->name == self::recoMgt) {
+                $value = '0/10';
+            } else if ($field->name == self::exp) {
+                $value = '0/10';
+            } else if ($field->name == self::respCha) {
+                $value = '0/10';
+            } else if ($field->name == self::devEga) {
+                $value = '0/10';
+            } else if ($field->name == self::creaInno) {
+                $value = '0/10';
+            } else if ($field->name == self::teamAmb) {
+                $value = '0/10';
             }
             $customFields[] = ['id' => $field->id, 'value' => $value];
         }
