@@ -61,6 +61,10 @@ class ApplicantController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+           if (empty($this->getUser()->getMobility()[0])) {
+               $value[]='635116';
+               $this->getUser()->setMobility($value);
+           };
             $em->persist($data);
             $em->flush();
             $catsUser = $api->getSearch('candidates', $this->getUser()->getEmail());

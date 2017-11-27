@@ -65,7 +65,7 @@ class ProfileType extends AbstractType
                     'required' => false,
                     'label' => 'Mobilité',
                     'choices' => $options['regions'],
-                    'multiple' => true
+                    'multiple' => true,
                 )
             )
             ->add(

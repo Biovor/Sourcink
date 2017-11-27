@@ -43,12 +43,14 @@
                     <!-- Modal Structure -->
                     <div id="modalcgv" class="modal">
                         <div class="modal-content black-text">
-                            {% for cgv in textsFooter %}
-                                {% if cgv.location == "CGV" %}
-                                    <h4>{{ cgv.title |raw }}</h4>
-                                    <p>{{ cgv.contents |raw }}</p>
-                                {% endif %}
-                            {% endfor %}
+                            {% if textesFooter is defined %}
+                                {% for cgv in textsFooter %}
+                                    {% if cgv.location == "CGV" %}
+                                        <h4>{{ cgv.title |raw }}</h4>
+                                        <p>{{ cgv.contents |raw }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         <div class="modal-footer">
                             <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">J'accepte</a>
@@ -57,12 +59,14 @@
                     <!-- Modal Structure -->
                     <div id="modalml" class="modal">
                         <div class="modal-content black-text">
-                            {% for ml in textsFooter %}
-                                {% if ml.location == "Mentions-legales" %}
-                                    <h4>{{ ml.title |raw }}</h4>
-                                    <p>{{ ml.contents |raw }}</p>
-                                {% endif %}
-                            {% endfor %}
+                            {% if textesFooter is defined %}
+                                {% for ml in textsFooter %}
+                                    {% if ml.location == "Mentions-legales" %}
+                                        <h4>{{ ml.title |raw }}</h4>
+                                        <p>{{ ml.contents |raw }}</p>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endif %}
                         </div>
                         <div class="modal-footer">
                             <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">J'accèpte</a>
