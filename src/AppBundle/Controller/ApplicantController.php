@@ -62,7 +62,7 @@ class ApplicantController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
            if (empty($this->getUser()->getMobility()[0])) {
-               $value[]='635116';
+               $value[]='612591';
                $this->getUser()->setMobility($value);
            };
             $em->persist($data);

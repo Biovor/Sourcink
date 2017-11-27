@@ -195,7 +195,9 @@ class Api
         $data = $this->getClient()->request(
             'GET', $query . '/search?query=' . $search, [
                 'headers' => [
-                    'Authorization' => 'Token ' . $this->getApiKey()
+                    'Authorization' => 'Token ' . $this->getApiKey(),
+                    'field' => 'emails.primary',
+
                 ]
             ]
         );
