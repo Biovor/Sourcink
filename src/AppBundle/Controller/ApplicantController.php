@@ -23,6 +23,7 @@ class ApplicantController extends Controller
         $em = $this->getDoctrine()->getManager();
         $catsUser = $api->getSearch('candidates', $this->getUser()->getEmail());
         $hasResume = false;
+        $textsFooter = $em->getRepository('AppBundle:Text')->findAll();
         $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($this->getUser());
         $pdf = 0;
 
@@ -46,7 +47,8 @@ class ApplicantController extends Controller
             'status' => $catsUser->count,
             'hasResume' => $hasResume,
             'mobilities' => $mobilities,
-            'pdf' => $pdf
+            'pdf' => $pdf,
+            'textsFooter' =>$textsFooter
         ]);
     }
 

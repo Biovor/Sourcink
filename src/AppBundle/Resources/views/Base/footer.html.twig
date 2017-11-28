@@ -43,9 +43,10 @@
                     <!-- Modal Structure -->
                     <div id="modalcgv" class="modal">
                         <div class="modal-content black-text">
-                            {% if textesFooter is defined %}
+                            {% if textsFooter is defined %}
                                 {% for cgv in textsFooter %}
                                     {% if cgv.location == "CGV" %}
+
                                         <h4>{{ cgv.title |raw }}</h4>
                                         <p>{{ cgv.contents |raw }}</p>
                                     {% endif %}
@@ -59,7 +60,7 @@
                     <!-- Modal Structure -->
                     <div id="modalml" class="modal">
                         <div class="modal-content black-text">
-                            {% if textesFooter is defined %}
+                            {% if textsFooter is defined %}
                                 {% for ml in textsFooter %}
                                     {% if ml.location == "Mentions-legales" %}
                                         <h4>{{ ml.title |raw }}</h4>
