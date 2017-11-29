@@ -36,16 +36,35 @@ class Api
     private $apiUrl;
     private $apiKey;
     private $client;
+    private $portalId;
     private $tagCandidate;
     private $em;
 
     /**
+     * @return mixed
+     */
+    public function getPortalId()
+    {
+        return $this->portalId;
+    }
+
+    /**
+     * @param mixed $portalId
+     * @return Api
+     */
+    public function setPortalId($portalId)
+    {
+        $this->portalId = $portalId;
+        return $this;
+    }
+
+    /**
      * Api constructor.
      */
-    public function __construct($apiUrl, $apiKey, $tagCandidate, EntityManager $entityManager)
+    public function __construct($apiUrl, $apiKey, $tagCandidate, $portalId, EntityManager $entityManager)
     {
-        $this->setApiKey($apiKey)->setApiUrl($apiUrl)->setTagCandidate($tagCandidate)->setEm($entityManager)
-            ->setClient(new Client(['base_uri' => $this->getApiUrl()]));
+        $this->setApiKey($apiKey)->setApiUrl($apiUrl)->setTagCandidate($tagCandidate)->setPortalId($portalId)->setEm
+    ($entityManager)->setClient(new Client(['base_uri' => $this->getApiUrl()]));
     }
 
     /**
@@ -106,7 +125,7 @@ class Api
     public function getJob()
     {
         $data = $this->getClient()->request(
-            'GET', 'portals/42172/jobs'.'?per_page='.self::perPage, [
+            'GET', 'portals/'.$this->getPortalId().'/jobs'.'?per_page='.self::perPage, [
                 'headers' => [
                     'Authorization' => 'Token ' . $this->getApiKey(),
                     'Content-Type' => 'application/json'
@@ -115,20 +134,6 @@ class Api
         );
         return json_decode($data->getBody()->getContents());
     }
-
-//    public function get($query)
-//    {
-//        $data = $this->getClient()->request(
-//            'GET', $query.'?per_page='.self::perPage, [
-//                'headers' => [
-//                    'Authorization' => 'Token ' . $this->getApiKey(),
-//                    'Content-Type' => 'application/json'
-//                ]
-//            ]
-//        );
-//        return json_decode($data->getBody()->getContents());
-//    }
-
 
     /**
      * @return mixed

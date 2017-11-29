@@ -60,11 +60,12 @@ class ApplicantController extends Controller
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(ProfileType::class, $this->getUser(), array('regions' => $api->getRegions()));
         $form->handleRequest($request);
+        $region = $api->getRegions();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
            if (empty($this->getUser()->getMobility()[0])) {
-               $value[]='612591';
+               $value[]=(reset($region));
                $this->getUser()->setMobility($value);
            };
             $em->persist($data);
