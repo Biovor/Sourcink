@@ -103,10 +103,10 @@ class Api
         return $this;
     }
 
-    public function get($query)
+    public function getJob()
     {
         $data = $this->getClient()->request(
-            'GET', $query.'?per_page='.self::perPage, [
+            'GET', 'portals/42172/jobs'.'?per_page='.self::perPage, [
                 'headers' => [
                     'Authorization' => 'Token ' . $this->getApiKey(),
                     'Content-Type' => 'application/json'
@@ -115,6 +115,19 @@ class Api
         );
         return json_decode($data->getBody()->getContents());
     }
+
+//    public function get($query)
+//    {
+//        $data = $this->getClient()->request(
+//            'GET', $query.'?per_page='.self::perPage, [
+//                'headers' => [
+//                    'Authorization' => 'Token ' . $this->getApiKey(),
+//                    'Content-Type' => 'application/json'
+//                ]
+//            ]
+//        );
+//        return json_decode($data->getBody()->getContents());
+//    }
 
 
     /**

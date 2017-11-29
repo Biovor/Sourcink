@@ -28,8 +28,7 @@ class JobController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $textsFooter = $em->getRepository('AppBundle:Text')->findAll();
-        $data = $api->get('jobs');
-
+        $data = $api->getJob();
         foreach ($data->_embedded->jobs as $job) {
 
 
@@ -52,21 +51,12 @@ class JobController extends Controller
             }
         }
 
-        $offerShow = array();
-
-        foreach ($offers as $offer){
-            if($offer['statut'] == self::FILTER_JOBS or $offer['statut'] == self::HOMESITE_JOBS) {
-                $offerShow[] = $offer;
-            }
-        }
-
-
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"
          * */
         $pagination = $this->get('knp_paginator');
         $results = $pagination->paginate(
-            $offerShow,
+            $offers,
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 9)
         );
