@@ -19,10 +19,6 @@ class ApplicantController extends Controller
      */
     public function homeAction(Api $api)
     {
-        $em = $this->getDoctrine()->getManager();
-        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($this->getUser());
-        $pdf = 0;
-
         ////*****1 Appel API*****////
         $catsUser = $this->userCatsIdentificationAction($api);
 
@@ -30,13 +26,8 @@ class ApplicantController extends Controller
         if (isset($catsUser->id)) {
             $api->updateCandidateFromCats($this->getUser(), $catsUser);
         }
-        if ($big5User != null){
-            $pdf = 1;
-        }
 
-        return $this->render('AppBundle:Applicant:home.html.twig', [
-            'pdf' => $pdf,
-        ]);
+        return $this->render('AppBundle:Applicant:home.html.twig');
     }
 
     /**
