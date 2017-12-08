@@ -59,9 +59,7 @@ class ApplicantController extends Controller
                 $value[]=(reset($region));
                 $this->getUser()->setMobility($value);
             };
-
-            if (isset($catsUser->count) === 0) {
-
+            if (isset($catsUser->count) && $catsUser->count === 0) {
                 ////*****4-5 Appel API*****//// Création user
                 $tag = $api->getTag($this->getParameter('tag_candidate'));
                 $api->createCandidateUser($this->getUser());
@@ -75,20 +73,16 @@ class ApplicantController extends Controller
                     $api->tagCandidate($newUser->id, $tag);
                     $em->persist($this->getUser()->setIdCats($newUser->id));
                 }
-
             } else {
-
                 ////*****1 Appel API*****//// Mise à jour user
                 $CFUsers = $em->getRepository('AppBundle:CultureFit')->findByuserId($this->getUser());
                 $cultureFit = end($CFUsers);
                 $api->updateCandidate($this->getUser(), $catsUser, $cultureFit);
+                $this->getUser()->setIdCats($catsUser->id);
             }
-
-            $this->getUser()->setIdCats($catsUser->id);
             $this->getUser()->setStatus(true);
             $em->persist($data);
             $this->addFlash('success', 'Vos informations ont été mises à jour.');
-
             $em->flush();
             return $this->redirectToRoute('app_applicant');
         }
