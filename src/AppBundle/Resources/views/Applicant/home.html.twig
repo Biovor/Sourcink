@@ -51,7 +51,7 @@
                         <p><i class="fa fa-book fa-2x"></i> Expérience : {{ app.user.experience }} année(s)</p><br/>
                         <p><i class="fa fa-money fa-2x"></i> Salaire Actuel : {{ app.user.salary }}€</p><br/>
                         <p><i class="fa fa-search fa-2x"></i> Salaire Souhaité : {{ app.user.wantedSalary }}€</p><br/>
-                        {% if pdf == 1 %}
+                        {% if app.user.big5 == true %}
                         <p><i class="fa fa-file-pdf-o fa-2x"></i><a class="text-color-orange" target="_blank" href=
                             "{{ path ('big5pdf') }}"> Voir ou télécharger mon Big 5 personnel</a></p><br/>
                         {% endif %}
