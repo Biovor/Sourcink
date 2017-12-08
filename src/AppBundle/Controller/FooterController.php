@@ -9,7 +9,11 @@
 namespace AppBundle\Controller;
 
 
-class FooterController
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
+class FooterController extends Controller
 {
+
+
 
 }

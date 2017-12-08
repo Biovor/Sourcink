@@ -118,4 +118,15 @@ class TextController extends Controller
             ->getForm()
         ;
     }
+
+    public function footerAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $textsFooter = $em->getRepository('AppBundle:Text')->findAll();
+
+        return $this->render('AppBundle:Base:cgv-ml.html.twig', array(
+            'textsFooter' => $textsFooter
+        ));
+
+    }
 }

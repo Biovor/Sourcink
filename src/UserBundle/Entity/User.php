@@ -23,6 +23,31 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="idCats", type="integer", nullable=true)
+     */
+    private $idCats;
+
+    /**
+     * @return int
+     */
+    public function getIdCats()
+    {
+        return $this->idCats;
+    }
+
+    /**
+     * @param int $idCats
+     * @return User
+     */
+    public function setIdCats($idCats)
+    {
+        $this->idCats = $idCats;
+        return $this;
+    }
+
+    /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=255)
@@ -97,6 +122,88 @@ class User extends BaseUser
      * @ORM\Column(name="mobility", type="array", nullable=true)
      */
     private $mobility;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="mobilityName", type="array", nullable=true)
+     */
+    private $mobilityName;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="hasResume", type="boolean", nullable=true)
+     */
+    private $hasResume;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="big5", type="boolean", nullable=true)
+     */
+    private $big5;
+
+    /**
+     * @return bool
+     */
+    public function isHasResume()
+    {
+        return $this->hasResume;
+    }
+
+    /**
+     * @param bool $hasResume
+     * @return User
+     */
+    public function setHasResume($hasResume)
+    {
+        $this->hasResume = $hasResume;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param bool $status
+     * @return User
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMobilityName()
+    {
+        return $this->mobilityName;
+    }
+
+    /**
+     * @param array $mobilityName
+     * @return User
+     */
+    public function setMobilityName($mobilityName)
+    {
+        $this->mobilityName = $mobilityName;
+        return $this;
+    }
 
 
     /**
@@ -373,6 +480,24 @@ class User extends BaseUser
     }
 
     /**
+     * @return bool
+     */
+    public function isBig5()
+    {
+        return $this->big5;
+    }
+
+    /**
+     * @param bool $big5
+     * @return User
+     */
+    public function setBig5($big5)
+    {
+        $this->big5 = $big5;
+        return $this;
+    }
+
+    /**
      * Get mobility
      *
      * @return array
@@ -381,22 +506,4 @@ class User extends BaseUser
     {
         return $this->mobility;
     }
-
-
-    /**
-     * @return mixed
-     */
-    public function getBig5()
-    {
-        return $this->big5;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCultureF()
-    {
-        return $this->cultureF;
-    }
-
 }

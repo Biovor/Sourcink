@@ -1,4 +1,5 @@
 <footer class="page-footer" xmlns="http://www.w3.org/1999/html">
+
     <div class="container">
         <div class="row center">
             <div class=" col l4 m4 s12 ">
@@ -33,51 +34,7 @@
             </div>
         </div>
     </div>
-
-    <div class="footer-copyright">
-        <div class="container">
-            <div class="row center">
-                <div class="col s12 m6">
-                    <p class="center"><a href="#modalcgv">C.G.V.</a></p>
-
-                    <!-- Modal Structure -->
-                    <div id="modalcgv" class="modal">
-                        <div class="modal-content black-text">
-                            {% if textsFooter is defined %}
-                                {% for cgv in textsFooter %}
-                                    {% if cgv.location == "CGV" %}
-
-                                        <h4>{{ cgv.title |raw }}</h4>
-                                        <p>{{ cgv.contents |raw }}</p>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">J'accepte</a>
-                        </div>
-                    </div>
-                    <!-- Modal Structure -->
-                    <div id="modalml" class="modal">
-                        <div class="modal-content black-text">
-                            {% if textsFooter is defined %}
-                                {% for ml in textsFooter %}
-                                    {% if ml.location == "Mentions-legales" %}
-                                        <h4>{{ ml.title |raw }}</h4>
-                                        <p>{{ ml.contents |raw }}</p>
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-                        <div class="modal-footer">
-                            <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">J'accèpte</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s12 m6">
-                    <p class="center"><a href="#modalml">Mentions Légales</a></p>
-                </div>
-                </div>
-            </div>
-        </div>
+    {{ render(controller(
+    'AppBundle\\Controller\\TextController::footerAction'
+    )) }}
 </footer>

@@ -9,14 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace FOS\UserBundle\Model;
+namespace UserBundle\Model;
+
+use FOS\UserBundle\Model\GroupableInterface as BaseGroupableInterface;
 
 /**
  * @author Thibault Duplessis <thibault.duplessis@gmail.com>
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  * @author Christophe Coevoet <stof@notk.org>
  */
-interface GroupableInterface
+interface GroupableInterface extends BaseGroupableInterface
 {
     /**
      * Gets the groups granted to the user.

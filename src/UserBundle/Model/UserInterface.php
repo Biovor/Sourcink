@@ -9,15 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace FOS\UserBundle\Model;
+namespace UserBundle\Model;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
 
 /**
  * @author Thibault Duplessis <thibault.duplessis@gmail.com>
  * @author Johannes M. Schmitt <schmittjoh@gmail.com>
  */
-interface UserInterface extends AdvancedUserInterface, \Serializable
+interface UserInterface extends AdvancedUserInterface, \Serializable, BaseUserInterface
 {
     const ROLE_DEFAULT = 'ROLE_USER';
 
@@ -67,6 +68,8 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
      */
     public function getEmail();
 
+
+
     /**
      * Sets the email.
      *
@@ -100,6 +103,27 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
     public function getPlainPassword();
 
     /**
+     * @param bool $status
+     *
+     * @return self
+     */
+    public function setStatus($status);
+
+    /**
+     * @param bool $hasResume
+     *
+     * @return self
+     */
+    public function setHasResume($hasResume);
+
+    /**
+     * @param bool $boolean
+     *
+     * @return self
+     */
+    public function setEnabled($boolean);
+
+    /**
      * Sets the plain password.
      *
      * @param string $password
@@ -123,13 +147,6 @@ interface UserInterface extends AdvancedUserInterface, \Serializable
      * @return bool
      */
     public function isSuperAdmin();
-
-    /**
-     * @param bool $boolean
-     *
-     * @return self
-     */
-    public function setEnabled($boolean);
 
     /**
      * Sets the super admin status.

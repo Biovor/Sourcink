@@ -13,8 +13,8 @@
         {% endfor %}
     </div>
     <div class="container">
-        {% if status == true %}
-            {% if hasResume == false %}
+        {% if app.user.status == true %}
+            {% if app.user.hasResume == false %}
                 <div class="card-panel">
                     <p>Merci d'avoir complété votre profil. Dernière étape pour accéder aux tests de personnalité et à
                         nos offres d'emploi : nous envoyer votre CV en format .PDF ou .DOC </p>
@@ -26,7 +26,7 @@
             <div class="card">
                 <div class="card-content">
                     <h1> {{ app.user.firstname }} {{ app.user.lastname }} </h1>
-                    {% if hasResume == true %}
+                    {% if app.user.hasResume == true %}
                         <div class="row">
                             <p> Les tests de personnalité et nos offres d'emploi :</p>
                             <a class="btn blue btnApp right" href="{{ path('job_list') }}">Voir nos offres d'emploi</a>
@@ -41,7 +41,7 @@
                         <p><i class="fa fa-phone fa-2x"></i> Numéro de téléphone : {{ app.user.phone }}</p><br/>
                         <p><i class="fa fa-map fa-2x"></i>
                             Mobilité Géographique :
-                            {% for mobility in mobilities %}
+                            {% for mobility in app.user.mobilityName %}
                                 {% if loop.index >1 %},
                                 {% endif %}
                                 {{ mobility }}
@@ -59,8 +59,8 @@
                 </div>
                 <div class="card-action">
                     <div class="row">
-                        {% if status == true %}
-                            {% if hasResume == true %}
+                        {% if app.user.status == true %}
+                            {% if app.user.hasResume == true %}
                                 <div class="col s10 m3 l3">
                                     <a class="blue-text" href="#modalcv">Mise à jour de mon CV</a>
                                 </div>
@@ -76,8 +76,8 @@
                 </div>
             </div>
 
-        {% if status == true %}
-        {% if hasResume == true %}
+        {% if app.user.status == true %}
+        {% if app.user.hasResume == true %}
             <p class="mlMonkeyTie">* Les données personnelles résultant de ces tests seront utilisées dans un cadre
                 strictement privé par Sourcink. Monkey tie conservera les données de façon anonyme.</p>
         {% endif %}

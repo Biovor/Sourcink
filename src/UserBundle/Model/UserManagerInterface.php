@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FOS\UserBundle\Model;
+namespace UserBundle\Model;
 
 /**
  * Interface to be implemented by user managers. This adds an additional level
@@ -91,6 +91,20 @@ interface UserManagerInterface
      * @return \Traversable
      */
     public function findUsers();
+
+    /**
+     * @param bool $status
+     *
+     * @return self
+     */
+    public function setStatus($status);
+
+    /**
+     * @param bool $hasResume
+     *
+     * @return self
+     */
+    public function setHasResume($hasResume);
 
     /**
      * Returns the user's fully qualified class name.

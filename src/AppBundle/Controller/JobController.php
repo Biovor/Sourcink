@@ -60,21 +60,15 @@ class JobController extends Controller
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 9)
         );
-        $countUser = 0;
-        if($this->getUser()!=null) {
-            $catsUser = $api->getSearch('candidates', $this->getUser()->getEmail());
-            $countUser = $catsUser->count;
-        }
-        $hasResume = false;
-        if ($countUser > 0) {
-            $hasResume = $api->hasResume($catsUser->_embedded->candidates[0]->id);
-        }
+
+        $status = $this->getUser()->isStatus();
+        $hasResume = $this->getUser()->isHasResume();
 
         return $this->render(
             'AppBundle:Job:home.html.twig',
             [
                 'offers' => $results,
-                'status' => $countUser,
+                'status' => $status,
                 'hasResume' => $hasResume,
                 'textsFooter'=>$textsFooter
             ]
@@ -87,8 +81,8 @@ class JobController extends Controller
 
     public function jobPageAction(Api $service, $id, Request $request, \Swift_Mailer $mailer, Email $email)
     {
-        $em = $this->getDoctrine()->getManager();
-        $textsFooter = $em->getRepository('AppBundle:Text')->findAll();
+        $status = $this->getUser()->isStatus();
+        $hasResume = $this->getUser()->isHasResume();
         $data = $service->getId('jobs', $id);
         $form = $this->createFormBuilder()
             ->setMethod('POST')
@@ -129,35 +123,25 @@ class JobController extends Controller
             $offer['image'] = $service->downloadImg(property_exists($data->_embedded, 'attachments') ? $data->_embedded->attachments[0]->id : '');
 
         }
-        $countUser = 0;
-        if($this->getUser()!=null) {
-            $catsUser = $service->getSearch('candidates', $this->getUser()->getEmail());
-            $countUser = $catsUser->count;
-        }
-        $hasResume = false;
-        if ($countUser > 0) {
-            $hasResume = $service->hasResume($catsUser->_embedded->candidates[0]->id);
-        }
 
         return $this->render(
             'AppBundle:Job:page.html.twig',
             [
                 'offer' => $offer,
-                'textsFooter'=>$textsFooter,
                 'form' => $form->createView(),
-                'status' => $countUser,
+                'status' => $status,
                 'hasResume' => $hasResume,
             ]
         );
-
-
     }
     /**
      * @Route("/spontane", name="job_spontane")
      */
-    public function spontaneAction(\Swift_Mailer $mailer, Email $email)
+    public function spontaneAction(\Swift_Mailer $mailer, Email $email, API $api)
     {
         $email->candidatureSpontane($mailer, $this->getUser());
+        $tag = $api->getTag($this->getParameter('tag_candidate_spont'));
+        $api->tagCandidate($this->getUser()->getIdCats(), $tag);
         $this->addFlash('success', 'Nous avons reçu votre candidature. Nous allons vous contacter par e-mail.');
         return $this->redirectToRoute('job_list');
     }

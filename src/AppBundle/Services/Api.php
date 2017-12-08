@@ -122,19 +122,6 @@ class Api
         return $this;
     }
 
-    public function getJob()
-    {
-        $data = $this->getClient()->request(
-            'GET', 'portals/'.$this->getPortalId().'/jobs'.'?per_page='.self::perPage, [
-                'headers' => [
-                    'Authorization' => 'Token ' . $this->getApiKey(),
-                    'Content-Type' => 'application/json'
-                ]
-            ]
-        );
-        return json_decode($data->getBody()->getContents());
-    }
-
     /**
      * @return mixed
      */
@@ -172,7 +159,7 @@ class Api
     }
 
 
-    public function updateCandidateFromCats(User $user, $userData)
+    public function updateCandidatefromCats(User $user, $userData)
     {
         $user->setFirstName($userData->first_name);
         $user->setLastName($userData->last_name);
@@ -184,6 +171,18 @@ class Api
         foreach ($userData->_embedded->custom_fields as $field) {
             if ($field->_embedded->definition->name == self::mobility) {
                 $user->setMobility($field->value);
+
+                $regions = array();
+                foreach ($field->_embedded->definition->field->selections as $region){
+                    $regions[$region->label] = $region->id;
+                }
+                $regions = array_flip($regions);
+
+                $mobilities = array();
+                foreach ($field->value as $mobility) {
+                    $mobilities[] = $regions[$mobility];
+                }
+                $user->setMobilityName($mobilities);
             } else if ($field->_embedded->definition->name == self::wanted_job) {
                 $user->setWantedJob($field->value);
             } else if ($field->_embedded->definition->name == self::experience) {
@@ -193,6 +192,19 @@ class Api
         $this->getEm()->persist($user);
         $this->getEm()->flush();
         return $user;
+    }
+
+    public function getJob()
+    {
+        $data = $this->getClient()->request(
+            'GET', 'portals/'.$this->getPortalId().'/jobs'.'?per_page='.self::perPage, [
+                'headers' => [
+                    'Authorization' => 'Token ' . $this->getApiKey(),
+                    'Content-Type' => 'application/json'
+                ]
+            ]
+        );
+        return json_decode($data->getBody()->getContents());
     }
 
     public function getId($query, $id)
@@ -207,6 +219,7 @@ class Api
         );
         return json_decode($data->getBody()->getContents());
     }
+
 
     public function getSearch($query, $search)
     {
@@ -266,6 +279,7 @@ class Api
 
     public function getRegions()
     {
+
         $fields = $this->candidateCustomFields();
         $regions = array();
         foreach ($fields as $field) {
@@ -278,6 +292,7 @@ class Api
         }
         return $regions;
     }
+
     public function candidateCustomFields()
     {
         $customFields = $this->getClient()->request(
@@ -423,37 +438,67 @@ class Api
         $fields = $this->candidateCustomFields();
         $customFields = [];
         $value = '';
-        foreach ($fields as $field) {
-            if ($field->name == self::mobility) {
-                $value = array();
-                foreach ($user->getMobility() as $mobility){
-                    $value[] = $mobility;
-                }
-            } else if ($field->name == self::wanted_job) {
-                $value = $user->getWantedJob();
-            } else if ($field->name == self::experience) {
-                $value = $user->getExperience();
-            }
-            if ($cultureFit != null) {
-                if ($field->name == self::remuAvt) {
-                    $value = $cultureFit->getRemuAvt().'/10';
+        if ($cultureFit != null) {
+            foreach ($fields as $field) {
+                if ($field->name == self::mobility) {
+                    $value = array();
+                    foreach ($user->getMobility() as $mobility) {
+                        $value[] = $mobility;
+                    }
+                } else if ($field->name == self::wanted_job) {
+                    $value = $user->getWantedJob();
+                } else if ($field->name == self::experience) {
+                    $value = $user->getExperience();
+                } else if ($field->name == self::remuAvt) {
+                    $value = $cultureFit->getRemuAvt() . '/10';
                 } else if ($field->name == self::formEvo) {
-                    $value = $cultureFit->getFormEvo().'/10';
+                    $value = $cultureFit->getFormEvo() . '/10';
                 } else if ($field->name == self::recoMgt) {
-                    $value = $cultureFit->getRecoMgt().'/10';
+                    $value = $cultureFit->getRecoMgt() . '/10';
                 } else if ($field->name == self::exp) {
-                    $value = $cultureFit->getExp().'/10';
+                    $value = $cultureFit->getExp() . '/10';
                 } else if ($field->name == self::respCha) {
-                    $value = $cultureFit->getRespCha().'/10';
+                    $value = $cultureFit->getRespCha() . '/10';
                 } else if ($field->name == self::devEga) {
-                    $value = $cultureFit->getDevEga().'/10';
+                    $value = $cultureFit->getDevEga() . '/10';
                 } else if ($field->name == self::creaInno) {
-                    $value = $cultureFit->getCreaInno().'/10';
+                    $value = $cultureFit->getCreaInno() . '/10';
                 } else if ($field->name == self::teamAmb) {
-                    $value = $cultureFit->getTeamAmb().'/10';
+                    $value = $cultureFit->getTeamAmb() . '/10';
                 }
+                $customFields[] = ['id' => $field->id, 'value' => $value];
             }
-            $customFields[] = ['id' => $field->id, 'value' => $value];
+        } else {
+            foreach ($fields as $field) {
+                if ($field->name == self::mobility) {
+                    $value = array();
+                    foreach ($user->getMobility() as $mobility) {
+                        $value[] = $mobility;
+                    }
+                } else if ($field->name == self::wanted_job) {
+                    $value = $user->getWantedJob();
+                } else if ($field->name == self::experience) {
+                    $value = $user->getExperience();
+                }else if ($field->name == self::remuAvt) {
+                    $value = '0/10';
+                } else if ($field->name == self::formEvo) {
+                    $value = '0/10';
+                } else if ($field->name == self::recoMgt) {
+                    $value = '0/10';
+                } else if ($field->name == self::exp) {
+                    $value = '0/10';
+                } else if ($field->name == self::respCha) {
+                    $value = '0/10';
+                } else if ($field->name == self::devEga) {
+                    $value = '0/10';
+                } else if ($field->name == self::creaInno) {
+                    $value = '0/10';
+                } else if ($field->name == self::teamAmb) {
+                    $value = '0/10';
+                }
+
+                $customFields[] = ['id' => $field->id, 'value' => $value];
+            }
         }
         $update = $this->getClient()->request(
             'PUT', 'candidates/' . $catsUser->id, [
@@ -617,33 +662,12 @@ class Api
         $tags = json_decode($tags->getBody()->getContents());
         $id = 0;
         foreach ($tags->_embedded->tags as $tag) {
-            if ($tag->title == $this->getTagCandidate()) {
+            if ($tag->title == $name) {
                 $id = $tag->id;
             }
         }
         return $id;
     }
 
-    public function hasResume($id)
-    {
-        $data = $this->getClient()->request(
-            'GET', 'candidates/' . $id . '/attachments', [
-                'headers' => [
-                    'Authorization' => 'Token ' . $this->getApiKey(),
-                    'Content-Type' => 'application/json'
-                ]
-            ]
-        );
-        $hasResume = false;
-        $attachments = json_decode($data->getBody()->getContents());
-        if ($attachments->count > 0) {
-            foreach ($attachments->_embedded->attachments as $attachment) {
-                if ($attachment->is_resume === true) {
-                    $hasResume = true;
-                }
-            }
-        }
-        return $hasResume;
-    }
 }
 

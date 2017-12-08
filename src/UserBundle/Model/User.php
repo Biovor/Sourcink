@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace FOS\UserBundle\Model;
+namespace UserBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -99,6 +99,52 @@ abstract class User implements UserInterface, GroupableInterface
      * @var array
      */
     protected $roles;
+
+    /**
+     * @return bool
+     */
+    public function isStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param bool $status
+     * @return User
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isHasResume()
+    {
+        return $this->hasResume;
+    }
+
+    /**
+     * @param bool $hasResume
+     * @return User
+     */
+    public function setHasResume($hasResume)
+    {
+        $this->hasResume = $hasResume;
+        return $this;
+    }
+
+    /**
+     * @var boolean
+     */
+    protected $status;
+
+    /**
+     * @var boolean
+     */
+    protected $hasResume;
 
     /**
      * User constructor.

@@ -61,7 +61,7 @@ $('#sendResumeButton').on('click', function (e) {
                    'offres ou nous envoyer votre candidature spontanée.</p></div><div class="right">\n' +
                    '<a href="#!" id="done-cv" class="modal-action modal-close waves-effect waves-green btn-flat">' +
                    'Terminer</a> </div> ');
-               $('#done-cv').attr("href", '/candidat');
+               $('#done-cv').attr("href", '/candidat/update/cv');
         },
         error: function () {
             $('.ajaxStatus').html('<div class="center"><p>Une erreur s\'est produite. Veuillez réessayer.</p></div>');
@@ -69,37 +69,37 @@ $('#sendResumeButton').on('click', function (e) {
     });
 });
 
-$('#parseResumeButton').on('click', function (e) {
-    e.preventDefault();
-    var resume = $('#parseResumeFile').val();
-    $('.progress').removeClass('hiddendiv');
-    var formData = new FormData();
-    formData.append('resume', $('input[type=file]')[0].files[0]);
-    $.ajax({
-        url: '/ajax/resume/parse',
-        type: 'POST',
-        dataType: 'json',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            var resume = JSON.parse(response.data);
-            $('#fos_user_registration_form_firstname').val(resume.first_name);
-            $('#fos_user_registration_form_lastname').val(resume.last_name);
-            $('#fos_user_registration_form_email').val(resume.emails.primary);
-            $('#fos_user_registration_form_title').val(resume.title);
-            $('#fos_user_registration_form_experience').val(resume.experience);
-            $('#fos_user_registration_form_salary').val(resume.salary);
-            $('#fos_user_registration_form_current_pay').val(resume.current_pay);
-            $('#fos_user_registration_form_wantedSalary').val(resume.desired_pay);
-            $('#fos_user_registration_form_phone').val(resume.phone);
-            $('.ajaxStatus').html('<div class="center"><p>Votre CV a été envoyé avec succès !</p></div>');
-        },
-        error: function () {
-            $('.ajaxStatus').html('<div class="center"><p>Une erreur s\'est produite. Veuillez réessayer.</p></div>');
-        }
-    });
-});
+// $('#parseResumeButton').on('click', function (e) {
+//     e.preventDefault();
+//     var resume = $('#parseResumeFile').val();
+//     $('.progress').removeClass('hiddendiv');
+//     var formData = new FormData();
+//     formData.append('resume', $('input[type=file]')[0].files[0]);
+//     $.ajax({
+//         url: '/ajax/resume/parse',
+//         type: 'POST',
+//         dataType: 'json',
+//         data: formData,
+//         processData: false,
+//         contentType: false,
+//         success: function (response) {
+//             var resume = JSON.parse(response.data);
+//             $('#fos_user_registration_form_firstname').val(resume.first_name);
+//             $('#fos_user_registration_form_lastname').val(resume.last_name);
+//             $('#fos_user_registration_form_email').val(resume.emails.primary);
+//             $('#fos_user_registration_form_title').val(resume.title);
+//             $('#fos_user_registration_form_experience').val(resume.experience);
+//             $('#fos_user_registration_form_salary').val(resume.salary);
+//             $('#fos_user_registration_form_current_pay').val(resume.current_pay);
+//             $('#fos_user_registration_form_wantedSalary').val(resume.desired_pay);
+//             $('#fos_user_registration_form_phone').val(resume.phone);
+//             $('.ajaxStatus').html('<div class="center"><p>Votre CV a été envoyé avec succès !</p></div>');
+//         },
+//         error: function () {
+//             $('.ajaxStatus').html('<div class="center"><p>Une erreur s\'est produite. Veuillez réessayer.</p></div>');
+//         }
+//     });
+// });
 $(document).ready(function () {
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
