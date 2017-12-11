@@ -93,7 +93,6 @@ class Big5Controller extends Controller
                 return $cats;
             }
         }
-
         return $this->redirectToRoute('app_homepage');
     }
 
@@ -111,12 +110,10 @@ class Big5Controller extends Controller
         $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
         fwrite($fp, $pdf);
         fclose($fp);
-
-        $userCats = $api->getSearch('candidates', $user->getEmail());
+        $origin = 'Big5';
         $directory = 'big5/big5-'.$big5User->getId().'.pdf';
-        $api->sendResume2($directory . $user->getResumeName(),
-            $userCats->_embedded->candidates[0]->id, $userCats->_embedded->candidates[0]->first_name,
-            $userCats->_embedded->candidates[0]->last_name);
+        $api->sendResume($directory . $user->getResumeName(),
+            $user->id, $user->first_name, $user->last_name, $origin);
         unlink($directory . $user->getResumeName());
 
         return $this->redirectToRoute('app_homepage');
@@ -133,5 +130,4 @@ class Big5Controller extends Controller
         header('Content-Type: application/pdf');
         print_r($pdf);
     }
-
 }

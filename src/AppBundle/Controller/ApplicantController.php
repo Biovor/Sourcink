@@ -131,8 +131,6 @@ class ApplicantController extends Controller
 
         return $catsUser;
     }
-
-
 }
 
 

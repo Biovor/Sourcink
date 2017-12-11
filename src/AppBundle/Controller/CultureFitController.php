@@ -16,7 +16,6 @@ class CultureFitController extends Controller{
      */
     public function cultureFitAction()
     {
-
         return $this->render(
             'AppBundle:MonkeyTie:cultureFit.html.twig');
     }
@@ -29,7 +28,6 @@ class CultureFitController extends Controller{
         if($request->getContent() != null ) {
             $token = $this->container->getParameter('api_tie_culture_key');
             $json = json_decode($request->getContent());
-
 
             if (isset($json->token) AND $json->token === $token) {
                 $idUser = $json->userId;
@@ -85,12 +83,9 @@ class CultureFitController extends Controller{
         $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
         $CFUsers = $em->getRepository('AppBundle:CultureFit')->findByuserId($idUser);
         $CFUser = end($CFUsers);
-
-        $userCats = $api->getSearch('candidates', $user->getEmail());
-        $api->updateCandiCultureFit($CFUser,$user,$userCats->_embedded->candidates[0]->id);
-
+        $userCats = $api->getId('candidates',$user->getIdCats());
+        $api->updateCandidate($user, $userCats, $CFUser);
 
         return $this->redirectToRoute('app_homepage');
     }
-
 }

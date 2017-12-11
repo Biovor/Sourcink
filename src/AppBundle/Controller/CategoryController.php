@@ -120,5 +120,4 @@ class CategoryController extends Controller
             ->setMethod('DELETE')
             ->getForm();
     }
-
 }

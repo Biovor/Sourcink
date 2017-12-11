@@ -16,21 +16,15 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
  */
 class JobController extends Controller
 {
-
-    const FILTER_JOBS = 'Site Web';
-    const HOMESITE_JOBS = 'Homesite';
+    const HOMESITE_JOBS = 'Home Site';
 
     /**
      * @Route("/", name="job_list")
      */
     public function jobAction(Api $api, Request $request)
     {
-
-        $em = $this->getDoctrine()->getManager();
-        $textsFooter = $em->getRepository('AppBundle:Text')->findAll();
         $data = $api->getJob();
         foreach ($data->_embedded->jobs as $job) {
-
 
             $offers[$job->id] =
                 [
@@ -46,8 +40,8 @@ class JobController extends Controller
                 ];
             if ($offers[$job->id]['attachment_id'] != '') {
 
-                $offers[$job->id]['image'] = $api->downloadImg(property_exists($job->_embedded, 'attachments') ? $job->_embedded->attachments[0]->id : '');
-
+                $offers[$job->id]['image'] = $api->downloadImg(property_exists($job->_embedded, 'attachments')
+                    ? $job->_embedded->attachments[0]->id : '');
             }
         }
 
@@ -61,16 +55,10 @@ class JobController extends Controller
             $request->query->getInt('limit', 9)
         );
 
-        $status = $this->getUser()->isStatus();
-        $hasResume = $this->getUser()->isHasResume();
-
         return $this->render(
             'AppBundle:Job:home.html.twig',
             [
                 'offers' => $results,
-                'status' => $status,
-                'hasResume' => $hasResume,
-                'textsFooter'=>$textsFooter
             ]
         );
     }
@@ -79,11 +67,9 @@ class JobController extends Controller
      * @Route("/{id}", name="job_page", requirements={"id": "\d+"})
      */
 
-    public function jobPageAction(Api $service, $id, Request $request, \Swift_Mailer $mailer, Email $email)
+    public function jobPageAction(Api $api, $id, Request $request, \Swift_Mailer $mailer, Email $email)
     {
-        $status = $this->getUser()->isStatus();
-        $hasResume = $this->getUser()->isHasResume();
-        $data = $service->getId('jobs', $id);
+        $data = $api->getId('jobs', $id);
         $form = $this->createFormBuilder()
             ->setMethod('POST')
             ->add(
@@ -97,9 +83,8 @@ class JobController extends Controller
 
         if ($form->isValid() && $form->isSubmitted()) {
 
-            $users = $service->getSearch('candidates', $this->getUser()->getEmail());
-            $user = $users->_embedded->candidates[0];
-            $candidat = $service->apply($user, $id);
+            $userId = $this->getUser()->getIdCats();
+            $api->apply($userId, $id);
             $email->applyJob($mailer, $this->getUser(), $data->title);
             $this->addFlash('success', 'Nous avons reçu votre candidature. Nous allons vous contacter par e-mail.');
         }
@@ -114,14 +99,14 @@ class JobController extends Controller
             'statut' => $data->_embedded->status->title,
             'maj' => $data->date_modified,
             'debut' => $data->start_date,
-            'attachment_id' => (property_exists($data->_embedded, 'attachments') ? $data->_embedded->attachments[0]->id : '')
-
+            'attachment_id' => (property_exists($data->_embedded, 'attachments') ?
+                $data->_embedded->attachments[0]->id : '')
         ];
 
         if ($offer['attachment_id'] != '') {
 
-            $offer['image'] = $service->downloadImg(property_exists($data->_embedded, 'attachments') ? $data->_embedded->attachments[0]->id : '');
-
+            $offer['image'] = $api->downloadImg(property_exists($data->_embedded, 'attachments')
+                ? $data->_embedded->attachments[0]->id : '');
         }
 
         return $this->render(
@@ -129,8 +114,6 @@ class JobController extends Controller
             [
                 'offer' => $offer,
                 'form' => $form->createView(),
-                'status' => $status,
-                'hasResume' => $hasResume,
             ]
         );
     }

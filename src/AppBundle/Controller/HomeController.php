@@ -35,12 +35,14 @@ class HomeController extends Controller
                 'maj' => $job->date_modified,
                 'debut' => $job->start_date,
                 'id' => $job->id,
-                'attachment_id' => (property_exists($job->_embedded, 'attachments') ? $job->_embedded->attachments[0]->id : '')
+                'attachment_id' => (property_exists($job->_embedded, 'attachments') ?
+                    $job->_embedded->attachments[0]->id : '')
 
             ];
             if ($offers[$job->id]['attachment_id'] != '') {
 
-                $offers[$job->id]['image'] = $api->downloadImg(property_exists($job->_embedded, 'attachments') ? $job->_embedded->attachments[0]->id : '');
+                $offers[$job->id]['image'] = $api->downloadImg(property_exists($job->_embedded, 'attachments')
+                    ? $job->_embedded->attachments[0]->id : '');
 
             }
         }
@@ -74,7 +76,7 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/lesTests", name="les_tests")
+     * @Route("/TestsDePersonnalite", name="les_tests")
      */
     public function testAction()
     {

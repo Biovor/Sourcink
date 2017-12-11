@@ -235,48 +235,6 @@ class Api
         return json_decode($data->getBody()->getContents());
     }
 
-    public function parsing($file)
-    {
-        $parsing = $this->getClient()->request(
-            'POST', 'attachments/parse', [
-                'headers' => [
-                    'Authorization' => 'Token ' . $this->getApiKey(),
-                    'content-type' => 'application/octet-stream'
-                ],
-
-                'body' => fopen(realpath($file), 'r')
-            ]
-        );
-        return $parsing->getBody()->getContents();
-    }
-
-    public function updateCandidatResume($resumeJson)
-    {
-        $resumeData = json_decode($resumeJson);
-        $candidate = $this->getClient()->request(
-            'POST', 'candidates?check_duplicate=false', [
-                'headers' => [
-                    'Authorization' => 'Token ' . $this->getApiKey(),
-                    'content-type' => 'application/json'
-                ],
-                'json' => [
-                    "first_name" => $resumeData->first_name,
-                    "last_name" => $resumeData->last_name,
-                    "emails" => [
-                        "primary" => $resumeData->emails->primary
-                    ],
-                    "title" => $resumeData->title,
-                    "current_pay" => $resumeData->current_pay,
-                    "desired_pay" => $resumeData->desired_pay,
-                    "phones" => [
-                        "cell" => $resumeData->phones
-                    ],
-                ]
-            ]
-        );
-        return $candidate->getHeaders()['Location'][0];
-    }
-
     public function getRegions()
     {
 
@@ -379,17 +337,24 @@ class Api
     }
 
 
-    public function sendResume($file, $id, $firstName, $lastName)
+    public function sendResume($file, $id, $firstName, $lastName, $origin)
     {
-
         $for = (array) $file;
         $result='';
+        $format='.txt';
         foreach ($for as $value ){
             $result .= '*'.$value;
         }
-        $resultTab=explode('*',$result);
 
-        $format = $resultTab[2];
+        if ($origin === 'CV') {
+            $resultTab = explode('*', $result);
+            $format = $resultTab[2];
+        }
+
+        if ($origin === 'Big5') {
+            $resultTab=explode('/',$result);
+            $format = $resultTab[sizeof($resultTab)-1];
+        }
 
         $resume = $this->getClient()->request(
             'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
@@ -404,36 +369,7 @@ class Api
         return $resume;
     }
 
-    public function sendResume2($file, $id, $firstName, $lastName)
-    {
-
-        $for = (array) $file;
-        $result='';
-        foreach ($for as $value ){
-            $result .= '*'.$value;
-        }
-        $resultTab=explode('/',$result);
-
-        var_dump($resultTab);
-        $format = $resultTab[sizeof($resultTab)-1];
-
-
-        $resume = $this->getClient()->request(
-            'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
-                'headers' => [
-                    'Authorization' => 'Token ' . $this->getApiKey(),
-                    'content-type' => 'application/octet-stream'
-                ],
-
-                'body' => fopen(realpath($file), 'r')
-            ]
-        );
-        return $resume;
-
-    }
-
-
-    public function updateCandidate(User $user, $catsUser, $cultureFit = null)
+    public function updateCandidate(User $user, $catsUser,CultureFit $cultureFit)
     {
         $fields = $this->candidateCustomFields();
         $customFields = [];
@@ -525,59 +461,8 @@ class Api
         return $update;
     }
 
-    public function updateCandiCultureFit(CultureFit $cultureFit, User $user, $idUser)
+    public function apply($userId, $jobId)
     {
-        $fields = $this->candidateCustomFields();
-        $customFields = [];
-        $value = '';
-        foreach ($fields as $field) {
-            if ($field->name == self::mobility) {
-                $value = array();
-                foreach ($user->getMobility() as $mobility){
-                    $value[] = $mobility;
-                }
-            } else if ($field->name == self::wanted_job) {
-                $value = $user->getWantedJob();
-            } else if ($field->name == self::experience) {
-                $value = $user->getExperience();
-            } else if ($field->name == self::remuAvt) {
-            $value = $cultureFit->getRemuAvt().'/10';
-            } else if ($field->name == self::formEvo) {
-                $value = $cultureFit->getFormEvo().'/10';
-            } else if ($field->name == self::recoMgt) {
-                $value = $cultureFit->getRecoMgt().'/10';
-            } else if ($field->name == self::exp) {
-                $value = $cultureFit->getExp().'/10';
-            } else if ($field->name == self::respCha) {
-                $value = $cultureFit->getRespCha().'/10';
-            } else if ($field->name == self::devEga) {
-                $value = $cultureFit->getDevEga().'/10';
-            } else if ($field->name == self::creaInno) {
-                $value = $cultureFit->getCreaInno().'/10';
-            } else if ($field->name == self::teamAmb) {
-                $value = $cultureFit->getTeamAmb().'/10';
-            }
-            $customFields[] = ['id' => $field->id, 'value' => $value];
-        }
-
-        $update = $this->getClient()->request(
-            'PUT', 'candidates/' . $idUser, [
-                'headers' => [
-                    'Authorization' => 'Token ' . $this->getApiKey(),
-                    'content-type' => 'application/octet-stream'
-                ],
-                'json' => [
-                    "custom_fields" => $customFields
-                ]
-            ]
-        );
-        return $update;
-    }
-
-    public function apply($user, $id)
-    {
-        $candidate = $user->id;
-        $job = $id;
         $apply = $this->getClient()->request(
             'POST', 'pipelines',
             [
@@ -585,7 +470,7 @@ class Api
                     'Authorization' => 'Token ' . $this->getApiKey(),
                     'content-type' => 'application/json'
                 ],
-                'body' => '{"candidate_id": ' . $candidate . ',"job_id": ' . $job . '}'
+                'body' => '{"candidate_id": ' . $userId . ',"job_id": ' . $jobId . '}'
             ]
         );
         return $apply;

@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Text;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Text controller.
@@ -116,7 +117,7 @@ class TextController extends Controller
             ->setAction($this->generateUrl('admin_text_delete', array('id' => $text->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 
     public function footerAction()
