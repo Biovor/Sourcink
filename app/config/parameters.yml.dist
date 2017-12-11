@@ -21,10 +21,12 @@ parameters:
 
     api_key: ici clé API catsone
     api_url: 'https://api.catsone.com/v3/'
+    portal_cats_id: 'id portal'
 
     oauth.linkedin.id: ~
     oauth.linkedin.secret: ~
 
+    tag_candidate_spont: WEB SPONT
     tag_candidate: WEB
     try_create_candidate: 5
 
