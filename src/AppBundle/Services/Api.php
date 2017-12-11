@@ -369,7 +369,7 @@ class Api
         return $resume;
     }
 
-    public function updateCandidate(User $user, $catsUser,CultureFit $cultureFit)
+    public function updateCandidate(User $user, $catsUser, $cultureFit)
     {
         $fields = $this->candidateCustomFields();
         $customFields = [];
