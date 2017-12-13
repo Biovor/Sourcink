@@ -514,7 +514,7 @@ class Api
         return $tag;
     }
 
-    public function getTag($name)
+    public function getTag()
     {
         $tags = $this->getClient()->request(
             'GET', 'tags', [
@@ -525,13 +525,7 @@ class Api
             ]
         );
         $tags = json_decode($tags->getBody()->getContents());
-        $id = 0;
-        foreach ($tags->_embedded->tags as $tag) {
-            if ($tag->title == $name) {
-                $id = $tag->id;
-            }
-        }
-        return $id;
+        return $tags;
     }
 
 }

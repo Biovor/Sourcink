@@ -28,6 +28,6 @@ class AjaxController extends Controller
                 $this->getUser()->getLastName(), $origin);
             return new Response(1);
         }
-        return $this->redirectToRoute('app_homepage');
+        return $this->redirectToRoute('applicant_update_cv');
     }
 }

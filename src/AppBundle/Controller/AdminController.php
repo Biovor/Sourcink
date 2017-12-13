@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Services\Api;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -29,7 +30,21 @@ class AdminController extends Controller
      */
     public function listAction()
     {
-        return $this->render('Admin/indexadmin.html.twig');
+        return $this->render('Admin/indexAdmin.html.twig');
     }
 
+    /**
+     * Lists all
+     *
+     * @Route("/list78541tags",    name="admin_tag")
+     * @Method("GET")
+     */
+    public function idTagsAction(Api $api)
+    {
+        $tags= $api->getTag();
+
+        return $this->render('Admin/indexTagsAdmin.html.twig', array(
+            'tags' => $tags
+        ));
+    }
 }

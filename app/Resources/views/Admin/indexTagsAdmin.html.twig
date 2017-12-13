@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h1>Liste des tags</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nom du tag</th>
+            <th>ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for tag in tags._embedded.tags %}
+            <tr>
+                <td>{{ tag.title }}</td>
+                <td> {{ tag.id }}
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}
+
