@@ -15,6 +15,7 @@
                         background-size:cover;">
                 {% endif %}
                         <div class="layer">
+                            <a href="{{ path('job_page', {'id': offer.id}) }}">
                             <span class="card-title offers-title">{{ offer.title | raw }}</span>
                             <div class="card-content">
                                 <p>
@@ -22,9 +23,9 @@
                                     | {{ offer.duration }}
                                 </p>
                             </div>
-                            <a class="waves-effect waves-light btn red offres"
-                               href="{{ path('job_page', {'id': offer.id}) }}">
+                            <div class="waves-effect waves-light btn red offres">
                                 Voir plus
+                            </div>
                             </a>
                         </div>
                     </div>

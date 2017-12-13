@@ -52,7 +52,6 @@ class ApplicantController extends Controller
             };
             if (isset($catsUser->count) && $catsUser->count === 0) {
                 ////*****4-5 Appel API*****//// Création user
-                $tag = $api->getTag($this->getParameter('tag_candidate'));
                 $api->createCandidateUser($this->getUser());
                 $newUser = $this->userCatsIdentificationAction($api);
                 $i = 0;
@@ -61,15 +60,19 @@ class ApplicantController extends Controller
                     $i++;
                 }
                 if (isset($newUser->id)) {
-                    $api->tagCandidate($newUser->id, $tag);
+                    $api->tagCandidate($newUser->id, $this->getParameter('id_tag_candidate_web'));
                     $em->persist($this->getUser()->setIdCats($newUser->id));
                 }
             } else {
                 ////*****1 Appel API*****//// Mise à jour user
                 $CFUsers = $em->getRepository('AppBundle:CultureFit')->findByuserId($this->getUser());
                 $cultureFit = end($CFUsers);
-                $api->updateCandidate($this->getUser(), $catsUser, $cultureFit);
+                $api->updateCandidate($this->getUser(), $catsUser->id, $cultureFit);
+
+                if (is_null($this->getUser()->getIdCats())) {
                 $this->getUser()->setIdCats($catsUser->id);
+                $api->tagCandidate($catsUser->id, $this->getParameter('id_tag_candidate_web'));
+                }
             }
             $this->getUser()->setStatus(true);
             $em->persist($data);

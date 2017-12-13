@@ -37,7 +37,6 @@ class Api
     private $apiKey;
     private $client;
     private $portalId;
-    private $tagCandidate;
     private $em;
 
     /**
@@ -61,9 +60,9 @@ class Api
     /**
      * Api constructor.
      */
-    public function __construct($apiUrl, $apiKey, $tagCandidate, $portalId, EntityManager $entityManager)
+    public function __construct($apiUrl, $apiKey, $portalId, EntityManager $entityManager)
     {
-        $this->setApiKey($apiKey)->setApiUrl($apiUrl)->setTagCandidate($tagCandidate)->setPortalId($portalId)->setEm
+        $this->setApiKey($apiKey)->setApiUrl($apiUrl)->setPortalId($portalId)->setEm
     ($entityManager)->setClient(new Client(['base_uri' => $this->getApiUrl()]));
     }
 
@@ -82,25 +81,6 @@ class Api
     public function setEm($em)
     {
         $this->em = $em;
-        return $this;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getTagCandidate()
-    {
-        return $this->tagCandidate;
-    }
-
-    /**
-     * @param mixed $tagCandidate
-     * @return Api
-     */
-    public function setTagCandidate($tagCandidate)
-    {
-        $this->tagCandidate = $tagCandidate;
         return $this;
     }
 
@@ -437,7 +417,7 @@ class Api
             }
         }
         $update = $this->getClient()->request(
-            'PUT', 'candidates/' . $catsUser->id, [
+            'PUT', 'candidates/' . $catsUser, [
                 'headers' => [
                     'Authorization' => 'Token ' . $this->getApiKey(),
                     'content-type' => 'application/octet-stream'

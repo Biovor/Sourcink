@@ -84,7 +84,7 @@ class CultureFitController extends Controller{
         $CFUsers = $em->getRepository('AppBundle:CultureFit')->findByuserId($idUser);
         $CFUser = end($CFUsers);
         $userCats = $api->getId('candidates',$user->getIdCats());
-        $api->updateCandidate($user, $userCats, $CFUser);
+        $api->updateCandidate($user, $userCats->id, $CFUser);
 
         return $this->redirectToRoute('app_homepage');
     }

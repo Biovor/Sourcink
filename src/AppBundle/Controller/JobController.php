@@ -122,9 +122,12 @@ class JobController extends Controller
      */
     public function spontaneAction(\Swift_Mailer $mailer, Email $email, API $api)
     {
+        $em = $this->getDoctrine()->getManager();
+        $CFUsers = $em->getRepository('AppBundle:CultureFit')->findByuserId($this->getUser());
+        $cultureFit = end($CFUsers);
         $email->candidatureSpontane($mailer, $this->getUser());
-        $tag = $api->getTag($this->getParameter('tag_candidate_spont'));
-        $api->tagCandidate($this->getUser()->getIdCats(), $tag);
+        $api->tagCandidate($this->getUser()->getIdCats(), $this->getParameter('id_tag_candidate_spont'));
+        $api->updateCandidate($this->getUser(), $this->getUser()->getIdCats(), $cultureFit);
         $this->addFlash('success', 'Nous avons reçu votre candidature. Nous allons vous contacter par e-mail.');
         return $this->redirectToRoute('job_list');
     }

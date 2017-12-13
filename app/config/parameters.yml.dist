@@ -26,8 +26,9 @@ parameters:
     oauth.linkedin.id: ~
     oauth.linkedin.secret: ~
 
-    tag_candidate_spont: WEB SPONT
-    tag_candidate: WEB
+    id_tag_candidate_spont: id Spont
+    id_tag_candidate: id WEB
+    id_tag_candidate_big5: id Big5
     try_create_candidate: 5
 
     email: contact@sourcink.com

@@ -21,7 +21,6 @@ services:
         arguments:
             $apiUrl: '%api_url%'
             $apiKey: '%api_key%'
-            $tagCandidate: '%tag_candidate%'
             $portalId: '%portal_cats_id%'
     AppBundle\Services\Email:
         arguments:
