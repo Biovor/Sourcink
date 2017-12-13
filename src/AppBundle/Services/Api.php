@@ -525,6 +525,12 @@ class Api
             ]
         );
         $tags = json_decode($tags->getBody()->getContents());
+//        $id = 0;
+//        foreach ($tags->_embedded->tags as $tag) {
+//            if ($tag->title == $name) {
+//                $id = $tag->id;
+//            }
+//        }
         return $tags;
     }
 

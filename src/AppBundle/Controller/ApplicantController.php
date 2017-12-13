@@ -126,8 +126,16 @@ class ApplicantController extends Controller
             }
         }
 
-        if (empty( $catsUser->_embedded->attachments[0]->is_resume)) {
-            $em->persist($this->getUser()->setHasResume(false));
+        if (empty( $catsUser->_embedded->attachments)) {
+            $resume = false;
+            foreach ($catsUser->_embedded->attachments as $attachment) {
+                if ($attachment->is_resume === true){
+                   $resume = true;
+                }
+            }
+            if ($resume == false){
+                $em->persist($this->getUser()->setHasResume(false));
+            }
         }
 
         return $catsUser;
