@@ -92,7 +92,8 @@ class ApplicantController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($this->getUser()->setHasResume(true));
         $em->flush();
-
+        var_dump($this->getUser()->getHasResume());
+        die();
         return $this->redirectToRoute('app_applicant');
 
     }
