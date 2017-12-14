@@ -116,6 +116,7 @@ class HomeController extends Controller
             $cache ->set('hook', $json, $this->getParameter('temp_cache_jobs'));
 
             var_dump($cache->get('hook'));
+            die();
 
 
             $userCats =$json->_embedded;
