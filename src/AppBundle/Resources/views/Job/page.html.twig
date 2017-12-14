@@ -40,14 +40,14 @@
                                     id="linkded"> lang: fr_FR</script>
                             <script type="IN/Share"></script>
 
-                            {% if app.user.status == true and app.user.hasResume == true %}
+                            {% if app.user.status is defined and app.user.status == true and app.user.hasResume == true %}
                                 {{ form(form) }}
-                            {% elseif app.user.status == true and app.user.hasResume == false %}
+                            {% elseif app.user.status is defined and app.user.status == true and app.user.hasResume == false %}
                                 <div class="center no-job">
                                     <p>Afin de postuler, vous devez nous envoyer votre CV</p>
                                     <a href="{{ path('app_applicant') }}" class="btn btn-large blue">Envoyer mon CV</a>
                                 </div>
-                            {% elseif app.user.status == false and app.user %}
+                            {% elseif app.user.status is defined and app.user.status == false and app.user %}
                                 <div class="center no-job">
                                     <p>Afin de postuler, vous devez compléter votre profil</p>
                                     <a href="{{ path('applicant_update') }}" class="btn btn-large blue">Compléter mon
