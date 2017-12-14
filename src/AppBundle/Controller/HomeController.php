@@ -26,6 +26,7 @@ class HomeController extends Controller
 
         $cache = new FilesystemCache();
 
+
         if (!$cache->has('jobs')){
             $jobs = $api->getJob();
             $cache ->set('jobs', $jobs, $this->getParameter('temp_cache_jobs'));
@@ -103,10 +104,20 @@ class HomeController extends Controller
     public function webHooksCandidatAction(Request $request, Api $api)
     {
         if($request->getContent() != null ) {
+            $cache = new FilesystemCache();
+
+
+
 
             $token = $this->container->getParameter('secret_hook_cats');
 
             $json = json_decode($request->getContent());
+
+            $cache ->set('hook', $json, $this->getParameter('temp_cache_jobs'));
+
+            var_dump($cache->get('hook'));
+
+
             $userCats =$json->_embedded;
             $idUser = $json->candidate_id;
 
@@ -117,7 +128,9 @@ class HomeController extends Controller
 
             }
 
-        return $this->redirectToRoute('app_homepage');
+//        return $this->redirectToRoute('app_homepage');
+        return $this->render(
+            'AppBundle:hookdump:big5.html.twig');
     }
 
 //    public function big5PDFAction(Api $api, $idUser)
