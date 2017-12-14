@@ -184,7 +184,10 @@ class Api
                 ]
             ]
         );
-        return json_decode($data->getBody()->getContents());
+        $data = json_decode($data->getBody()->getContents());
+        $jobs = $data->_embedded->jobs;
+
+        return $jobs;
     }
 
     public function getId($query, $id)

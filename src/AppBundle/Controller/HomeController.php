@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Services\Api;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
@@ -22,9 +23,17 @@ class HomeController extends Controller
         $photos = $em->getRepository('AppBundle:Slider')->findAll();
         $sourcink = $em->getRepository('AppBundle:Sourcink')->find(1);
         $partnerViews = $em->getRepository('AppBundle:PartnerView')->findAll();
-        $data = $api->getJob();
 
-        foreach ($data->_embedded->jobs as $job) {
+        $cache = new FilesystemCache();
+
+        if (!$cache->has('jobs')){
+            $jobs = $api->getJob();
+            $cache ->set('jobs', $jobs, $this->getParameter('temp_cache_jobs'));
+        }
+
+        $jobs = $cache-> get('jobs');
+
+        foreach ($jobs as $job) {
             $offers[$job->id] = [
                 'title' => $job->title,
                 'duration' => $job->duration,
@@ -86,6 +95,55 @@ class HomeController extends Controller
             return $this->render('AppBundle:Home:home-tests.html.twig');
         }
     }
+
+
+    /**
+     * @Route("cats/rWoui45Sd78", name="hookCandidat")
+     */
+    public function webHooksCandidatAction(Request $request, Api $api)
+    {
+        if($request->getContent() != null ) {
+
+            $token = $this->container->getParameter('secret_hook_cats');
+
+            $json = json_decode($request->getContent());
+            $userCats =$json->_embedded;
+            $idUser = $json->candidate_id;
+
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('UserBundle:User')->findOneByIdCats($idUser);
+
+            $api->updateCandidateFromCats($user, $userCats);
+
+            }
+
+        return $this->redirectToRoute('app_homepage');
+    }
+
+//    public function big5PDFAction(Api $api, $idUser)
+//    {
+//        $em = $this->getDoctrine()->getManager();
+//        $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
+//        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($idUser);
+//        $user->setBig5(true);
+//        $em->persist($user);
+//        $em->flush();
+//        $pdf = base64_decode($big5User->getPdfReport());
+//
+//        header('Content-Type: application/pdf');
+//        $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
+//        fwrite($fp, $pdf);
+//        fclose($fp);
+//        $origin = 'Big5';
+//        $directory = 'big5/big5-'.$big5User->getId().'.pdf';
+//        $api->tagCandidate($user->idCats, $this->getParameter('id_tag_candidate_big5'));
+//        $api->sendResume($directory . $user->getResumeName(),
+//            $user->id, $user->first_name, $user->last_name, $origin);
+//        unlink($directory . $user->getResumeName());
+//
+//        return $this->redirectToRoute('app_homepage');
+//    }
+
 }
 
 

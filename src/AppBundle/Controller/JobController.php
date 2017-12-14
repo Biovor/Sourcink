@@ -6,9 +6,11 @@ use AppBundle\Services\Email;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Services\Api;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 
 /**
@@ -23,8 +25,16 @@ class JobController extends Controller
      */
     public function jobAction(Api $api, Request $request)
     {
-        $data = $api->getJob();
-        foreach ($data->_embedded->jobs as $job) {
+        $cache = new FilesystemCache();
+
+        if (!$cache->has('jobs')){
+            $jobs = $api->getJob();
+            $cache ->set('jobs', $jobs, $this->getParameter('temp_cache_jobs'));
+        }
+
+        $jobs = $cache-> get('jobs');
+
+        foreach ($jobs as $job) {
 
             $offers[$job->id] =
                 [
@@ -66,10 +76,10 @@ class JobController extends Controller
     /**
      * @Route("/{id}", name="job_page", requirements={"id": "\d+"})
      */
-
     public function jobPageAction(Api $api, $id, Request $request, \Swift_Mailer $mailer, Email $email)
     {
-        $data = $api->getId('jobs', $id);
+        $cache = new FilesystemCache();
+
         $form = $this->createFormBuilder()
             ->setMethod('POST')
             ->add(
@@ -81,34 +91,46 @@ class JobController extends Controller
             ->getForm();
         $form->handleRequest($request);
 
-        if ($form->isValid() && $form->isSubmitted()) {
-
-            $userId = $this->getUser()->getIdCats();
-            $api->apply($userId, $id);
-            $email->applyJob($mailer, $this->getUser(), $data->title);
-            $this->addFlash('success', 'Nous avons reçu votre candidature. Nous allons vous contacter par e-mail.');
+        if (!$cache->has('jobs')){
+            $jobs = $api->getJob();
+            $cache ->set('jobs', $jobs, $this->getParameter('temp_cache_jobs'));
         }
 
-        $offer = [
-            'job'=>$data->id,
-            'id' => $data->id,
-            'title' => $data->title,
-            'duration' => $data->duration,
-            'description' => $data->description,
-            'city' => trim(ucfirst(strtolower($data->location->city))),
-            'statut' => $data->_embedded->status->title,
-            'maj' => $data->date_modified,
-            'debut' => $data->start_date,
-            'attachment_id' => (property_exists($data->_embedded, 'attachments') ?
-                $data->_embedded->attachments[0]->id : '')
-        ];
+        $jobs = $cache-> get('jobs');
 
-        if ($offer['attachment_id'] != '') {
+        foreach ($jobs as $job) {
 
-            $offer['image'] = $api->downloadImg(property_exists($data->_embedded, 'attachments')
-                ? $data->_embedded->attachments[0]->id : '');
+            if ($job->id == $id){
+
+                if ($form->isValid() && $form->isSubmitted()) {
+
+                    $userId = $this->getUser()->getIdCats();
+                    $api->apply($userId, $id);
+                    $email->applyJob($mailer, $this->getUser(), $job->title);
+                    $this->addFlash('success', 'Nous avons reçu votre candidature. Nous allons vous contacter par e-mail.');
+                }
+
+                $offer = [
+                    'job' => $job->id,
+                    'id' => $job->id,
+                    'title' => $job->title,
+                    'duration' => $job->duration,
+                    'description' => $job->description,
+                    'city' => trim(ucfirst(strtolower($job->location->city))),
+                    'statut' => $job->_embedded->status->title,
+                    'maj' => $job->date_modified,
+                    'debut' => $job->start_date,
+                    'attachment_id' => (property_exists($job->_embedded, 'attachments') ?
+                        $job->_embedded->attachments[0]->id : '')
+                ];
+
+                if ($offer['attachment_id'] != '') {
+
+                    $offer['image'] = $api->downloadImg(property_exists($job->_embedded, 'attachments')
+                        ? $job->_embedded->attachments[0]->id : '');
+                }
+            }
         }
-
         return $this->render(
             'AppBundle:Job:page.html.twig',
             [

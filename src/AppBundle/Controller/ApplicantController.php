@@ -6,6 +6,7 @@ use AppBundle\Form\ProfileType;
 use AppBundle\Services\Api;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -22,10 +23,10 @@ class ApplicantController extends Controller
         ////*****1 Appel API*****////
         $catsUser = $this->userCatsIdentificationAction($api);
 
-        ////*****1 Appel API*****////
-        if (isset($catsUser->id)) {
-            $api->updateCandidateFromCats($this->getUser(), $catsUser);
-        }
+//        ////*****1 Appel API*****////
+//        if (isset($catsUser->id)) {
+//            $api->updateCandidateFromCats($this->getUser(), $catsUser);
+//        }
 
         return $this->render('AppBundle:Applicant:home.html.twig');
     }
@@ -35,11 +36,17 @@ class ApplicantController extends Controller
      */
     public function updateAction(Request $request, Api $api)
     {
-        ////*****1 Appel API*****////
-        $region = $api->getRegions();
+        $cache = new FilesystemCache();
+
+        if (!$cache->has('regions')){
+            ////*****1 Appel API*****////
+            $regions = $api->getRegions();
+            $cache ->set('regions', $regions, $this->getParameter('temp_cache_regions'));
+        }
+        $regions = $cache-> get('regions');
 
         $em = $this->getDoctrine()->getManager();
-        $form = $this->createForm(ProfileType::class, $this->getUser(), array('regions' => $region));
+        $form = $this->createForm(ProfileType::class, $this->getUser(), array('regions' => $regions));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -47,7 +54,7 @@ class ApplicantController extends Controller
             ////*****1 Appel API*****////
             $catsUser = $this->userCatsIdentificationAction($api);
             if (empty($this->getUser()->getMobility())) {
-                $value[]=(reset($region));
+                $value[]=(reset($regions));
                 $this->getUser()->setMobility($value);
             };
             if (isset($catsUser->count) && $catsUser->count === 0) {
@@ -109,6 +116,7 @@ class ApplicantController extends Controller
         $em->flush();
         return $this->redirectToRoute('app_homepage');
     }
+
 
     public function userCatsIdentificationAction(Api $api)
     {

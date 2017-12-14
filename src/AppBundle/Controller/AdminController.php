@@ -36,7 +36,7 @@ class AdminController extends Controller
     /**
      * Lists all
      *
-     * @Route("/list78541tags",    name="admin_tag")
+     * @Route("/liste78541tags",    name="admin_tag")
      * @Method("GET")
      */
     public function idTagsAction(Api $api)
