@@ -117,7 +117,9 @@ class HomeController extends Controller
 
             $cache ->set('hook', $json, $this->getParameter('temp_cache_jobs'));
 
-            var_dump($cache);
+            var_dump($cache->get('test'));
+            var_dump($cache->get('request'));
+            var_dump($cache->get('hook'));
             die();
 
 
