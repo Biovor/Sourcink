@@ -101,38 +101,40 @@ class HomeController extends Controller
     /**
      * @Route("cats/rWoui45Sd78", name="hookCandidat")
      */
-//    public function webHooksCandidatAction(Request $request, Api $api)
-//    {
+    public function webHooksCandidatAction(Request $request, Api $api)
+    {
 //        if($request->getContent() != null ) {
-//            $cache = new FilesystemCache();
-//
-//
-//
-//
-//            $token = $this->container->getParameter('secret_hook_cats');
-//
-//            $json = json_decode($request->getContent());
-//
-//            $cache ->set('hook', $json, $this->getParameter('temp_cache_jobs'));
-//
-//            var_dump($cache->get('hook'));
-//            die();
-//
-//
-//            $userCats =$json->_embedded;
-//            $idUser = $json->candidate_id;
-//
-//            $em = $this->getDoctrine()->getManager();
-//            $user = $em->getRepository('UserBundle:User')->findOneByIdCats($idUser);
-//
-//            $api->updateCandidateFromCats($user, $userCats);
-//
+            $cache = new FilesystemCache();
+
+            $cache->set('test',"ceci est un test",2000);
+            $cache->set('request',$request,2000);
+
+
+
+            $token = $this->container->getParameter('secret_hook_cats');
+
+            $json = json_decode($request->getContent());
+
+            $cache ->set('hook', $json, $this->getParameter('temp_cache_jobs'));
+
+            var_dump($cache);
+            die();
+
+
+            $userCats =$json->_embedded;
+            $idUser = $json->candidate_id;
+
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->getRepository('UserBundle:User')->findOneByIdCats($idUser);
+
+            $api->updateCandidateFromCats($user, $userCats);
+
 //            }
 
-//        return $this->redirectToRoute('app_homepage');
-//        return $this->render(
-//            'AppBundle:MonkeyTie:hookdump.html.twig');
-//    }
+        return $this->redirectToRoute('app_homepage');
+        return $this->render(
+            'AppBundle:MonkeyTie:hookdump.html.twig');
+    }
 
 //    public function big5PDFAction(Api $api, $idUser)
 //    {
