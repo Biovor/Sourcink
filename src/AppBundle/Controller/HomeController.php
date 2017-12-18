@@ -114,7 +114,7 @@ class HomeController extends Controller
 
         $hash = hash_hmac('sha256', $webhookBody . $requestId, $secret, false);
 
-        if ($signature == 'HMAC-SHA256 ' . $hash) {
+        if ($signature !== 'HMAC-SHA256 ' . $hash) {
 
             $contentHook =json_decode($request->getContent());
 
