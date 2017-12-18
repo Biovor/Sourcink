@@ -118,7 +118,37 @@ class HomeController extends Controller
             $tab =json_decode($cache->get('requestaction'));
 
 //            var_dump($tab->event);
-            var_dump($tab->_embedded->candidate);
+           $userData = $tab->_embedded->candidate;
+
+
+        var_dump($userData->first_name);
+        var_dump($userData->last_name);
+        var_dump($userData->title);
+        var_dump($userData->emails->primary);
+        var_dump($userData->phones->cell);
+        var_dump($userData->current_pay);
+        var_dump($userData->desired_pay);
+//        foreach ($userData->_embedded->custom_fields as $field) {
+//            if ($field->_embedded->definition->name == self::mobility) {
+//                $user->setMobility($field->value);
+//
+//                $regions = array();
+//                foreach ($field->_embedded->definition->field->selections as $region){
+//                    $regions[$region->label] = $region->id;
+//                }
+//                $regions = array_flip($regions);
+//
+//                $mobilities = array();
+//                foreach ($field->value as $mobility) {
+//                    $mobilities[] = $regions[$mobility];
+//                }
+//                $user->setMobilityName($mobilities);
+//            } else if ($field->_embedded->definition->name == self::wanted_job) {
+//                $user->setWantedJob($field->value);
+//            } else if ($field->_embedded->definition->name == self::experience) {
+//                $user->setExperience($field->value);
+//            }
+//        }
 
 
 
