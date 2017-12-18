@@ -103,11 +103,13 @@ class HomeController extends Controller
      */
     public function webHooksCandidatAction(Request $request, Api $api)
     {
+        var_dump($request);
+        die();
         $secret =  $this->container->getParameter('secret_hook_cats');
-        $webhookBody = '{}';
+        $webhookBody = $request->getContent();
 
         // `X-Request-Id` header
-        $requestId = '5d6ce3f9-cce8-4b5b-a26e-396a6161eb99';
+        $requestId =
 
         // `X-Signature` header
         $signature = 'HMAC-SHA256 affc8d589f36580daa0d587ac0b314c123b59322cf4d018661e0a403cc76391f';
