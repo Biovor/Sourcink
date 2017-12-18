@@ -117,7 +117,7 @@ class HomeController extends Controller
 
             $tab = explode('{',$cache->get('requesttte'));
 
-            var_dump($tab);
+            print_r($tab);
 
 
 
