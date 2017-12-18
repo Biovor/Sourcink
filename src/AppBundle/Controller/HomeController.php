@@ -107,7 +107,7 @@ class HomeController extends Controller
             $cache = new FilesystemCache();
 
             $cache->set('test',"ceci est un test",2000);
-            $cache->set('request',$request,2000);
+            $cache->set('request',$request->getContent(),2000);
 
 
 
