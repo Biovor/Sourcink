@@ -103,70 +103,19 @@ class HomeController extends Controller
      */
     public function webHooksCandidatAction(Request $request, Api $api)
     {
-//        if($request->getContent() != null ) {
-            $cache = new FilesystemCache();
-
-
-        if (!$cache->has('requestaction')) {
-            $cache->set('requestaction', $request->getContent(), 200005);
-        }
-
-
             $token = $this->container->getParameter('secret_hook_cats');
 
-
-            $tab =json_decode($cache->get('requestaction'));
-
-//            var_dump($tab->event);
-           $userData = $tab->_embedded->candidate;
-
-//
-//        var_dump($userData->first_name);
-//        var_dump($userData->last_name);
-//        var_dump($userData->title);
-//        var_dump($userData->emails->primary);
-//        var_dump($userData->phones->cell);
-//        var_dump($userData->current_pay);
-//        var_dump($userData->desired_pay);
-        var_dump($userData->_embedded->custom_fields);
-//            if ($field->_embedded->definition->name == self::mobility) {
-//                var_dump($field->value);
-//
-//                $regions = array();
-//                foreach ($field->_embedded->definition->field->selections as $region){
-//                    $regions[$region->label] = $region->id;
-//                }
-//                $regions = array_flip($regions);
-//
-//                $mobilities = array();
-//                foreach ($field->value as $mobility) {
-//                    $mobilities[] = $regions[$mobility];
-//                }
-//                var_dump($mobilities);
-//            } else if ($field->_embedded->definition->name == self::wanted_job) {
-//                var_dump($field->value);
-//            } else if ($field->_embedded->definition->name == self::experience) {
-//                var_dump($field->value);
-//            }
+            $tab =json_decode($request->getContent());
 
 
-
-
-            die();
-
-
-
+            $userData = $tab->_embedded->candidate;
 
             $em = $this->getDoctrine()->getManager();
-            $user = $em->getRepository('UserBundle:User')->findOneByIdCats($idUser);
+            $user = $em->getRepository('UserBundle:User')->findOneByIdCats($userData->id);
 
-            $api->updateCandidateFromCats($user, $userCats);
-
-//            }
+            $api->updateCandidateFromCats($user, $userData);
 
         return $this->redirectToRoute('app_homepage');
-        return $this->render(
-            'AppBundle:MonkeyTie:hookdump.html.twig');
     }
 
 //    public function big5PDFAction(Api $api, $idUser)
