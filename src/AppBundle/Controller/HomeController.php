@@ -103,21 +103,14 @@ class HomeController extends Controller
      */
     public function webHooksCandidatAction(Request $request, Api $api)
     {
-        $cache = new FilesystemCache();
-        if (!$cache->has('ocs')){
-            $cache ->set('ocs', $request, 85000);
-        }
-
-        var_dump($cache->get('ocs')->server->get('HTTP_X_REQUEST_ID'));
-        die();
         $secret =  $this->container->getParameter('secret_hook_cats');
         $webhookBody = $request->getContent();
 
         // `X-Request-Id` header
-        $requestId =
+        $requestId = $request->server->get('HTTP_X_REQUEST_ID');
 
         // `X-Signature` header
-        $signature = 'HMAC-SHA256 affc8d589f36580daa0d587ac0b314c123b59322cf4d018661e0a403cc76391f';
+        $signature = $request->server->get('HTTP_X_SIGNATURE');
 
         $hash = hash_hmac('sha256', $webhookBody . $requestId, $secret, false);
 
