@@ -107,8 +107,9 @@ class HomeController extends Controller
             $cache = new FilesystemCache();
 
             $cache->set('test',"ceci est un test",2000);
-            $cache->set('request',$request->getContent(),2000);
-
+        if (!$cache->has('requesttte')) {
+            $cache->set('requesttte', $request->getContent(), 2000);
+        }
 
 
             $token = $this->container->getParameter('secret_hook_cats');
@@ -119,7 +120,7 @@ class HomeController extends Controller
 
             var_dump($cache->get('test'));
 
-            var_dump($cache->get('request'));
+            var_dump($cache->get('requesttte'));
 
 
             die();
