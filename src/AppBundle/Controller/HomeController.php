@@ -117,7 +117,7 @@ class HomeController extends Controller
 
             $tab =json_decode($cache->get('requesttte'));
 
-            print_r($tab);
+            var_dump($tab->_embeddeb);
 
 
 
