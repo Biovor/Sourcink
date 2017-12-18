@@ -128,7 +128,7 @@ class HomeController extends Controller
         var_dump($userData->phones->cell);
         var_dump($userData->current_pay);
         var_dump($userData->desired_pay);
-        var_dump($userData->_embedded->custom_fields);
+        var_dump($userData->_embedded->custom_fields->_embedded->definition->name);
 //            if ($field->_embedded->definition->name == self::mobility) {
 //                var_dump($field->value);
 //
