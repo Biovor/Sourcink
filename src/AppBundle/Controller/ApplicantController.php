@@ -18,7 +18,7 @@ class ApplicantController extends Controller
     /**
      * @Route("/", name="app_applicant")
      */
-    public function homeAction(Api $api)
+    public function homeAction()
     {
         return $this->render('AppBundle:Applicant:home.html.twig');
     }
