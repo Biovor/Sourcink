@@ -118,7 +118,7 @@ class HomeController extends Controller
             $tab =json_decode($cache->get('requesttte'));
 
 //            var_dump($tab->event);
-            var_dump($tab->candidate);
+            var_dump($tab);
 
 
 
