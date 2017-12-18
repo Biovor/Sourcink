@@ -106,7 +106,7 @@ class HomeController extends Controller
 //        if($request->getContent() != null ) {
             $cache = new FilesystemCache();
 
-            $cache->set('test',"ceci est un test",2000);
+
         if (!$cache->has('requesttte')) {
             $cache->set('requesttte', $request->getContent(), 2000);
         }
@@ -114,11 +114,12 @@ class HomeController extends Controller
 
             $token = $this->container->getParameter('secret_hook_cats');
 
-            $json = json_decode($request->getContent());
+            $json = $request->getContent();
+            $userCats =$json->_embedded;
+            $idUser = $json->candidate_id;
 
-            $cache ->set('hook', $json, $this->getParameter('temp_cache_jobs'));
 
-            var_dump($cache->get('test'));
+            var_dump($cache->get($userCats));
 
             var_dump($cache->get('requesttte'));
 
@@ -126,8 +127,7 @@ class HomeController extends Controller
             die();
 
 
-            $userCats =$json->_embedded;
-            $idUser = $json->candidate_id;
+
 
             $em = $this->getDoctrine()->getManager();
             $user = $em->getRepository('UserBundle:User')->findOneByIdCats($idUser);
