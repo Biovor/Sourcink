@@ -118,7 +118,7 @@ class HomeController extends Controller
             $tab =json_decode($cache->get('requestaction'));
 
 //            var_dump($tab->event);
-            var_dump($tab->_embedded);
+            var_dump($tab->_embedded->candidate);
 
 
 
