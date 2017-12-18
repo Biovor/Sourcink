@@ -128,27 +128,27 @@ class HomeController extends Controller
         var_dump($userData->phones->cell);
         var_dump($userData->current_pay);
         var_dump($userData->desired_pay);
-        foreach ($userData->_embedded->custom_fields as $field) {
-            if ($field->_embedded->definition->name == self::mobility) {
-                var_dump($field->value);
+        var_dump($userData->_embedded->custom_fields);
+//            if ($field->_embedded->definition->name == self::mobility) {
+//                var_dump($field->value);
+//
+//                $regions = array();
+//                foreach ($field->_embedded->definition->field->selections as $region){
+//                    $regions[$region->label] = $region->id;
+//                }
+//                $regions = array_flip($regions);
+//
+//                $mobilities = array();
+//                foreach ($field->value as $mobility) {
+//                    $mobilities[] = $regions[$mobility];
+//                }
+//                var_dump($mobilities);
+//            } else if ($field->_embedded->definition->name == self::wanted_job) {
+//                var_dump($field->value);
+//            } else if ($field->_embedded->definition->name == self::experience) {
+//                var_dump($field->value);
+//            }
 
-                $regions = array();
-                foreach ($field->_embedded->definition->field->selections as $region){
-                    $regions[$region->label] = $region->id;
-                }
-                $regions = array_flip($regions);
-
-                $mobilities = array();
-                foreach ($field->value as $mobility) {
-                    $mobilities[] = $regions[$mobility];
-                }
-                var_dump($mobilities);
-            } else if ($field->_embedded->definition->name == self::wanted_job) {
-                var_dump($field->value);
-            } else if ($field->_embedded->definition->name == self::experience) {
-                var_dump($field->value);
-            }
-        }
 
 
 
