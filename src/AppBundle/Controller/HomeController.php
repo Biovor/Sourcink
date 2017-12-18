@@ -114,7 +114,7 @@ class HomeController extends Controller
 
         $hash = hash_hmac('sha256', $webhookBody . $requestId, $secret, false);
 
-        if ($signature !== 'HMAC-SHA256 ' . $hash) {
+        if ($signature == 'HMAC-SHA256 ' . $hash) {
 
             $contentHook =json_decode($request->getContent());
 
@@ -128,31 +128,6 @@ class HomeController extends Controller
 
         return $this->redirectToRoute('app_homepage');
     }
-
-//    public function big5PDFAction(Api $api, $idUser)
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//        $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
-//        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($idUser);
-//        $user->setBig5(true);
-//        $em->persist($user);
-//        $em->flush();
-//        $pdf = base64_decode($big5User->getPdfReport());
-//
-//        header('Content-Type: application/pdf');
-//        $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
-//        fwrite($fp, $pdf);
-//        fclose($fp);
-//        $origin = 'Big5';
-//        $directory = 'big5/big5-'.$big5User->getId().'.pdf';
-//        $api->tagCandidate($user->idCats, $this->getParameter('id_tag_candidate_big5'));
-//        $api->sendResume($directory . $user->getResumeName(),
-//            $user->id, $user->first_name, $user->last_name, $origin);
-//        unlink($directory . $user->getResumeName());
-//
-//        return $this->redirectToRoute('app_homepage');
-//    }
-
 }
 
 
