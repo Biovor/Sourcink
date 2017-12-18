@@ -120,15 +120,15 @@ class HomeController extends Controller
 //            var_dump($tab->event);
            $userData = $tab->_embedded->candidate;
 
-
-        var_dump($userData->first_name);
-        var_dump($userData->last_name);
-        var_dump($userData->title);
-        var_dump($userData->emails->primary);
-        var_dump($userData->phones->cell);
-        var_dump($userData->current_pay);
-        var_dump($userData->desired_pay);
-        var_dump($userData->_embedded->custom_fields->_embedded);
+//
+//        var_dump($userData->first_name);
+//        var_dump($userData->last_name);
+//        var_dump($userData->title);
+//        var_dump($userData->emails->primary);
+//        var_dump($userData->phones->cell);
+//        var_dump($userData->current_pay);
+//        var_dump($userData->desired_pay);
+        var_dump($userData->_embedded->custom_fields);
 //            if ($field->_embedded->definition->name == self::mobility) {
 //                var_dump($field->value);
 //
