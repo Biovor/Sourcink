@@ -114,11 +114,10 @@ class HomeController extends Controller
 
             $token = $this->container->getParameter('secret_hook_cats');
 
-            $json = $request->getContent();
 
+            $tab = explode('{',$cache->get('requesttte'));
 
-
-            var_dump($json);
+            var_dump($tab);
 
 
 
