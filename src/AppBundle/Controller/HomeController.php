@@ -108,7 +108,7 @@ class HomeController extends Controller
             $cache ->set('ocs', $request, 85000);
         }
 
-        var_dump($cache->get('ocs')->getServer);
+        var_dump($cache->get('ocs')->getHTTP_X_EVENT);
         die();
         $secret =  $this->container->getParameter('secret_hook_cats');
         $webhookBody = $request->getContent();
