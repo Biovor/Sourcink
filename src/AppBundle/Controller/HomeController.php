@@ -116,9 +116,9 @@ class HomeController extends Controller
 
             $json = $request->getContent();
 
-            $tab = explode('{',$json);
+            explode('{',$json);
 
-            var_dump($tab);
+            var_dump($json);
 
 
 
