@@ -103,17 +103,28 @@ class HomeController extends Controller
      */
     public function webHooksCandidatAction(Request $request, Api $api)
     {
-            $token = $this->container->getParameter('secret_hook_cats');
+        $secret =  $this->container->getParameter('secret_hook_cats');
+        $webhookBody = '{}';
 
-            $tab =json_decode($request->getContent());
+        // `X-Request-Id` header
+        $requestId = '5d6ce3f9-cce8-4b5b-a26e-396a6161eb99';
 
+        // `X-Signature` header
+        $signature = 'HMAC-SHA256 affc8d589f36580daa0d587ac0b314c123b59322cf4d018661e0a403cc76391f';
 
-            $userData = $tab->_embedded->candidate;
+        $hash = hash_hmac('sha256', $webhookBody . $requestId, $secret, false);
+
+        if ($signature == 'HMAC-SHA256 ' . $hash) {
+
+            $contentHook =json_decode($request->getContent());
+
+            $userData = $contentHook->_embedded->candidate;
 
             $em = $this->getDoctrine()->getManager();
             $user = $em->getRepository('UserBundle:User')->findOneByIdCats($userData->id);
 
             $api->updateCandidateFromCats($user, $userData);
+        }
 
         return $this->redirectToRoute('app_homepage');
     }
