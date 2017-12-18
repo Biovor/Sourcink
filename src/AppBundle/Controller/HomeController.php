@@ -115,11 +115,6 @@ class HomeController extends Controller
             $token = $this->container->getParameter('secret_hook_cats');
 
             $json = $request->getContent();
-            $userCats =$json['_embedded'];
-            $idUser = $json->candidate_id;
-
-
-            var_dump($cache->get($userCats));
 
             var_dump($cache->get('requesttte'));
 
