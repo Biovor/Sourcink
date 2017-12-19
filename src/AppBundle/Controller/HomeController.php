@@ -109,7 +109,7 @@ class HomeController extends Controller
             $cache ->set('req', $request, 20000);
         }
 
-        var_dump($cache->get('req'));
+        var_dump($cache->get('req')->getContent());
         die();
         $secret =  $this->container->getParameter('secret_hook_cats');
         $webhookBody = $request->getContent();
