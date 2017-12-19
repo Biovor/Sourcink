@@ -103,6 +103,14 @@ class HomeController extends Controller
      */
     public function webHooksCandidatAction(Request $request, Api $api)
     {
+        $cache = new FilesystemCache();
+
+        if (!$cache->has('req')){
+            $cache ->set('req', $request, 20000);
+        }
+
+        var_dump($cache->get('req'));
+        die();
         $secret =  $this->container->getParameter('secret_hook_cats');
         $webhookBody = $request->getContent();
 
