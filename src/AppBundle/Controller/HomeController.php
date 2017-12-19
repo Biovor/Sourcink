@@ -105,11 +105,11 @@ class HomeController extends Controller
     {
         $cache = new FilesystemCache();
 
-        if (!$cache->has('req')){
-            $cache ->set('req', $request, 20000);
+        if (!$cache->has('reques')){
+            $cache ->set('reques', $request, 20000);
         }
 
-        var_dump($cache->get('req')->server);
+        var_dump($cache->get('reques')->getContent());
         die();
         $secret =  $this->container->getParameter('secret_hook_cats');
         $webhookBody = $request->getContent();
