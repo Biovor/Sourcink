@@ -25,6 +25,7 @@ class JobController extends Controller
      */
     public function jobAction(Api $api, Request $request)
     {
+        $time = time();
         $cache = new FilesystemCache();
 
         if (!$cache->has('jobs')){
@@ -69,6 +70,7 @@ class JobController extends Controller
             'AppBundle:Job:home.html.twig',
             [
                 'offers' => $results,
+                'time'=> $time
             ]
         );
     }
@@ -150,6 +152,8 @@ class JobController extends Controller
         $email->candidatureSpontane($mailer, $this->getUser());
         $api->tagCandidate($this->getUser()->getIdCats(), $this->getParameter('id_tag_candidate_spont'));
         $api->updateCandidate($this->getUser(), $this->getUser()->getIdCats(), $cultureFit);
+        $this->getUser()->setSponTime(time());
+        $em->flush();
         $this->addFlash('success', 'Nous avons reçu votre candidature. Nous allons vous contacter par e-mail.');
         return $this->redirectToRoute('job_list');
     }

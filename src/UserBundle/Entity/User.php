@@ -152,6 +152,31 @@ class User extends BaseUser
     private $big5;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="sponTime", type="integer", nullable=true)
+     */
+    private $sponTime;
+
+    /**
+     * @return int
+     */
+    public function getSponTime()
+    {
+        return $this->sponTime;
+    }
+
+    /**
+     * @param int $sponTime
+     * @return User
+     */
+    public function setSponTime($sponTime)
+    {
+        $this->sponTime = $sponTime;
+        return $this;
+    }
+
+    /**
      * @return bool
      */
     public function isHasResume()
