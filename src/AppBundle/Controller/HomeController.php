@@ -103,14 +103,14 @@ class HomeController extends Controller
      */
     public function webHooksCandidatAction(Request $request, Api $api)
     {
-        $cache = new FilesystemCache();
-
-        if (!$cache->has('reques')){
-            $cache ->set('reques', $request, 20000);
-        }
-
-        var_dump($cache->get('reques')->getContent());
-        die();
+//        $cache = new FilesystemCache();
+//
+//        if (!$cache->has('reques')){
+//            $cache ->set('reques', $request, 20000);
+//        }
+//
+//        var_dump($cache->get('reques')->getContent());
+//        die();
         $secret =  $this->container->getParameter('secret_hook_cats');
         $webhookBody = $request->getContent();
 
@@ -122,7 +122,7 @@ class HomeController extends Controller
 
         $hash = hash_hmac('sha256', $webhookBody . $requestId, $secret, false);
 
-//        if ($signature == 'HMAC-SHA256 ' . $hash) {
+        if ($signature == 'HMAC-SHA256 ' . $hash) {
 
             $contentHook =json_decode($request->getContent());
 
@@ -132,7 +132,7 @@ class HomeController extends Controller
             $user = $em->getRepository('UserBundle:User')->findOneByIdCats($userData->id);
 
             $api->updateCandidateFromCats($user, $userData);
-//        }
+        }
 
         return $this->redirectToRoute('app_homepage');
     }
