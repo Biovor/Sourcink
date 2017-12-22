@@ -20,7 +20,11 @@ class ApplicantController extends Controller
      */
     public function homeAction()
     {
-        return $this->render('AppBundle:Applicant:home.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-Candidat'));
+        return $this->render('AppBundle:Applicant:home.html.twig', [
+            'metaDescription' =>$metaDescription
+        ]);
     }
 
     /**

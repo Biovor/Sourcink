@@ -21,10 +21,12 @@ class CategoryPageController extends Controller
     public function categoryAction(Category $category)
     {
         $em = $this->getDoctrine()->getManager();
+        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-Solutions'));
         $benefits = $em->getRepository('AppBundle:Benefit')->findAll();
         return $this->render('AppBundle:CategoryPage:category.html.twig', [
             'category' => $category,
             'benefits' => $benefits,
+            'metaDescription' =>$metaDescription
         ]);
     }
 }

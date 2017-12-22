@@ -23,6 +23,7 @@ class HomeController extends Controller
         $photos = $em->getRepository('AppBundle:Slider')->findAll();
         $sourcink = $em->getRepository('AppBundle:Sourcink')->find(1);
         $partnerViews = $em->getRepository('AppBundle:PartnerView')->findAll();
+        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-Home'));
 
         $cache = new FilesystemCache();
 
@@ -81,6 +82,7 @@ class HomeController extends Controller
                 'partners'=>$partners,
                 'sourcink' =>$sourcink,
                 'partnerViews' =>$partnerViews,
+                'metaDescription' =>$metaDescription
             ]
         );
     }
@@ -90,10 +92,15 @@ class HomeController extends Controller
      */
     public function testAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-Home'));
+
         if($this->isGranted('ROLE_USER')){
             return $this->redirectToRoute('app_applicant');
         } else {
-            return $this->render('AppBundle:Home:home-tests.html.twig');
+            return $this->render('AppBundle:Home:home-tests.html.twig', [
+                'metaDescription' =>$metaDescription
+            ]);
         }
     }
 

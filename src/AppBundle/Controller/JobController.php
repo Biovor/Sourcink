@@ -25,6 +25,8 @@ class JobController extends Controller
      */
     public function jobAction(Api $api, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-Offres-Liste'));
         $time = time();
         $cache = new FilesystemCache();
 
@@ -70,7 +72,8 @@ class JobController extends Controller
             'AppBundle:Job:home.html.twig',
             [
                 'offers' => $results,
-                'time'=> $time
+                'time'=> $time,
+                'metaDescription' =>$metaDescription
             ]
         );
     }
@@ -80,6 +83,8 @@ class JobController extends Controller
      */
     public function jobPageAction(Api $api, $id, Request $request, \Swift_Mailer $mailer, Email $email)
     {
+        $em = $this->getDoctrine()->getManager();
+        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-Offres-Liste'));
         $cache = new FilesystemCache();
 
         $form = $this->createFormBuilder()
@@ -138,6 +143,7 @@ class JobController extends Controller
             [
                 'offer' => $offer,
                 'form' => $form->createView(),
+                'metaDescription' =>$metaDescription
             ]
         );
     }

@@ -26,9 +26,13 @@ class Big5Controller extends Controller
      */
     public function big5Action()
     {
+        $em = $this->getDoctrine()->getManager();
+        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-Big5'));
 
         return $this->render(
-            'AppBundle:MonkeyTie:big5.html.twig');
+            'AppBundle:MonkeyTie:big5.html.twig',[
+            'metaDescription' =>$metaDescription
+        ]);
     }
 
     /**

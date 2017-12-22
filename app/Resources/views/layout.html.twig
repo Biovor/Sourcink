@@ -2,8 +2,13 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Sourcink, l'agence de sourcing spécialisée en recrutement juridique, fiscal et RH. Recherche et présélection de candidatures qualifiées.">
-    <title>{% block title %}Sourcink{% endblock %}</title>
+    {% if metaDescription is defined  %}
+    <meta name="description" content="{{ metaDescription.contents  |striptags |raw }}">
+    {% else %}
+        <meta name="description" content="Sourcink, l'agence de sourcing spécialisée en recrutement juridique,
+        fiscal et RH. Recherche et présélection de candidatures qualifiées">
+    {% endif %}
+    <title>{% block title %}Sourcink | Recrutement juridique, fiscal et RH.{% endblock %}</title>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}"  media="screen,projection"/>
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
