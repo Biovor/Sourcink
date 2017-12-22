@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
-    {% if metaDescription is defined  %}
+    {% if metaDescription is defined and metaDescription is not empty  %}
     <meta name="description" content="{{ metaDescription.contents  |striptags |raw }}">
     {% else %}
         <meta name="description" content="Sourcink, l'agence de sourcing spécialisée en recrutement juridique,

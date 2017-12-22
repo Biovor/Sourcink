@@ -3,13 +3,13 @@
         <h2 class="center" id="expertise">{{ sourcink.title | raw  }}</h2>
         <div class="row center">
             <div class="col s12">
-                <p class="expertise-texte center">
+                <p aria-hidden="true" class="expertise-texte center">
                     {{ sourcink.text1 | raw  }}
                 </p>
             </div>
 
         </div>
-        <p class="work-name-title">{{ sourcink.text2 | raw  }}</p>
+        <p aria-hidden="true" class="work-name-title">{{ sourcink.text2 | raw  }}</p>
     </div>
     <div class="row center">
         {% for category in categories %}
@@ -17,7 +17,7 @@
                 {% if category.isPremium == false %}
 
                     {% for work in category.works %}
-                        <p class="center work-name">{{ work.name }}</p>
+                        <p aria-hidden="true" class="center work-name">{{ work.name }}</p>
                     {% endfor %}
                     <img class="work img-fleche" src="{{ asset('media/fleche.png') }}" alt="Fleche qui pointe vers le
                      bas" >
@@ -26,7 +26,7 @@
             <div class="col s6 center">
                 {% if category.isPremium == true %}
                     {% for work in category.works %}
-                        <p class="center work-name">{{ work.name }}</p>
+                        <p aria-hidden="true" class="center work-name">{{ work.name }}</p>
                     {% endfor %}
                     <img class="work img-fleche" src="{{ asset('media/fleche.png') }}" alt="Fleche qui pointe vers le
                      bas">

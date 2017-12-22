@@ -83,8 +83,7 @@ class JobController extends Controller
      */
     public function jobPageAction(Api $api, $id, Request $request, \Swift_Mailer $mailer, Email $email)
     {
-        $em = $this->getDoctrine()->getManager();
-        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-Offres-Liste'));
+        $metaDescription = null;
         $cache = new FilesystemCache();
 
         $form = $this->createFormBuilder()
@@ -98,12 +97,12 @@ class JobController extends Controller
             ->getForm();
         $form->handleRequest($request);
 
-        if (!$cache->has('jobs')){
+        if (!$cache->has('jobsa')){
             $jobs = $api->getJob();
-            $cache ->set('jobs', $jobs, $this->getParameter('temp_cache_jobs'));
+            $cache ->set('jobsa', $jobs, $this->getParameter('temp_cache_jobs'));
         }
 
-        $jobs = $cache-> get('jobs');
+        $jobs = $cache-> get('jobsa');
 
         foreach ($jobs as $job) {
 
@@ -131,6 +130,11 @@ class JobController extends Controller
                         $job->_embedded->attachments[0]->id : '')
                 ];
 
+                if ($job->notes != null){
+                    $metaDescription['contents']= $job->notes;
+                }
+
+
                 if ($offer['attachment_id'] != '') {
 
                     $offer['image'] = $api->downloadImg(property_exists($job->_embedded, 'attachments')
@@ -143,7 +147,7 @@ class JobController extends Controller
             [
                 'offer' => $offer,
                 'form' => $form->createView(),
-                'metaDescription' =>$metaDescription
+                'metaDescription'=>$metaDescription
             ]
         );
     }
