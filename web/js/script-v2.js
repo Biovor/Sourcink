@@ -69,6 +69,10 @@ $('#sendResumeButton').on('click', function (e) {
     });
 });
 
+window.addEventListener("load", function(event) {
+    lazyload();
+});
+
 // $('#parseResumeButton').on('click', function (e) {
 //     e.preventDefault();
 //     var resume = $('#parseResumeFile').val();

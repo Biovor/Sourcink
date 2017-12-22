@@ -4,7 +4,7 @@
     <div class="row">
         {% for person in team %}
             <div class="col l{{ 12/team|length }}  s12 center">
-                <img class="team-img circle" src="{{ asset('img/'~person.picture.pictureName) }}" alt="{{
+                <img class="team-img circle lazyload" src="{{ asset('img/'~person.picture.pictureName) }}" alt="{{
                 person.picture.alt }}">
 
                 <ul class="collapsible popout" data-collapsible="accordion">

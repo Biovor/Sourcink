@@ -8,7 +8,7 @@
             {% for partnerView in partnerViews %}
             <div class="col s{{ partnerView.s }} m{{ partnerView.m }} l{{ partnerView.l }}">
                 <a href="{{ partner.path }}" target='_blank'>
-                    <img src="{{ asset('img/'~partner.picture.pictureName) }}" class="responsive-img" alt="{{
+                    <img class="responsive-img lazyload" src="{{ asset('img/'~partner.picture.pictureName) }}" alt="{{
                     partner.picture.alt }}" >
                 </a>
             </div>
