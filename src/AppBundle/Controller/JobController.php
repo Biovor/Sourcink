@@ -139,9 +139,11 @@ class JobController extends Controller
 
                     $offer['image'] = $api->downloadImg(property_exists($job->_embedded, 'attachments')
                         ? $job->_embedded->attachments[0]->id : '');
+                    $metaDescription['image']= $offer['image'];
                 }
             }
         }
+
         return $this->render(
             'AppBundle:Job:page.html.twig',
             [
