@@ -21,14 +21,14 @@
     {% endif %}
 
     {% if metaDescription.title is defined and  metaDescription.title is not empty %}
-        <meta property="og:title" content="{{'Sourcink |'~metaDescription.title}}"/>
+        <meta property="og:title" content="{{'Sourcink | '~metaDescription.title}}"/>
     {% else %}
         <meta property="og:title" content="Sourcink | Recrutement juridique, fiscal et RH." />
     {% endif %}
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ app.request.uri }}" />
-    <meta property="og:site_name" content="Sourcink.com"/>
+    {#<meta property="og:site_name" content="sourcink.com"/>#}
     <title>{% block title %}Sourcink | Recrutement juridique, fiscal et RH.{% endblock %}</title>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}"  media="screen,projection"/>
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
