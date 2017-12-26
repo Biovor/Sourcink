@@ -12,7 +12,7 @@
         fiscal et RH. Recherche et présélection de candidatures qualifiées"/>
     {% endif %}
     {% if metaDescription.image is defined and  metaDescription.image is not empty %}
-        <meta property="og:image" content="{{ asset('/img/jobPicture/'~metaDescription.image)}}"/>
+        <meta property="og:image" content="{{ asset('img/jobPicture/'~metaDescription.image)}}"/>
     {% else %}
         <meta property="og:image" content="{{ asset('media/Avocat.jpg') }}"/>
     {% endif %}
