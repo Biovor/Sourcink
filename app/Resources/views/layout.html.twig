@@ -4,10 +4,18 @@
     <meta charset="UTF-8" />
     {% if metaDescription is defined and metaDescription is not empty  %}
     <meta name="description" content="{{ metaDescription.contents  |striptags |raw }}">
+    <meta property="og:description" content="{{ metaDescription.contents  |striptags |raw }}"/>
     {% else %}
         <meta name="description" content="Sourcink, l'agence de sourcing spécialisée en recrutement juridique,
         fiscal et RH. Recherche et présélection de candidatures qualifiées">
+        <meta property="og:description" content="Sourcink, l'agence de sourcing spécialisée en recrutement juridique,
+        fiscal et RH. Recherche et présélection de candidatures qualifiées"/>
     {% endif %}
+    <meta property="og:title" content="{% block OgTitle %}Sourcink | Recrutement juridique, fiscal et RH.{% endblock %}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ app.request.uri }}" />
+    <meta property="og:image" content="{{ asset('media/Avocat.jpg') }}"/>
+    <meta property="og:site_name" content="Sourcink.com"/>
     <title>{% block title %}Sourcink | Recrutement juridique, fiscal et RH.{% endblock %}</title>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}"  media="screen,projection"/>
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
@@ -29,8 +37,8 @@
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/materialize.js') }}"></script>
+    {#<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>#}
+    <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/lazyload.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/script-v2.js') }}"></script>
     <script type="text/javascript" id="cookiebanner"
