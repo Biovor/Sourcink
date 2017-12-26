@@ -134,6 +134,7 @@ class JobController extends Controller
                     $metaDescription['contents']= $job->notes;
                 }
 
+                $metaDescription['title']= $job->title;
 
                 if ($offer['attachment_id'] != '') {
 
