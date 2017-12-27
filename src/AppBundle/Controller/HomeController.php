@@ -23,7 +23,7 @@ class HomeController extends Controller
         $photos = $em->getRepository('AppBundle:Slider')->findAll();
         $sourcink = $em->getRepository('AppBundle:Sourcink')->find(1);
         $partnerViews = $em->getRepository('AppBundle:PartnerView')->findAll();
-        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-Home'));
+        $metaDescription = $em->getRepository('AppBundle:Texts')->findOneBy(array('location'=>'Meta-Home'));
 
         $cache = new FilesystemCache();
 
@@ -70,6 +70,8 @@ class HomeController extends Controller
             $browser = 'Edge/IE';
         }
 
+        $metaDescription->setPicture($metaDescription->getPicture()->getPictureName());
+
         return $this->render(
             'AppBundle:Home:home.html.twig',
             [
@@ -93,7 +95,7 @@ class HomeController extends Controller
     public function testAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-Home'));
+        $metaDescription = $em->getRepository('AppBundle:Texts')->findOneBy(array('location'=>'Meta-Home'));
 
         if($this->isGranted('ROLE_USER')){
             return $this->redirectToRoute('app_applicant');

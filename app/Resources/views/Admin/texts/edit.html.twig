@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modifier un text</h1>
+    <a href="{{ path('admin_texts_index') }}" class="btn btn-flat orange-text right">Revenir à la liste</a>
+    {{ form_start(form) }}
+    {{ form_label(form.location) }}
+    {{ form_widget(form.location) }}
+    {{ form_errors(form.location) }}
+
+    {{ form_label(form.title) }}
+    {{ form_widget(form.title) }}
+    {{ form_errors(form.title) }}
+
+    {{ form_label(form.contents) }}
+    {{ form_widget(form.contents) }}
+    {{ form_errors(form.contents) }}
+
+    <div class="file-field input-field">
+        <p>La taille de l’image doit être d'environ 700 pixels de larges / 400 pixels de haut</p>
+        <div class="btn orange">
+            <span>Choisissez une image</span>
+            {{ form_widget(form.picture.pictureFile) }}
+        </div>
+        <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+        </div>
+        {{ form_errors(form.picture.pictureFile) }}
+    </div>
+{% if texts.picture is not empty  %}
+    <div><img src="{{ vich_uploader_asset(texts.picture, 'pictureFile') }}" class="admimageParte"/></div>
+{% endif %}
+    {{ form_label(form.picture.alt) }}
+    {{ form_widget(form.picture.alt) }}
+    {{ form_errors(form.picture.alt) }}
+
+    {{ form_widget(form.submit) }}
+    {{ form_end(form) }}
+
+    {{ form_start(delete_form) }}
+    <button class="btn red right" name="action" type="submit">Supprimer</button>
+    {{ form_end(delete_form) }}
+{% endblock %}

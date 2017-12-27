@@ -3,14 +3,16 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations\AnnotationException;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Text
+ * Texts
  *
- * @ORM\Table(name="text")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TextRepository")
+ * @ORM\Table(name="texts")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TextsRepository")
  */
-class Text
+class Texts
 {
     /**
      * @var int
@@ -34,6 +36,32 @@ class Text
      * @ORM\Column(name="title", type="string", length=255, nullable=true)
      */
     private $title;
+
+    /**
+     * @var
+     *
+     * @ORM\OneToOne(targetEntity="Picture", cascade={"persist"})
+     *
+     */
+    private $picture;
+
+    /**
+     * @return mixed
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * @param mixed $picture
+     * @return Text
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+        return $this;
+    }
 
     /**
      * @var string

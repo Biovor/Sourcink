@@ -26,7 +26,7 @@ class JobController extends Controller
     public function jobAction(Api $api, Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-Offres-Liste'));
+        $metaDescription = $em->getRepository('AppBundle:Texts')->findOneBy(array('location'=>'Meta-Offres-Liste'));
         $time = time();
         $cache = new FilesystemCache();
 

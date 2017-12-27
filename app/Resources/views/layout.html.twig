@@ -13,11 +13,16 @@
         fiscal et RH. Recherche et présélection de candidatures qualifiées"/>
     {% endif %}
 
-    {% if metaDescription.image is defined and  metaDescription.image is not empty %}
+    {% if metaDescription.picture.id is defined %}
+        <meta property="og:image" content="{{ asset(app.request.schemeAndHttpHost~'media/sourcink.png') }}"/>
+    {% elseif metaDescription.picture is defined and  metaDescription.picture is not empty %}
+        <meta property="og:image" content="{{ asset(app.request.schemeAndHttpHost~'/img/'~metaDescription
+        .picture)}}"/>
+    {% elseif metaDescription.image is defined and  metaDescription.image is not empty %}
         <meta property="og:image" content="{{ asset(app.request.schemeAndHttpHost~'/img/jobPicture/'~metaDescription
         .image)}}"/>
     {% else %}
-        <meta property="og:image" content="{{ asset('media/Avocat2.jpg') }}"/>
+        <meta property="og:image" content="{{ asset(app.request.schemeAndHttpHost~'/media/Avocat2.jpg') }}"/>
     {% endif %}
 
     {% if metaDescription.title is defined and  metaDescription.title is not empty %}

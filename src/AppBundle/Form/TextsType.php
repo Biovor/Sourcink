@@ -5,10 +5,12 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TextType extends AbstractType
+
+class TextsType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -36,6 +38,8 @@ class TextType extends AbstractType
                         )
                 )
             )
+            ->add('picture', PictureType::class)
+
             ->add(
                 'submit', SubmitType::class,
                 array(
@@ -54,7 +58,7 @@ class TextType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Text'
+            'data_class' => 'AppBundle\Entity\Texts'
         ));
     }
 
@@ -63,7 +67,7 @@ class TextType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_text';
+        return 'appbundle_texts';
     }
 
 

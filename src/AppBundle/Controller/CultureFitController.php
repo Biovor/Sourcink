@@ -17,7 +17,7 @@ class CultureFitController extends Controller{
     public function cultureFitAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $metaDescription = $em->getRepository('AppBundle:Text')->findOneBy(array('location'=>'Meta-CultureFit'));
+        $metaDescription = $em->getRepository('AppBundle:Texts')->findOneBy(array('location'=>'Meta-CultureFit'));
         return $this->render(
             'AppBundle:MonkeyTie:cultureFit.html.twig',[
             'metaDescription' =>$metaDescription
