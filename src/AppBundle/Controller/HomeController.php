@@ -69,7 +69,7 @@ class HomeController extends Controller
         if (preg_match('/Trident/',$browser)) {
             $browser = 'Edge/IE';
         }
-        if (empty($metaDescription->getPicture()->getPictureName())){
+        if ($metaDescription->getPicture()->getPictureName() !== null){
             $metaDescription->setPicture($metaDescription->getPicture()->getPictureName());
         };
 
