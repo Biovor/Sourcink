@@ -69,8 +69,9 @@ class HomeController extends Controller
         if (preg_match('/Trident/',$browser)) {
             $browser = 'Edge/IE';
         }
-
-        $metaDescription->setPicture($metaDescription->getPicture()->getPictureName());
+        if (isset($metaDescription->getPicture()->getPictureName())){
+            $metaDescription->setPicture($metaDescription->getPicture()->getPictureName());
+        };
 
         return $this->render(
             'AppBundle:Home:home.html.twig',
