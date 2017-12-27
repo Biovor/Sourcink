@@ -44,7 +44,7 @@ class JobController extends Controller
                     'title' => $job->title,
                     'duration' => $job->duration,
                     'description' => $job->description,
-                    'city' => trim(ucfirst(strtolower($job->location->city))),
+                    'city' => trim($job->location->city),
                     'statut' => $job->_embedded->status->title,
                     'maj' => $job->date_modified,
                     'debut' => $job->start_date,
@@ -122,7 +122,7 @@ class JobController extends Controller
                     'title' => $job->title,
                     'duration' => $job->duration,
                     'description' => $job->description,
-                    'city' => trim(ucfirst(strtolower($job->location->city))),
+                    'city' => trim($job->location->city),
                     'statut' => $job->_embedded->status->title,
                     'maj' => $job->date_modified,
                     'debut' => $job->start_date,
@@ -134,7 +134,7 @@ class JobController extends Controller
                     $metaDescription['contents']= $job->notes;
                 }
 
-                $metaDescription['title']= $job->title;
+                $metaDescription['title']= $job->title.' '.trim($job->location->city).' '.$job->duration;
 
                 if ($offer['attachment_id'] != '') {
 

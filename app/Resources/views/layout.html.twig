@@ -28,12 +28,12 @@
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ app.request.uri }}" />
-    {#<meta property="og:site_name" content="sourcink.com"/>#}
+    <meta property="og:site_name" content="sourcink.com"/>
     <title>{% block title %}Sourcink | Recrutement juridique, fiscal et RH.{% endblock %}</title>
     <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}"  media="screen,projection"/>
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/base-v2.2.css') }}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/base-v2.3.css') }}"  media="screen,projection"/>
     <link rel="icon" type="image/x-icon" href="{{ asset('media/favicon.ico') }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,10 +50,9 @@
 {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-    {#<script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>#}
     <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/lazyload.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/script-v2.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/script-v2.1.js') }}"></script>
     <script type="text/javascript" id="cookiebanner"
             src="{{ asset('js/cookiebanner.min.js') }}" data-message=" Nous utilisons des cookies pour vous garantir
             la meilleure expérience sur notre site. Si vous continuez à utiliser ce dernier, nous considérerons que

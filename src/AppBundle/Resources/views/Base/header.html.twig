@@ -10,11 +10,11 @@
                 <a href="#" data-activates="side-nav" class="button-collapse red-text"><i
                             class="material-icons">menu</i></a>
                 <ul id="side-nav" class="side-nav">
-                    <div class="center">
+                    <div class="left">
                         <li><a href="/#Notre-expertise">Notre Expertise</a></li>
                         <li><a href="/#Nos-solutions">Nos Solutions</a></li>
-                        <li><a href="/#partenaires">Nos Partenaires</a></li>
                         <li><a href="{{ path('job_list') }}">Nos Offres</a></li>
+                        <li><a href="/#partenaires">Nos Partenaires</a></li>
                         <li><a href="/#equipe">Notre Equipe</a></li>
                         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                             <li>
@@ -34,8 +34,8 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="/#expertise">Notre Expertise</a></li>
                     <li><a href="/#solutions">Nos Solutions</a></li>
-                    <li><a href="/#partenaires">Nos Partenaires</a></li>
                     <li><a href="{{ path('job_list') }}">Nos Offres</a></li>
+                    <li><a href="/#partenaires">Nos Partenaires</a></li>
                     <li><a href="/#equipe">Notre Equipe</a></li>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                         <li>

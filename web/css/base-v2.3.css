@@ -559,17 +559,18 @@ footer {
 .partners {
     padding-bottom: 2%;
     padding-top: 2%;
+    margin-bottom: -90px;
 }
 .team-img {
-    width: 30%;
+width: 30%;
 }
 
 .btnLinkedin {
-    margin-bottom: 20px;
+margin-bottom: 20px;
 }
 
 .no-job {
-    margin-bottom: 20px;
+margin-bottom: 20px;
 }
 
 /*Premium Page*/
@@ -771,5 +772,5 @@ footer {
 }
 
 .margin-encre {
-    margin-bottom: -90px;
+    /*margin-bottom: -90px;*/
 }
