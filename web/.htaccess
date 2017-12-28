@@ -69,7 +69,9 @@ DirectoryIndex app.php
     </IfModule>
 </IfModule>
 <IfModule mod_headers.c>
-#Header set Content-Security-Policy "script-src 'self' https://www.google.com https://service.monkey-tie.com"
+BrowserMatch MSIE ie
+Header set X-UA-Compatible "IE=Edge,chrome=1" env=ie
+#Header set Content-Security-Policy "script-src 'self' https://service.monkey-tie.com"
 Header always set X-FRAME-OPTIONS "DENY"
 Header always set X-Content-Type-Options "nosniff"
 </IfModule>
