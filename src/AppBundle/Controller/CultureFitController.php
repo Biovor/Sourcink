@@ -18,6 +18,9 @@ class CultureFitController extends Controller{
     {
         $em = $this->getDoctrine()->getManager();
         $metaDescription = $em->getRepository('AppBundle:Texts')->findOneBy(array('location'=>'Meta-CultureFit'));
+        if ($metaDescription->getPicture() !== null){
+            $metaDescription->setPicture($metaDescription->getPicture()->getPictureName());
+        };
         return $this->render(
             'AppBundle:MonkeyTie:cultureFit.html.twig',[
             'metaDescription' =>$metaDescription

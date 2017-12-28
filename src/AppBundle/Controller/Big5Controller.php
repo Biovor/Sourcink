@@ -28,7 +28,9 @@ class Big5Controller extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $metaDescription = $em->getRepository('AppBundle:Texts')->findOneBy(array('location'=>'Meta-Big5'));
-
+        if ($metaDescription->getPicture() !== null){
+            $metaDescription->setPicture($metaDescription->getPicture()->getPictureName());
+        };
         return $this->render(
             'AppBundle:MonkeyTie:big5.html.twig',[
             'metaDescription' =>$metaDescription
@@ -109,17 +111,15 @@ class Big5Controller extends Controller
         $em->persist($user);
         $em->flush();
         $pdf = base64_decode($big5User->getPdfReport());
-
+        $api->tagCandidate($user->getIdCats(), $this->getParameter('id_tag_candidate_big5'));
         header('Content-Type: application/pdf');
         $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
         fwrite($fp, $pdf);
         fclose($fp);
         $origin = 'Big5';
         $directory = 'big5/big5-'.$big5User->getId().'.pdf';
-        $api->tagCandidate($user->getIdCats(), $this->getParameter('id_tag_candidate_big5'));
-        $api->sendResume($directory . $user->getResumeName(),
-            $user->id, $user->first_name, $user->last_name, $origin);
-        unlink($directory . $user->getResumeName());
+        $api->sendResume($directory, $user->id, $user->first_name, $user->last_name, $origin);
+        unlink($directory);
 
         return $this->redirectToRoute('app_homepage');
     }

@@ -58,6 +58,10 @@ class JobController extends Controller
             }
         }
 
+        if ($metaDescription->getPicture() !== null){
+            $metaDescription->setPicture($metaDescription->getPicture()->getPictureName());
+        };
+
         /**
          * @var $pagination "Knp\Component\Pager\Paginator"
          * */

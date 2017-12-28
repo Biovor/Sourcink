@@ -22,6 +22,9 @@ class ApplicantController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $metaDescription = $em->getRepository('AppBundle:Texts')->findOneBy(array('location'=>'Meta-Candidat'));
+        if ($metaDescription->getPicture() !== null){
+            $metaDescription->setPicture($metaDescription->getPicture()->getPictureName());
+        };
         return $this->render('AppBundle:Applicant:home.html.twig', [
             'metaDescription' =>$metaDescription
         ]);
