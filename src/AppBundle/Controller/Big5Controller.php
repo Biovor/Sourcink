@@ -117,7 +117,7 @@ class Big5Controller extends Controller
         fclose($fp);
         $origin = 'Big5';
         $directory = 'big5/big5-'.$big5User->getId().'.pdf';
-        $api->sendResume($directory, $user->id, $user->first_name, $user->last_name, $origin);
+        $api->sendResume($directory, $user->getId(), $user->getFirstname(), $user->getLastname(), $origin);
         unlink($directory);
         $api->tagCandidate($user->getIdCats(), $this->getParameter('id_tag_candidate_big5'));
 

@@ -339,8 +339,7 @@ class Api
             $resultTab=explode('/',$result);
             $format = $resultTab[sizeof($resultTab)-1];
         }
-var_dump($origin);
-        die();
+
         $resume = $this->getClient()->request(
             'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
                 'headers' => [
