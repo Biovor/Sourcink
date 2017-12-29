@@ -111,7 +111,6 @@ class Big5Controller extends Controller
         $em->persist($user);
         $em->flush();
         $pdf = base64_decode($big5User->getPdfReport());
-        $api->tagCandidate($user->getIdCats(), $this->getParameter('id_tag_candidate_big5'));
         header('Content-Type: application/pdf');
         $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
         fwrite($fp, $pdf);
@@ -120,6 +119,7 @@ class Big5Controller extends Controller
         $directory = 'big5/big5-'.$big5User->getId().'.pdf';
         $api->sendResume($directory, $user->id, $user->first_name, $user->last_name, $origin);
         unlink($directory);
+        $api->tagCandidate($user->getIdCats(), $this->getParameter('id_tag_candidate_big5'));
 
         return $this->redirectToRoute('app_homepage');
     }
@@ -134,5 +134,20 @@ class Big5Controller extends Controller
         $pdf = base64_decode($big5User->getPdfReport());
         header('Content-Type: application/pdf');
         print_r($pdf);
+    }
+
+    /**
+     *
+     * @Route("/big", name="big5pdf")
+     */
+    public function pdfAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId(7);
+        $pdf = base64_decode($big5User->getPdfReport());
+        header('Content-Type: application/pdf');
+        $fp = fopen('big5/big5-' . $big5User->getId() . '.pdf', 'w+');
+        fwrite($fp, $pdf);
+        fclose($fp);
     }
 }

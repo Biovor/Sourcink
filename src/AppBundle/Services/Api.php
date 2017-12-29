@@ -325,6 +325,7 @@ class Api
         $for = (array) $file;
         $result='';
         $format='.txt';
+
         foreach ($for as $value ){
             $result .= '*'.$value;
         }
