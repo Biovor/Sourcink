@@ -144,7 +144,7 @@ class Big5Controller extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId(7);
-        $user = $em->getRepository('UserBundle:User')->findOneById(7);
+        $user = $em->getRepository('UserBundle:User')->findById(7);
 
         $origin = 'Big5';
         $directory = 'big5/big5-'.$big5User->getId().'.pdf';
