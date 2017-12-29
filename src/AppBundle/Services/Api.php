@@ -326,6 +326,8 @@ class Api
         $result='';
         $format='.txt';
 
+        var_dump($file, $id, $firstName, $lastName, $origin);
+        die();
         foreach ($for as $value ){
             $result .= '*'.$value;
         }
