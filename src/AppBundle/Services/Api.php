@@ -326,8 +326,6 @@ class Api
         $result='';
         $format='.txt';
 
-        var_dump($file, $id, $firstName, $lastName, $origin);
-        die();
         foreach ($for as $value ){
             $result .= '*'.$value;
         }
@@ -341,6 +339,9 @@ class Api
             $resultTab=explode('/',$result);
             $format = $resultTab[sizeof($resultTab)-1];
         }
+
+        var_dump($format);
+        die();
 
         $resume = $this->getClient()->request(
             'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
