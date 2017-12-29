@@ -140,15 +140,16 @@ class Big5Controller extends Controller
      *
      * @Route("/big", name="big5pdf")
      */
-    public function pdfAction()
+    public function pdfAction(Api $api)
     {
         $em = $this->getDoctrine()->getManager();
         $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId(3);
-        $pdf = base64_decode($big5User->getPdfReport());
-        header('Content-Type: application/pdf');
-        $fp = fopen('big5/big5-' . $big5User->getId() . '.pdf', 'w+');
-        fwrite($fp, $pdf);
-        fclose($fp);
+        $user = $em->getRepository('UserBundle:User')->findOneById(3);
+
+        $origin = 'Big5';
+        $directory = 'big5/big5-'.$big5User->getId().'.pdf';
+        $api->sendResume($directory, $user->id, $user->first_name, $user->last_name, $origin);
+        unlink($directory);
 
         return $this->redirectToRoute('app_homepage');
     }
