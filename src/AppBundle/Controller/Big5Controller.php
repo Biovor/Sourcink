@@ -149,5 +149,7 @@ class Big5Controller extends Controller
         $fp = fopen('big5/big5-' . $big5User->getId() . '.pdf', 'w+');
         fwrite($fp, $pdf);
         fclose($fp);
+
+        return $this->redirectToRoute('app_homepage');
     }
 }
