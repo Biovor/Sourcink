@@ -148,6 +148,8 @@ class Big5Controller extends Controller
 
         $origin = 'Big5';
         $directory = 'big5/big5-'.$big5User->getId().'.pdf';
+        var_dump($user);
+        die();
         $api->sendResume($directory, $user->id, $user->first_name, $user->last_name, $origin);
         unlink($directory);
 
