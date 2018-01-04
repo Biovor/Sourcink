@@ -333,26 +333,35 @@ class Api
         if ($origin === 'CV') {
             $resultTab = explode('*', $result);
             $format = $resultTab[2];
+
+            $resume = $this->getClient()->request(
+                'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
+                    'headers' => [
+                        'Authorization' => 'Token ' . $this->getApiKey(),
+                        'content-type' => 'application/octet-stream'
+                    ],
+
+                    'body' => fopen(realpath($file), 'r')
+                ]
+            );
         }
 
         if ($origin === 'Big5') {
-            $resultTab=explode('/',$result);
-            $format = $resultTab[sizeof($resultTab)-1];
+            $resultTab = explode('/', $result);
+            $format = $resultTab[sizeof($resultTab) - 1];
+
+            $resume = $this->getClient()->request(
+                'POST', 'candidates/' . $id . '/resumes?filename=' . $firstName . '-' . $lastName . '-' . $format . '', [
+                    'headers' => [
+                        'Authorization' => 'Token ' . $this->getApiKey(),
+                        'content-type' => 'application/octet-stream'
+                    ],
+
+                    'body' => fopen($file, 'r')
+                ]
+            );
         }
 
-        var_dump($file);
-        die();
-
-        $resume = $this->getClient()->request(
-            'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
-                'headers' => [
-                    'Authorization' => 'Token ' . $this->getApiKey(),
-                    'content-type' => 'application/octet-stream'
-                ],
-
-                'body' => fopen(realpath($file), 'r')
-            ]
-        );
         return $resume;
     }
 

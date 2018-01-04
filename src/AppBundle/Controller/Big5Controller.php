@@ -135,22 +135,22 @@ class Big5Controller extends Controller
         header('Content-Type: application/pdf');
         print_r($pdf);
     }
-
-    /**
-     *
-     * @Route("/big", name="big5pdf")
-     */
-    public function pdfAction(Api $api)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId(7);
-        $user = $em->getRepository('UserBundle:User')->findOneById(7);
-
-        $origin = 'Big5';
-        $directory = 'big5/big5-'.$big5User->getId().'.pdf';
-        $api->sendResume($directory, $user->getId(), $user->getFirstname(), $user->getLastname(), $origin);
-        unlink($directory);
-
-        return $this->redirectToRoute('app_homepage');
-    }
+//
+//    /**
+//     *
+//     * @Route("/big", name="big5pdf")
+//     */
+//    public function pdfAction(Api $api)
+//    {
+//        $em = $this->getDoctrine()->getManager();
+//        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId(7);
+//        $user = $em->getRepository('UserBundle:User')->findOneById(7);
+//
+//        $origin = 'Big5';
+//        $directory = 'big5/big5-'.$big5User->getId().'.pdf';
+//        $api->sendResume($directory, $user->getId(), $user->getFirstname(), $user->getLastname(), $origin);
+//        unlink($directory);
+//
+//        return $this->redirectToRoute('app_homepage');
+//    }
 }
