@@ -340,7 +340,7 @@ class Api
             $format = $resultTab[sizeof($resultTab)-1];
         }
 
-        var_dump($format);
+        var_dump($file);
         die();
 
         $resume = $this->getClient()->request(
