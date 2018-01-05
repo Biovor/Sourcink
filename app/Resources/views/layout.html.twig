@@ -13,7 +13,7 @@
         fiscal et RH. Recherche et présélection de candidatures qualifiées"/>
     {% endif %}
 
-    {% if metaDescription.picture == null %}
+    {% if metaDescription.picture is defined and metaDescription.picture == null %}
         <meta property="og:image" content="{{ asset(app.request.schemeAndHttpHost~'media/sourcink.png') }}"/>
     {% elseif metaDescription.picture is defined and  metaDescription.picture is not empty %}
         <meta property="og:image" content="{{ asset(app.request.schemeAndHttpHost~'/img/'~metaDescription
