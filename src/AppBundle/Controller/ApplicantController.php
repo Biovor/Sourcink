@@ -20,13 +20,8 @@ class ApplicantController extends Controller
      */
     public function homeAction(Api $api)
     {
-//        ////*****1 Appel API*****////
-//        $catsUser = $this->userCatsIdentificationAction($api);
-//
-//        ////*****1 Appel API*****////
-//        if (isset($catsUser->id)) {
-//            $api->updateCandidateFromCats($this->getUser(), $catsUser);
-//        }
+        ////*****1 Appel API*****////
+        $catsUser = $this->userCatsIdentificationAction($api);
 
         $em = $this->getDoctrine()->getManager();
         $metaDescription = $em->getRepository('AppBundle:Texts')->findOneBy(array('location'=>'Meta-Candidat'));
