@@ -92,7 +92,7 @@ class CultureFitController extends Controller{
         $CFUser = end($CFUsers);
         $userCats = $api->getId('candidates',$user->getIdCats());
         $api->updateCandidate($user, $userCats->id, $CFUser);
-
+        $api->tagCandidate($user->getIdCats(), $this->getParameter('id_tag_candidate_CF'));
         return $this->redirectToRoute('app_homepage');
     }
 }

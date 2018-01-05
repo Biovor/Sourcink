@@ -113,8 +113,12 @@ class JobController extends Controller
             if ($job->id == $id){
 
                 if ($form->isValid() && $form->isSubmitted()) {
-
                     $userId = $this->getUser()->getIdCats();
+                    $em = $this->getDoctrine()->getManager();
+                    $CFUsers = $em->getRepository('AppBundle:CultureFit')->findByuserId($userId);
+                    $CFUser = end($CFUsers);
+                    $api->updateCandidate($this->getUser(), $this->getUser()->getIdCats(), $CFUser);
+                    $api->tagCandidate($this->getUser()->getIdCats(), $this->getParameter('id_tag_candidate_Post'));
                     $api->apply($userId, $id);
                     $email->applyJob($mailer, $this->getUser(), $job->title);
                     $this->addFlash('success', 'Nous avons reçu votre candidature. Nous allons vous contacter par e-mail.');
