@@ -29,6 +29,8 @@ parameters:
     id_tag_candidate_spont: id Spont
     id_tag_candidate: id WEB
     id_tag_candidate_big5: id Big5
+    id_tag_candidate_Post: id Post
+    id_tag_candidate_CF: id CF
     try_create_candidate: 5
     temp_cache_jobs: 1800 #durée du cache des offres en secondes par defaut
     temp_cache_regions: 10800 #durée du cache des regions en secondes par defaut

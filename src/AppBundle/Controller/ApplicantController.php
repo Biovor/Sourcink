@@ -52,7 +52,7 @@ class ApplicantController extends Controller
             $data = $form->getData();
             ////*****1 Appel API*****////
             $catsUser = $this->userCatsIdentificationAction($api);
-            if (empty($this->getUser()->getMobility())) {
+            if (!empty($this->getUser()->getMobility())) {
                 $value[]=(reset($regions));
                 $this->getUser()->setMobility($value);
             };
