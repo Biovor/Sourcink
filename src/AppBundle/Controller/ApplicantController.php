@@ -18,8 +18,16 @@ class ApplicantController extends Controller
     /**
      * @Route("/", name="app_applicant")
      */
-    public function homeAction()
+    public function homeAction(Api $api)
     {
+        ////*****1 Appel API*****////
+        $catsUser = $this->userCatsIdentificationAction($api);
+
+        ////*****1 Appel API*****////
+        if (isset($catsUser->id)) {
+            $api->updateCandidateFromCats($this->getUser(), $catsUser);
+        }
+
         $em = $this->getDoctrine()->getManager();
         $metaDescription = $em->getRepository('AppBundle:Texts')->findOneBy(array('location'=>'Meta-Candidat'));
         if ($metaDescription->getPicture() !== null){
@@ -76,8 +84,8 @@ class ApplicantController extends Controller
                 $api->updateCandidate($this->getUser(), $catsUser->id, $cultureFit);
 
                 if (is_null($this->getUser()->getIdCats())) {
-                $this->getUser()->setIdCats($catsUser->id);
-                $api->tagCandidate($catsUser->id, $this->getParameter('id_tag_candidate_web'));
+                    $this->getUser()->setIdCats($catsUser->id);
+                    $api->tagCandidate($catsUser->id, $this->getParameter('id_tag_candidate_web'));
                 }
             }
             $this->getUser()->setStatus(true);
@@ -137,7 +145,7 @@ class ApplicantController extends Controller
             $resume = false;
             foreach ($catsUser->_embedded->attachments as $attachment) {
                 if ($attachment->is_resume === true){
-                   $resume = true;
+                    $resume = true;
                 }
             }
             if ($resume == false){
