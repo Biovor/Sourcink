@@ -124,11 +124,6 @@ class Big5Controller extends Controller
             $userCats->_embedded->candidates[0]->id, $userCats->_embedded->candidates[0]->first_name,
             $userCats->_embedded->candidates[0]->last_name);
         unlink($directory . $user->getResumeName());
-
-
-//        $api->sendResume2($directory. $user->getResumeName(), $user->getId(), $user->getFirstname(),
-//            $user->getLastname());
-//        unlink($directory. $user->getResumeName());
         $api->tagCandidate($userCats->_embedded->candidates[0]->id, $this->getParameter('id_tag_candidate_big5'));
 
         return $this->redirectToRoute('app_homepage');
