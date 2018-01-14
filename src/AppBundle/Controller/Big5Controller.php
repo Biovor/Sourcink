@@ -104,47 +104,35 @@ class Big5Controller extends Controller
 
     public function big5PDFAction(Api $api, $idUser)
     {
-         $em = $this->getDoctrine()->getManager();
-         $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
-         $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($idUser);
-         $pdf = base64_decode($big5User->getPdfReport());
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
+        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($idUser);
+        $user->setBig5(true);
+        $em->persist($user);
+        $em->flush();
 
-         header('Content-Type: application/pdf');
-         $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
-         fwrite($fp, $pdf);
-         fclose($fp);
+        $pdf = base64_decode($big5User->getPdfReport());
 
-         $userCats = $api->getSearch('candidates', $user->getEmail());
-         $directory = 'big5/big5-'.$big5User->getId().'.pdf';
-         $api->sendResume2($directory . $user->getResumeName(),
-             $userCats->_embedded->candidates[0]->id, $userCats->_embedded->candidates[0]->first_name,
-             $userCats->_embedded->candidates[0]->last_name);
-         unlink($directory . $user->getResumeName());
+        header('Content-Type: application/pdf');
+        $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
+        fwrite($fp, $pdf);
+        fclose($fp);
 
-         return $this->redirectToRoute('app_homepage');
-     }
+        $userCats = $api->getSearch('candidates', $user->getEmail());
+        $directory = 'big5/big5-'.$big5User->getId().'.pdf';
+        $api->sendResume2($directory . $user->getResumeName(),
+            $userCats->_embedded->candidates[0]->id, $userCats->_embedded->candidates[0]->first_name,
+            $userCats->_embedded->candidates[0]->last_name);
+        unlink($directory . $user->getResumeName());
 
-//    public function big5PDFAction(Api $api, $idUser)
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//        $user = $em->getRepository('UserBundle:User')->findOneById($idUser);
-//        $big5User = $em->getRepository('AppBundle:Big5')->findOneByuserId($idUser);
-//        $user->setBig5(true);
-//        $em->persist($user);
-//        $em->flush();
-//        $pdf = base64_decode($big5User->getPdfReport());
-//        header('Content-Type: application/pdf');
-//        $fp= fopen('big5/big5-'.$big5User->getId().'.pdf', 'w+');
-//        fwrite($fp, $pdf);
-//        fclose($fp);
-//        $directory = 'big5/big5-'.$big5User->getId().'.pdf';
+
 //        $api->sendResume2($directory. $user->getResumeName(), $user->getId(), $user->getFirstname(),
 //            $user->getLastname());
 //        unlink($directory. $user->getResumeName());
-//        $api->tagCandidate($user->getIdCats(), $this->getParameter('id_tag_candidate_big5'));
-//
-//        return $this->redirectToRoute('app_homepage');
-//    }
+        $api->tagCandidate($userCats->_embedded->candidates[0]->id, $this->getParameter('id_tag_candidate_big5'));
+
+        return $this->redirectToRoute('app_homepage');
+    }
 
     /**
      * @Route("candidat/big5/pdf", name="big5pdf")
