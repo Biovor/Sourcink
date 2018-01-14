@@ -320,48 +320,52 @@ class Api
     }
 
 
-    public function sendResume($file, $id, $firstName, $lastName, $origin)
+    public function sendResume($file, $id, $firstName, $lastName)
     {
         $for = (array) $file;
         $result='';
-        $format='.txt';
 
         foreach ($for as $value ){
             $result .= '*'.$value;
         }
 
-        if ($origin === 'CV') {
-            $resultTab = explode('*', $result);
-            $format = $resultTab[2];
+        $resultTab = explode('*', $result);
+        $format = $resultTab[2];
 
-            $resume = $this->getClient()->request(
-                'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
-                    'headers' => [
-                        'Authorization' => 'Token ' . $this->getApiKey(),
-                        'content-type' => 'application/octet-stream'
-                    ],
+        $resume = $this->getClient()->request(
+            'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
+                'headers' => [
+                    'Authorization' => 'Token ' . $this->getApiKey(),
+                    'content-type' => 'application/octet-stream'
+                ],
 
-                    'body' => fopen(realpath($file), 'r')
-                ]
-            );
+                'body' => fopen(realpath($file), 'r')
+            ]
+        );
+        return $resume;
+    }
+
+    public function sendResume2($file, $id, $firstName, $lastName)
+    {
+
+        $for = (array) $file;
+        $result='';
+        foreach ($for as $value ) {
+            $result .= '*' . $value;
         }
+        $resultTab=explode('/',$result);
+        $format = $resultTab[sizeof($resultTab)-1];
 
-        if ($origin === 'Big5') {
-            $resultTab = explode('/', $result);
-            $format = $resultTab[sizeof($resultTab) - 1];
+        $resume = $this->getClient()->request(
+            'POST', 'candidates/' . $id . '/resumes?filename='.$firstName.'-'.$lastName.'-'.$format.'', [
+                'headers' => [
+                    'Authorization' => 'Token ' . $this->getApiKey(),
+                    'content-type' => 'application/octet-stream'
+                ],
 
-            $resume = $this->getClient()->request(
-                'POST', 'candidates/' . $id . '/resumes?filename=' . $firstName . '-' . $lastName . '-' . $format . '', [
-                    'headers' => [
-                        'Authorization' => 'Token ' . $this->getApiKey(),
-                        'content-type' => 'application/octet-stream'
-                    ],
-
-                    'body' => fopen($file, 'r')
-                ]
-            );
-        }
-
+                'body' => fopen(realpath($file), 'r')
+            ]
+        );
         return $resume;
     }
 

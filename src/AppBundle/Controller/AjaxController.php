@@ -22,10 +22,9 @@ class AjaxController extends Controller
     public function resumeSend(Request $request, Api $api)
     {
         if ($request->isXmlHttpRequest()) {
-            $origin = 'CV';
             $resume = $request->files->get('resume');
             $api->sendResume($resume, $this->getUser()->getIdCats(),$this->getUser()->getFirstName(),
-                $this->getUser()->getLastName(), $origin);
+                $this->getUser()->getLastName());
             return new Response(1);
         }
         return $this->redirectToRoute('app_homepage');
